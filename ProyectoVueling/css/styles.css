@@ -1,0 +1,267 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+body {
+    padding: 0px;
+    margin: 0px;
+    font-family: 'Roboto', sans-serif;
+    background-color: #f1f1f1;
+    color: #636467;
+}
+
+
+#login-div {
+    display: none;
+}
+
+#register-div {
+    display: none;
+}
+
+
+#booking-div {
+    display: none;
+}
+
+/* NAVBAR */
+
+/* separa los contenidos del navbar y los pone a cada lado, logo y el los list item */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #ffcc00;
+}
+
+/* pone horizontalmente los list item*/
+#navbar-ul {
+    display: flex;
+}
+
+#navbar-ul li {
+    padding: 10px;
+    list-style-type: none;
+}
+
+#navbar-ul li a {
+    text-decoration: none;
+    color: #636467;
+}
+
+#navbar-ul li a:hover {
+    color: white;
+    transition: .2s;
+}
+
+
+/* PONE EL FORMULARIO DEL LOGIN Y REGISTER HORIZONTALMENTE */
+.login-register {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 80px;
+}
+
+
+
+
+/* LOGIN SECTION */
+
+.login-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    background-color: #ffcc00;
+}
+
+.login-section:hover {
+    box-shadow: rgba(0, 0, 0, 0.24) 2px 3px 15px;
+}
+
+.login-form {
+    margin: 20px 100px !important;
+    padding: 30px;
+    text-align: center;
+}
+
+#login-label {
+    margin-top: 100px !important;
+}
+
+.login-form label {
+    font-size: 18px;
+}
+
+.login-form input {
+    padding: 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 2px;
+    outline: none;
+}
+
+/* #email {
+    margin-left: 45px;
+} */
+
+
+
+#loginNowBtn {
+    margin-top: 30px;
+    background-color: f1f1f1;
+    border-radius: 2px;
+    font-size: 18px;
+}
+
+#loginNowBtn:hover {
+    cursor: pointer;
+    border-radius: 6px;
+    color: #636467;
+}
+
+
+
+/* REGISTER SECTION */
+
+.register-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    background-color: #ffcc00;
+}
+
+.register-section:hover {
+    box-shadow: rgba(0, 0, 0, 0.24) 2px 3px 15px;
+}
+
+.register-section h2 {
+    padding-top: 23px;
+}
+
+.register-form {
+    margin: 20px 100px;
+    padding: 30px;
+    text-align: center;
+}
+
+.register-form label {
+    font-size: 18px;
+}
+
+.register-form input {
+    padding: 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 2px;
+    outline: none;
+}
+
+#registerNowBtn {
+    margin-top: 30px;
+    background-color: f1f1f1;
+    border-radius: 2px;
+    font-size: 18px;
+}
+
+#registerNowBtn:hover {
+    cursor: pointer;
+    border-radius: 6px;
+    color: #636467;
+}
+
+
+
+/* BOOKING SECTION */
+
+.booking {
+    padding: 40px;
+}
+
+.booking-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    background-color: #ffcc00;
+    margin-top: 80px;
+}
+
+.booking-section:hover {
+    box-shadow: rgba(0, 0, 0, 0.24) 2px 3px 15px;
+}
+
+.booking-section h2 {
+    padding-top: 20px;
+}
+
+
+.booking {
+    display: flex;
+    justify-content: center;
+}
+
+
+.booking-form {
+    text-align: center;
+    width: 80%;
+    margin: 20px 100px;
+    padding: 30px;
+    text-align: center;
+
+}
+
+.booking-form input {
+    padding: 10px;
+    margin: 10px;
+    border: none;
+    border-radius: 2px;
+    outline: none;
+} 
+
+
+.input-section-booking {
+    display: flex;
+    justify-content: space-around;
+}
+
+#bookNowBtn{
+    margin-top: 30px;
+    background-color: f1f1f1;
+    border-radius: 2px;
+    font-size: 18px;
+}
+
+#bookNowBtn:hover {
+    cursor: pointer;
+    border-radius: 6px;
+    color: #636467;
+}
+
+
+.booking-origen-destino select {
+    padding: 10px;
+    margin: 10px;
+    border: none;
+    border-radius: 2px;
+    outline: none;
+}
+
+
+/* FOOTER */
+
+.footer {
+    text-align: center;
+    background-color: #ffcc00;
+    margin: 0;
+    padding: 5px;
+    color: #636467;
+}
