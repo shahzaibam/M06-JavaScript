@@ -8,49 +8,32 @@ body {
     color: #636467;
 }
 
-
-#login-div {
-    display: none;
-}
-
-#register-div {
-    display: none;
-}
-
-
-#booking-div {
-    display: none;
-}
-
 /* NAVBAR */
 
 /* separa los contenidos del navbar y los pone a cada lado, logo y el los list item */
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px;
     background-color: #ffcc00;
 }
 
 /* pone horizontalmente los list item*/
-#navbar-ul {
+/* #navbar-ul {
     display: flex;
-}
+} */
 
-#navbar-ul li {
+/* #navbar-ul li {
     padding: 10px;
     list-style-type: none;
-}
+} */
 
-#navbar-ul li a {
+/* #navbar-ul li a {
     text-decoration: none;
     color: #636467;
-}
+} */
 
-#navbar-ul li a:hover {
+/* #navbar-ul li a:hover {
     color: white;
     transition: .2s;
-}
+} */
 
 
 /* PONE EL FORMULARIO DEL LOGIN Y REGISTER HORIZONTALMENTE */
@@ -66,15 +49,15 @@ body {
 /* LOGIN SECTION */
 
 .login-section {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  /* display: flex; */
+    /* flex-direction: column; */
+    /* justify-content: center; */
+    /* align-items: center; */
     text-align: center;
     border-radius: 5px;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; 
     background-color: #ffcc00;
-}
+} 
 
 .login-section:hover {
     box-shadow: rgba(0, 0, 0, 0.24) 2px 3px 15px;
@@ -82,12 +65,13 @@ body {
 
 .login-form {
     margin: 20px 100px !important;
-    padding: 30px;
+    /* padding: 30px; */
     text-align: center;
 }
 
 #login-label {
-    margin-top: 100px !important;
+    margin-top: 80px !important;
+    margin-bottom: 80px;
 }
 
 .login-form label {
@@ -115,21 +99,21 @@ body {
     font-size: 18px;
 }
 
-#loginNowBtn:hover {
+/* #loginNowBtn:hover {
     cursor: pointer;
     border-radius: 6px;
     color: #636467;
-}
+} */
 
 
 
 /* REGISTER SECTION */
 
 .register-section {
-    display: flex;
+    /* display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: center; */
     text-align: center;
     border-radius: 5px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -141,12 +125,12 @@ body {
 }
 
 .register-section h2 {
-    padding-top: 23px;
+    padding-top: 80px;
 }
 
 .register-form {
     margin: 20px 100px;
-    padding: 30px;
+    /* padding: 30px; */
     text-align: center;
 }
 
@@ -169,25 +153,25 @@ body {
     font-size: 18px;
 }
 
-#registerNowBtn:hover {
+/* #registerNowBtn:hover {
     cursor: pointer;
     border-radius: 6px;
     color: #636467;
-}
+} */
 
 
 
 /* BOOKING SECTION */
 
-.booking {
+/* .booking {
     padding: 40px;
-}
+} */
 
 .booking-section {
-    display: flex;
+    /* display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: center; */
     text-align: center;
     border-radius: 5px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -200,7 +184,7 @@ body {
 }
 
 .booking-section h2 {
-    padding-top: 20px;
+    padding-top: 80px;
 }
 
 
@@ -211,27 +195,25 @@ body {
 
 
 .booking-form {
-    text-align: center;
-    width: 80%;
-    margin: 20px 100px;
+    /* width: 80%; */
+    /* margin: 50px 50px; */
     padding: 30px;
     text-align: center;
-
 }
 
 .booking-form input {
-    padding: 10px;
-    margin: 10px;
+    /* padding: 10px; */
+    /* margin: 10px; */
     border: none;
     border-radius: 2px;
     outline: none;
 } 
 
 
-.input-section-booking {
+/* .input-section-booking {
     display: flex;
     justify-content: space-around;
-}
+} */
 
 #bookNowBtn{
     margin-top: 30px;
@@ -240,20 +222,20 @@ body {
     font-size: 18px;
 }
 
-#bookNowBtn:hover {
+/* #bookNowBtn:hover {
     cursor: pointer;
     border-radius: 6px;
     color: #636467;
-}
+} */
 
 
-.booking-origen-destino select {
+/* .booking-origen-destino select {
     padding: 10px;
     margin: 10px;
     border: none;
     border-radius: 2px;
     outline: none;
-}
+} */
 
 
 /* FOOTER */
