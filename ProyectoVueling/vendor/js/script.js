@@ -1,3 +1,21 @@
+let cadena = "We will, we will rock you";
+
+console.log(cadena.match(/we/ig));
+
+
+let patron = /will/i
+
+
+if(patron.test(cadena)) {
+    console.log("patron encontrado")
+}else {
+    console.log("patron no encontrado")
+}
+
+
+//reemplaza el we (i=busca el primer we, g=busca todos los we no importa mayus o minus), lo reemplaza por "You"
+console.log(cadena.replace(/we/ig, "You"))
+
 //cuando cargue la página todos los forms estarán en display none, (no se verán)
 document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("login-div").style.display = "none";
@@ -81,7 +99,10 @@ document.getElementById("loginNowBtn").addEventListener("click", () => {
 
     let passwd = document.getElementById("password").value;
 
-    alert("You email is " + email + " and your password is " + passwd)
+
+    document.getElementById("result").innerHTML = "Login Results --> Email : " + email + " ..... Password --> " + passwd;
+
+    // alert("You email is " + email + " and your password is " + passwd)
 
 });
 

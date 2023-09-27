@@ -273,59 +273,59 @@ const lletra = 'M'
 //DOM
 //------------------------------
 //getElementById
-document.getElementById("hello").innerHTML = "Hola a tothom"; //inserint texte dins del tag del id #hello.
+// document.getElementById("hello").innerHTML = "Hola a tothom"; //inserint texte dins del tag del id #hello.
 
 
 //getElementsByTagName
-let valors = document.getElementsByTagName("h2");
+// let valors = document.getElementsByTagName("h2");
 
-console.log(valors)
+// console.log(valors)
 
-console.log(valors[1].innerHTML)
+// console.log(valors[1].innerHTML)
 
 
-for (let index = 0; index < valors.length; index++) {
-    console.log(valors[index].innerHTML)
-}
+// for (let index = 0; index < valors.length; index++) {
+//     console.log(valors[index].innerHTML)
+// }
 
 
 
 //getElementsByClassName
-let classes = document.getElementsByClassName("intro");
+// let classes = document.getElementsByClassName("intro");
 
-console.log(classes);
+// console.log(classes);
 
 
-for (let index = 0; index < classes.length; index++) {
-    classes[index].innerHTML = "Heeyy";
+// for (let index = 0; index < classes.length; index++) {
+//     classes[index].innerHTML = "Heeyy";
 
-}
+// }
 
 
 //querySelector
-console.log(document.querySelector("#hello").innerHTML);//accedo al id pero con querySelector
+// console.log(document.querySelector("#hello").innerHTML);//accedo al id pero con querySelector
 
 
-console.log(document.querySelector(".intro").innerHTML);//accedo a la classe con querySelector
+// console.log(document.querySelector(".intro").innerHTML);//accedo a la classe con querySelector
 
 
-console.log(document.querySelectorAll(".intro"));//accedo a todos los tags con classe intro
+// console.log(document.querySelectorAll(".intro"));//accedo a todos los tags con classe intro
 
 
 //cuando seleccionamos querySelectorAll, se convierte en un array, pues lo mostramos con for loop
-let intros = document.querySelectorAll(".intro");
+// let intros = document.querySelectorAll(".intro");
 
-for (let index = 0; index < intros.length; index++) {
-    console.log(intros[index]);
+// for (let index = 0; index < intros.length; index++) {
+//     console.log(intros[index]);
 
-}
+// }
 
 
 //Acceso a los atributos de los tags
-console.log(document.getElementById("link").href)
+// console.log(document.getElementById("link").href)
 
 //cambiamos el atributo href
-console.log(document.getElementById("link").href = "https://proven.cat")
+// console.log(document.getElementById("link").href = "https://proven.cat")
 
 
 
@@ -338,7 +338,7 @@ console.log(document.getElementById("link").href = "https://proven.cat")
 //----------------------------------
 
 //el document.write no respeta los tags, aqui este se pone dnd sea, no le hace falta un tag.
-document.write("hello");
+// document.write("hello");
 
 
 
@@ -355,24 +355,24 @@ document.write("hello");
 // })
 
 
-document.getElementById("myBtn").addEventListener("click", myFunction)
-function myFunction(){
-    //instrucciones
-    alert(document.getElementById("myText").value)
-}
+// document.getElementById("myBtn").addEventListener("click", myFunction)
+// function myFunction(){
+//     //instrucciones
+//     alert(document.getElementById("myText").value)
+// }
 
 
-document.getElementById("myText").addEventListener("focus", () => {
-    document.getElementById("myText").style.background = "pink";
-    document.getElementById("myText").style.color = "white";
-    document.getElementById("myText").style.textTransform = "upperCase";
-})
+// document.getElementById("myText").addEventListener("focus", () => {
+//     document.getElementById("myText").style.background = "pink";
+//     document.getElementById("myText").style.color = "white";
+//     document.getElementById("myText").style.textTransform = "upperCase";
+// })
 
-document.getElementById("myText").addEventListener("blur", () => {
-    document.getElementById("myText").style.background = "white";
-    document.getElementById("myText").style.color = "black";
-    document.getElementById("myText").style.textTransform = "lowerCase";
-})
+// document.getElementById("myText").addEventListener("blur", () => {
+//     document.getElementById("myText").style.background = "white";
+//     document.getElementById("myText").style.color = "black";
+//     document.getElementById("myText").style.textTransform = "lowerCase";
+// })
 
 
 // document.getElementById("myClear").addEventListener("click", () => {
@@ -388,3 +388,21 @@ document.getElementById("myText").addEventListener("blur", () => {
 // })
 
 
+
+
+/*************************************** */
+//EXPRESIONES REGULARES
+
+let cadena = "We will, we will rock you";
+
+console.log(cadena.match(/we/ig));
+
+
+let patron = /will/i
+
+
+if(patron.test(cadena)) {
+    console.log("patron encontrado")
+}else {
+    console.log("patron no encontrado")
+}
