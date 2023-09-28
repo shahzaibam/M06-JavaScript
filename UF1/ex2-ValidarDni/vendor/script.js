@@ -1,82 +1,78 @@
-//cuando cargue la pagina
-// document.addEventListener("DOMContentLoaded", function () {
-    //recoger los valores de las cajas
-    let patron = /[a-zA-ZñÑ]/;
-    var myNum;
-    var myLle;
-    
-
-    // alert(myNum + "   " + myLle);
-    document.getElementById("myNum").addEventListener("blur", function () {
-
-        myNum = document.getElementById("myNum").value;
+let patron = /[a-zA-ZñÑ]/;
+var myNum;
+var myLle;
 
 
-        //verifico el numero
-        if (myNum.length != 8) {
+document.getElementById("myNum").addEventListener("blur", function () {
 
-            document.getElementById("errorNumDNI").innerHTML = "Longitud Incorrecta";
-
-            document.getElementById("submitBtn").disabled = true;
-
-            // document.getElementById("myNum").value = "";
-
-        } else if (isNaN(myNum)) {
-            document.getElementById("errorNumDNI").innerHTML = "Incorrecto, Solo tiene que contener numeros";
-
-            document.getElementById("myNum").value = "";
-
-            document.getElementById("submitBtn").disabled = true;
-
-        } else {
-            document.getElementById("errorNumDNI").innerHTML = "";
-            document.getElementById("submitBtn").disabled = false;
-
-        }
-
-    })
+    myNum = document.getElementById("myNum").value;
 
 
-    document.getElementById("lletra").addEventListener("blur", function () {
+    //verifico el numero
+    if (myNum.length != 8) {
 
-        //verifico la lletra
+        document.getElementById("errorNumDNI").innerHTML = "Longitud Incorrecta";
 
-        myLle = document.getElementById("lletra").value;
+        document.getElementById("submitBtn").disabled = true;
 
-        if (myLle.length != 1) {
-            document.getElementById("errorLetraDNI").innerHTML = "Longitud Incorrecta";
-            document.getElementById("lletra").value = "";
+        // document.getElementById("myNum").value = "";
 
-            document.getElementById("submitBtn").disabled = true;
+    } else if (isNaN(myNum)) {
+        document.getElementById("errorNumDNI").innerHTML = "Incorrecto, Solo tiene que contener numeros";
+
+        document.getElementById("myNum").value = "";
+
+        document.getElementById("submitBtn").disabled = true;
+
+    } else {
+        document.getElementById("errorNumDNI").innerHTML = "";
+        document.getElementById("submitBtn").disabled = false;
+
+    }
+
+})
 
 
-        } else if (!patron.test(myLle)) {
-            document.getElementById("errorLetraDNI").innerHTML = "Solo tiene que contener una letra";
-            document.getElementById("lletra").value = "";
+document.getElementById("lletra").addEventListener("blur", function () {
 
-            document.getElementById("submitBtn").disabled = true;
+    //verifico la lletra
 
-        } else {
-            document.getElementById("errorLetraDNI").innerHTML = "";
-            document.getElementById("submitBtn").disabled = false;
+    myLle = document.getElementById("lletra").value;
 
-        }
+    if (myLle.length != 1) {
+        document.getElementById("errorLetraDNI").innerHTML = "Longitud Incorrecta";
+        document.getElementById("lletra").value = "";
 
-    })
+        document.getElementById("submitBtn").disabled = true;
+
+
+    } else if (!patron.test(myLle)) {
+        document.getElementById("errorLetraDNI").innerHTML = "Solo tiene que contener una letra";
+        document.getElementById("lletra").value = "";
+
+        document.getElementById("submitBtn").disabled = true;
+
+    } else {
+        document.getElementById("errorLetraDNI").innerHTML = "";
+        document.getElementById("submitBtn").disabled = false;
+
+    }
+
+})
 
 
 
-    document.getElementById("submitBtn").addEventListener("click", function () {
-        if (verificaDNI(myNum, myLle)) {
-            document.getElementById("vertader").style.color = "green";
-            document.getElementById("fals").style.color = "red";
-    
-        } else {
-            document.getElementById("fals").style.color = "green";
-            document.getElementById("vertader").style.color = "red";
-    
-        }
-    })
+document.getElementById("submitBtn").addEventListener("click", function () {
+    if (verificaDNI(myNum, myLle)) {
+        document.getElementById("vertader").style.color = "green";
+        document.getElementById("fals").style.color = "red";
+
+    } else {
+        document.getElementById("fals").style.color = "green";
+        document.getElementById("vertader").style.color = "red";
+
+    }
+})
 
 
 
