@@ -52,7 +52,10 @@ document.getElementById("loginNowBtn").addEventListener("click", () => {
     document.getElementById("result").style.display = "block";
 
 
+
     document.getElementById("result").innerHTML = "<h2 class='text-center pt-3'>Login Results </h2> <p class='pt-4'>Email : " + email + " </p> </p> Password : " + passwd + " </p>";
+
+    alert("Email : " + email + "-----" + "Password + :" + passwd)
 
 });
 
