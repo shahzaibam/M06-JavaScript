@@ -16,7 +16,7 @@
 <body>
     <div class="containerdiv">
 
-        <div class="nav-div bg-white">
+        <div class="nav-div bg-white" style="margin-bottom: 4rem;">
             <nav class="navbar navbar-expand-lg navbar-light bg-light" style="padding: 30px;">
                 <div class="container-fluid">
                     <a class="navbar-brand h1" href="./"><b>VUELING</b></a>
@@ -70,7 +70,7 @@
 
 
 
-        <div class="container border-0" style="margin-top: 10rem;" id="register-div">
+        <div class="container border-0 mb-5"  id="register-div">
             <div class="row justify-content-center">
                 <div class="col-md-5">
                     <div class="card shadow-lg">
@@ -78,33 +78,43 @@
                             <h4 class="card-title p-3">Registrar</h4>
                         </div>
                         <div class="card-body">
-                            <form>
                                 <div class="form-group">
                                     <label for="nombre">Nombre</label>
-                                    <input type="text" class="form-control" id="nombre" required>
+                                    <input type="text" class="form-control" id="nombre" value="shebi" required> 
+                                    <span id="error-nombre-register"></span>
                                 </div>
                                 <div class="form-group mt-4">
                                     <label for="apellido">Apellido</label>
-                                    <input type="text" class="form-control" id="apellido" required>
+                                    <input type="text" class="form-control" id="apellido" value="asghar" required>
+                                    <span id="error-apellido-register"></span>
                                 </div>
                                 <div class="form-group mt-4">
-                                    <label for="email">Email</label>
-                                    <input type="email" class="form-control" id="email" required>
+                                    <label for="email-register">Email</label>
+                                    <input type="email" class="form-control" id="email-register" value="shebi@gmail.com" required>
+                                    <span id="error-email-register"></span>
                                 </div>
                                 <div class="form-group mt-4">
-                                    <label for="password">Contraseña</label>
-                                    <input type="password" class="form-control" id="password" required>
+                                    <label for="password-register">Contraseña</label>
+                                    <input type="password" class="form-control" id="password-register" required>
+                                    <span id="error-password-register"></span>
                                 </div>
                                 <div class="form-group mt-4">
-                                    <label for="password">Contraseña</label>
-                                    <input type="password" class="form-control" id="password" required>
+                                    <label for="repeat-password">Repite Contraseña</label>
+                                    <input type="password" class="form-control" id="repeat-password" required>
+                                    <span id="error-password-repeat"></span>
+                                </div>
+                                <div class="form-group mt-4">
+                                    <label for="dni">DNI</label>
+                                    <input type="text" class="form-control" id="dni" required>
+                                    <span id="error-dni-repeat"></span>
                                 </div>
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-primary btn-block mt-4">Registrarse</button>
+                                    <button type="submit" id="registerSubmit" class="btn btn-primary btn-block mt-4">Registrarse</button>
                                 </div>
-                            </form>
                         </div>
                     </div>
+
+                    <h1 class="bg-white text-center mt-3" id="mensaje-registrado"></h1>
                 </div>
             </div>
         </div>
@@ -170,7 +180,7 @@
                 </div>
             </div>
         </div>
-        <div class="card container mt-5" id="result" style="width: 25rem; margin-top: 200px;">
+        <div class="card container mt-5" id="result" style="width: 25rem; margin-top: 10rem;">
             <div class="card-body" >
                 
             </div>

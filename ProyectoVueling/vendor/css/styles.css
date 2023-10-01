@@ -27,6 +27,10 @@ body {
     color: black;
 }
 
+#register-div {
+    padding-bottom: 7rem !important;
+}
+
 .footer {
     color: #007bff;
 }
