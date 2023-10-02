@@ -54,16 +54,16 @@ document.getElementById("booking-btn").addEventListener("click", () => {
 
 //Hacer un get de los datos introducidos en los fields del formulario login, y después mostrarlos en un alert.
 document.getElementById("loginNowBtn").addEventListener("click", () => {
-    
+
     let emailVal = document.getElementById("email").value;
 
     let passwdVal = document.getElementById("password").value;
 
-    if(emailVal == usuarios && passwdVal == passwd) {
+    if (emailVal == usuarios && passwdVal == passwd) {
         document.getElementById("validationMessage").innerHTML = "Usuari Correcte";
         document.getElementById("validationMessage").style.color = "green";
         document.getElementById("validationMessage").style.display = "block";
-    }else {
+    } else {
         document.getElementById("validationMessage").innerHTML = "Credencials incorrectes";
         document.getElementById("validationMessage").style.color = "red";
         document.getElementById("validationMessage").style.display = "block";
@@ -73,7 +73,7 @@ document.getElementById("loginNowBtn").addEventListener("click", () => {
 
 
 
-    document.getElementById("result").innerHTML = "<h2 class='text-center pt-3'>Login Results </h2> <p class='pt-4'>Email : " + emailVal     + " </p> </p> Password : " + passwdVal + " </p>";
+    document.getElementById("result").innerHTML = "<h2 class='text-center pt-3'>Login Results </h2> <p class='pt-4'>Email : " + emailVal + " </p> </p> Password : " + passwdVal + " </p>";
 
 
 });
@@ -102,29 +102,29 @@ document.getElementById("registerSubmit").addEventListener("click", () => {
 
 
     //comprobación del nombre segun el patron
-    if(!patronNombreApellido.test(nombreValue)) {
+    if (!patronNombreApellido.test(nombreValue)) {
         document.getElementById("error-nombre-register").style.color = "red";
         document.getElementById("error-nombre-register").innerHTML = "Nombre incorrecto";
         boolNombre = false;
-    }else {
+    } else {
         document.getElementById("error-nombre-register").innerHTML = "";
     }
 
     //comprobación del apellido segun el patron
-    if(!patronNombreApellido.test(apellidoValue)) {
+    if (!patronNombreApellido.test(apellidoValue)) {
         document.getElementById("error-apellido-register").style.color = "red";
         document.getElementById("error-apellido-register").innerHTML = "Apellido incorrecto";
         boolapellido = false;
-    }else {
+    } else {
         document.getElementById("error-apellido-register").innerHTML = "";
     }
 
     //comprobación del email segun el patron
-    if(!patronEmail.test(emailValue)) {
+    if (!patronEmail.test(emailValue)) {
         document.getElementById("error-email-register").style.color = "red";
         document.getElementById("error-email-register").innerHTML = "Email incorrecto";
         boolemail = false;
-    }else {
+    } else {
         document.getElementById("error-email-register").innerHTML = "";
     }
 
@@ -136,34 +136,61 @@ document.getElementById("registerSubmit").addEventListener("click", () => {
         document.getElementById("error-password-register").innerHTML = "menor que 5";
         boolpassword = false;
     }
-    
+
     //comprobación del password repeat, que sea igual que el password inicial
-    if(passwordValue != passwordRepeatVal) {
+    if (passwordValue != passwordRepeatVal) {
         document.getElementById("error-password-repeat").style.color = "red";
         document.getElementById("error-password-repeat").innerHTML = "No coinciden las contraseñas";
         boolpasswordRepeat = false;
-    }else {
+    } else {
         document.getElementById("error-password-repeat").innerHTML = "";
     }
 
 
     //comprobacion del dni, segun el patron del DNI
-    if(!patronDNI.test(dniValue)) {
-        document.getElementById("error-dni-repeat").style.color = "red";
-        document.getElementById("error-dni-repeat").innerHTML = "DNI incorrecto";
-        boolDni = false;
-    }else {
+    if (!patronDNI.test(dniValue)) {
+
+        let num = dniValue.substr(0, 8);
+        let llet = dniValue.substr(-1);
+
+        if (!verificaDNI(num, llet)) {
+            document.getElementById("error-dni-repeat").style.color = "red";
+            document.getElementById("error-dni-repeat").innerHTML = "DNI incorrecto";
+            boolDni = false;
+        }
+
+
+    } else {
         document.getElementById("error-dni-repeat").innerHTML = "";
     }
 
 
     //comprobamos que todos los valores boolean sean true y mostramos el mensaje, y si no lo son, no mostramos nada
-    if(boolNombre && boolapellido && boolemail && boolpassword && boolpasswordRepeat && boolDni) {
+    if (boolNombre && boolapellido && boolemail && boolpassword && boolpasswordRepeat && boolDni) {
         document.getElementById("mensaje-registrado").innerHTML = "USUARI ENREGISTRAT CORRECTAMENT";
-    }else{
+    } else {
         document.getElementById("mensaje-registrado").innerHTML = "";
     }
 
 });
+
+
+function verificaDNI(num, lle) {
+    let flag = false;
+    let lletres = "TRWAGMYFPDXBNJZSQVHLCKE";
+
+
+
+    let residu = num % 23;
+
+    let lletraBona = lletres[residu];
+
+
+    if (lletraBona == lle.toUpperCase()) {
+        flag = true;
+    }
+
+    return flag;
+}
 
 

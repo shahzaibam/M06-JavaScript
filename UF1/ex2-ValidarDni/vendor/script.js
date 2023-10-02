@@ -1,7 +1,7 @@
 let patron = /[a-zA-ZñÑ]/;
 var myNum;
 var myLle;
-
+ 
 
 document.getElementById("myNum").addEventListener("blur", function () {
 
@@ -13,7 +13,7 @@ document.getElementById("myNum").addEventListener("blur", function () {
 
         document.getElementById("errorNumDNI").innerHTML = "Longitud Incorrecta";
 
-        document.getElementById("submitBtn").disabled = true;
+        // document.getElementById("submitBtn").disabled = true;
 
         // document.getElementById("myNum").value = "";
 
@@ -22,7 +22,7 @@ document.getElementById("myNum").addEventListener("blur", function () {
 
         document.getElementById("myNum").value = "";
 
-        document.getElementById("submitBtn").disabled = true;
+        // document.getElementById("submitBtn").disabled = true;
 
     } else {
         document.getElementById("errorNumDNI").innerHTML = "";
@@ -43,14 +43,14 @@ document.getElementById("lletra").addEventListener("blur", function () {
         document.getElementById("errorLetraDNI").innerHTML = "Longitud Incorrecta";
         document.getElementById("lletra").value = "";
 
-        document.getElementById("submitBtn").disabled = true;
+        // document.getElementById("submitBtn").disabled = true;
 
 
     } else if (!patron.test(myLle)) {
         document.getElementById("errorLetraDNI").innerHTML = "Solo tiene que contener una letra";
         document.getElementById("lletra").value = "";
 
-        document.getElementById("submitBtn").disabled = true;
+        // document.getElementById("submitBtn").disabled = true;
 
     } else {
         document.getElementById("errorLetraDNI").innerHTML = "";
