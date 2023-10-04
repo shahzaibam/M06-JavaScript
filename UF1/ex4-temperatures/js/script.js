@@ -1,5 +1,3 @@
-let text;
-
 //cuando cargue la pagina
 document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("myBtn").addEventListener("click", function () {
