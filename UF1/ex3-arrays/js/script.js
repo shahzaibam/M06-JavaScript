@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     //añadir un valor en la primera posicion
-    paisos.unshift("USA");
+    paisos.unshift("USA");  
     console.log(paisos);
 
 
