@@ -1,6 +1,7 @@
 //usuario
-let usuarios = "daw2@proven.cat";
-let passwd = "alumnat";
+let usuarios = ["usu01", "usu02", "usu03"];
+let contrasenyes = ["pass01", "pass02", "pass03"];
+
 
 //patrones para formulario de registre
 const patronNombreApellido = /^[A-Za-z\s]+$/;
@@ -52,28 +53,49 @@ document.getElementById("booking-btn").addEventListener("click", () => {
 });
 
 
-//Hacer un get de los datos introducidos en los fields del formulario login, y después mostrarlos en un alert.
+//Hacer un get de los datos introducidos en los fields del formulario login, comprobar si existe el usuario, s
+//1. Si no existe mostrar texto de que no existe el usuario, 
+//2. Si existe el usuario ver si la contraseña introducida esta en la misma posicion que el usuario introducido, si está USUARIO LOGEADO, si no está CONTRASEÑA INCORRECTA
 document.getElementById("loginNowBtn").addEventListener("click", () => {
 
     let emailVal = document.getElementById("email").value;
-
     let passwdVal = document.getElementById("password").value;
 
-    if (emailVal == usuarios && passwdVal == passwd) {
-        document.getElementById("validationMessage").innerHTML = "Usuari Correcte";
-        document.getElementById("validationMessage").style.color = "green";
-        document.getElementById("validationMessage").style.display = "block";
-    } else {
-        document.getElementById("validationMessage").innerHTML = "Credencials incorrectes";
-        document.getElementById("validationMessage").style.color = "red";
-        document.getElementById("validationMessage").style.display = "block";
+
+    let i = 0;
+    while (i < usuarios.length) {
+        console.log("start " + i)
+        if (emailVal == usuarios[i]) {
+            if (passwdVal == contrasenyes[i]) {
+                document.getElementById("result").style.display = "block";
+                document.getElementById("result").innerHTML = "<h2 class='text-center pt-3'>Login Results </h2> <p class='pt-4'>LOGEADO CORRECTAMENTE</p>";
+            } else {
+                document.getElementById("result").style.display = "block";
+                document.getElementById("result").innerHTML = "<h2 class='text-center pt-3'>Login Results </h2> <p class='pt-4'>CONTRASEÑA INCORRECTA</p>";
+            }
+            break;
+        } else if (i == usuarios.length - 1) {
+            document.getElementById("result").style.display = "block";
+            document.getElementById("result").innerHTML = "<h2 class='text-center pt-3'>Login Results </h2> <p class='pt-4'>USUARIO NO ENCONTRADO</p>";
+            break;
+        }
+
+        i++;
     }
 
-    document.getElementById("result").style.display = "block";
 
+    // if (emailVal == usuarios && passwdVal == passwd) {
+    //     document.getElementById("validationMessage").innerHTML = "Usuari Correcte";
+    //     document.getElementById("validationMessage").style.color = "green";
+    //     document.getElementById("validationMessage").style.display = "block";
+    // } else {
+    //     document.getElementById("validationMessage").innerHTML = "Credencials incorrectes";
+    //     document.getElementById("validationMessage").style.color = "red";
+    //     document.getElementById("validationMessage").style.display = "block";
+    // }
 
-
-    document.getElementById("result").innerHTML = "<h2 class='text-center pt-3'>Login Results </h2> <p class='pt-4'>Email : " + emailVal + " </p> </p> Password : " + passwdVal + " </p>";
+    // document.getElementById("result").style.display = "block";
+    // document.getElementById("result").innerHTML = "<h2 class='text-center pt-3'>Login Results </h2> <p class='pt-4'>Email : " + emailVal + " </p> </p> Password : " + passwdVal + " </p>";
 
 
 });
