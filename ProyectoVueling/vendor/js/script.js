@@ -118,79 +118,164 @@ let boolDni = false;
 
 
 //comprobación del nombre segun el patron
-document.getElementById("nombre-register").addEventListener("blur", function () {
+// document.getElementById("nombre-register").addEventListener("blur", function () {
+//     let nombreValue = document.getElementById("nombre-register").value;
+
+//     if (!patronNombreApellido.test(nombreValue)) {
+//         document.getElementById("error-nombre-register").style.color = "red";
+//         document.getElementById("error-nombre-register").innerHTML = "Nombre incorrecto";
+
+//     } else {
+//         document.getElementById("error-nombre-register").innerHTML = "";
+
+
+//     }
+// })
+
+function validarNombre() {
     let nombreValue = document.getElementById("nombre-register").value;
 
     if (!patronNombreApellido.test(nombreValue)) {
         document.getElementById("error-nombre-register").style.color = "red";
         document.getElementById("error-nombre-register").innerHTML = "Nombre incorrecto";
 
-        boolNombre = false;
+        return false;
+
     } else {
         document.getElementById("error-nombre-register").innerHTML = "";
 
-
+        return true;
     }
-})
+}
+
+document.getElementById("nombre-register").addEventListener("blur", validarNombre);
 
 
 
 //comprobación del apellido segun el patron
-document.getElementById("apellido").addEventListener("blur", function () {
+// document.getElementById("apellido").addEventListener("blur", function () {
 
+//     let apellidoValue = document.getElementById("apellido").value;
+
+//     if (!patronNombreApellido.test(apellidoValue)) {
+//         document.getElementById("error-apellido-register").style.color = "red";
+//         document.getElementById("error-apellido-register").innerHTML = "Apellido incorrecto";
+//     } else {
+//         document.getElementById("error-apellido-register").innerHTML = "";
+
+
+//     }
+// });
+
+function validarApellido() {
     let apellidoValue = document.getElementById("apellido").value;
 
     if (!patronNombreApellido.test(apellidoValue)) {
         document.getElementById("error-apellido-register").style.color = "red";
         document.getElementById("error-apellido-register").innerHTML = "Apellido incorrecto";
-        boolapellido = false;
+
+        return false;
     } else {
         document.getElementById("error-apellido-register").innerHTML = "";
 
-
+        return true;
     }
-});
+}
+
+document.getElementById("apellido").addEventListener("blur", validarApellido);
 
 
 
 //comprobación del email segun el patron
-document.getElementById("email-register").addEventListener("blur", function () {
+// document.getElementById("email-register").addEventListener("blur", function () {
 
+//     let emailValue = document.getElementById("email-register").value;
+
+
+//     if (!patronEmail.test(emailValue)) {
+//         document.getElementById("error-email-register").style.color = "red";
+//         document.getElementById("error-email-register").innerHTML = "Email incorrecto";
+//     } else {
+//         document.getElementById("error-email-register").innerHTML = "";
+
+
+//     }
+// });
+
+
+function validarEmail() {
     let emailValue = document.getElementById("email-register").value;
 
 
     if (!patronEmail.test(emailValue)) {
         document.getElementById("error-email-register").style.color = "red";
         document.getElementById("error-email-register").innerHTML = "Email incorrecto";
-        boolemail = false;
+
+        return false;
     } else {
         document.getElementById("error-email-register").innerHTML = "";
 
-
+        return true;
     }
-});
+}
+
+document.getElementById("email-register").addEventListener("blur", validarEmail);
 
 
 //comprobación del password, que sea mayor de 5 caracteres
-document.getElementById("password-register").addEventListener("blur", function () {
+// document.getElementById("password-register").addEventListener("blur", function () {
 
+//     let passwordValue = document.getElementById("password-register").value;
+
+
+//     if (passwordValue.length >= 5) {
+//         document.getElementById("error-password-register").innerHTML = "";
+
+
+//     } else {
+//         document.getElementById("error-password-register").style.color = "red";
+//         document.getElementById("error-password-register").innerHTML = "menor que 5";
+//     }
+// })
+
+
+function validarPassword() {
     let passwordValue = document.getElementById("password-register").value;
 
 
     if (passwordValue.length >= 5) {
         document.getElementById("error-password-register").innerHTML = "";
 
+        return true;
 
     } else {
         document.getElementById("error-password-register").style.color = "red";
         document.getElementById("error-password-register").innerHTML = "menor que 5";
-        boolpassword = false;
+
+        return false;
     }
-})
+}
+
+document.getElementById("password-register").addEventListener("blur", validarPassword);
+
 
 //comprobación del password repeat, que sea igual que el password inicial
-document.getElementById("repeat-password").addEventListener("blur", function () {
+// document.getElementById("repeat-password").addEventListener("blur", function () {
 
+//     let passwordRepeatVal = document.getElementById("repeat-password").value;
+//     let passwordValue = document.getElementById("password-register").value;
+
+
+//     if (passwordValue != passwordRepeatVal) {
+//         document.getElementById("error-password-repeat").style.color = "red";
+//         document.getElementById("error-password-repeat").innerHTML = "No coinciden las contraseñas";
+//     } else {
+//         document.getElementById("error-password-repeat").innerHTML = "";
+
+//     }
+// });
+
+function validarPasswordRepeat() {
     let passwordRepeatVal = document.getElementById("repeat-password").value;
     let passwordValue = document.getElementById("password-register").value;
 
@@ -198,18 +283,46 @@ document.getElementById("repeat-password").addEventListener("blur", function () 
     if (passwordValue != passwordRepeatVal) {
         document.getElementById("error-password-repeat").style.color = "red";
         document.getElementById("error-password-repeat").innerHTML = "No coinciden las contraseñas";
-        boolpasswordRepeat = false;
+
+        return false;
+
     } else {
         document.getElementById("error-password-repeat").innerHTML = "";
 
-
+        return true;
     }
-});
+}
+
+document.getElementById("repeat-password").addEventListener("blur", validarPasswordRepeat);
+
 
 
 //comprobacion del dni, segun el patron del DNI
-document.getElementById("dni").addEventListener("blur", function (passwordValue) {
+// document.getElementById("dni").addEventListener("blur", function (passwordValue) {
 
+//     let dniValue = document.getElementById("dni").value;
+
+
+//     if (!patronDNI.test(dniValue)) {
+
+//         let num = dniValue.substr(0, 8);
+//         let llet = dniValue.substr(-1);
+
+//         if (!verificaDNI(num, llet)) {
+//             document.getElementById("error-dni-repeat").style.color = "red";
+//             document.getElementById("error-dni-repeat").innerHTML = "DNI incorrecto";
+//         }
+
+
+//     } else {
+//         document.getElementById("error-dni-repeat").innerHTML = "";
+
+
+//     }
+// });
+
+
+function validarDNI() {
     let dniValue = document.getElementById("dni").value;
 
 
@@ -221,17 +334,22 @@ document.getElementById("dni").addEventListener("blur", function (passwordValue)
         if (!verificaDNI(num, llet)) {
             document.getElementById("error-dni-repeat").style.color = "red";
             document.getElementById("error-dni-repeat").innerHTML = "DNI incorrecto";
-        }
 
-        boolDni = false;
+            return false;
+        }
 
 
     } else {
         document.getElementById("error-dni-repeat").innerHTML = "";
 
+        return true;
 
     }
-});
+}
+
+document.getElementById("dni").addEventListener("blur", validarDNI);
+
+
 
 function verificaDNI(num, lle) {
     let flag = false;
@@ -252,20 +370,35 @@ function verificaDNI(num, lle) {
 }
 
 
-document.getElementById("registerSubmit").addEventListener("click", function() {
 
-    console.log(boolNombre)
-    console.log(boolapellido)
-    console.log(boolemail)
-    console.log(boolpassword)
-    console.log(boolpasswordRepeat)
-    console.log(boolDni)
+function validarFormulario() {
+    const esNombreValido = validarNombre();
+    const esApellidoValido = validarApellido();
+    const esEmailValido = validarEmail();
+    const esPasswordValido = validarPassword();
+    const esPasswordRepeatValido = validarPasswordRepeat();
+    const esDNIValido = validarDNI();
+
+    // Si todas las validaciones son verdaderas, muestra el mensaje de registro exitoso
+    if (esNombreValido && esApellidoValido && esEmailValido && esPasswordValido && esPasswordRepeatValido && esDNIValido) {
+        document.getElementById("mensaje-registrado-2").style.display = "block";
+        document.getElementById("mensaje-registrado-2").innerHTML = "Usuario Registrado Correctamente";
 
 
-    if(boolNombre && boolapellido && boolemail && boolpassword && boolpasswordRepeat && boolDni) {
-        alert("tofo es correcto")
+        usuarios.push(document.getElementById("nombre-register").value);
+        contrasenyes.push(document.getElementById("repeat-password").value);
+
+        console.log(usuarios)
+        console.log(contrasenyes)
+
     }else {
-        alert("algo falla")
+        document.getElementById("mensaje-registrado-2").style.display = "block";
+        document.getElementById("mensaje-registrado-2").innerHTML = "Datos Incorrectos";
     }
-})
+}
 
+
+document.getElementById("registerSubmit").addEventListener("click", function() {
+    validarFormulario();
+
+})
