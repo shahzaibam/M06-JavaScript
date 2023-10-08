@@ -104,72 +104,115 @@ document.getElementById("loginNowBtn").addEventListener("click", () => {
 
 
 // //validar form registre
-document.getElementById("registerSubmit").addEventListener("click", () => {
+// document.getElementById("registerSubmit").addEventListener("blur", () => {
 
-    //booleans para decir true si cumplen, y false si no cumplen
-    let boolNombre = true;
-    let boolapellido = true;
-    let boolemail = true;
-    let boolpassword = true;
-    let boolpasswordRepeat = true;
-    let boolDni = true;
-
-    //recogemos los valores de cada input
-    let nombreValue = document.getElementById("nombre").value;
-    let apellidoValue = document.getElementById("apellido").value;
-    let emailValue = document.getElementById("email-register").value;
-    let passwordValue = document.getElementById("password-register").value;
-    let passwordRepeatVal = document.getElementById("repeat-password").value;
-    let dniValue = document.getElementById("dni").value;
+//booleans para decir true si cumplen, y false si no cumplen
+let boolNombre = true;
+let boolapellido = true;
+let boolemail = true;
+let boolpassword = true;
+let boolpasswordRepeat = true;
+let boolDni = false;
 
 
-    //comprobación del nombre segun el patron
+
+
+//comprobación del nombre segun el patron
+document.getElementById("nombre-register").addEventListener("blur", function () {
+    let nombreValue = document.getElementById("nombre-register").value;
+
     if (!patronNombreApellido.test(nombreValue)) {
         document.getElementById("error-nombre-register").style.color = "red";
         document.getElementById("error-nombre-register").innerHTML = "Nombre incorrecto";
+
         boolNombre = false;
     } else {
         document.getElementById("error-nombre-register").innerHTML = "";
-    }
 
-    //comprobación del apellido segun el patron
+
+    }
+})
+
+
+
+//comprobación del apellido segun el patron
+document.getElementById("apellido").addEventListener("blur", function () {
+
+    let apellidoValue = document.getElementById("apellido").value;
+
     if (!patronNombreApellido.test(apellidoValue)) {
         document.getElementById("error-apellido-register").style.color = "red";
         document.getElementById("error-apellido-register").innerHTML = "Apellido incorrecto";
         boolapellido = false;
     } else {
         document.getElementById("error-apellido-register").innerHTML = "";
-    }
 
-    //comprobación del email segun el patron
+
+    }
+});
+
+
+
+//comprobación del email segun el patron
+document.getElementById("email-register").addEventListener("blur", function () {
+
+    let emailValue = document.getElementById("email-register").value;
+
+
     if (!patronEmail.test(emailValue)) {
         document.getElementById("error-email-register").style.color = "red";
         document.getElementById("error-email-register").innerHTML = "Email incorrecto";
         boolemail = false;
     } else {
         document.getElementById("error-email-register").innerHTML = "";
-    }
 
-    //comprobación del password, que sea mayor de 5 caracteres
+
+    }
+});
+
+
+//comprobación del password, que sea mayor de 5 caracteres
+document.getElementById("password-register").addEventListener("blur", function () {
+
+    let passwordValue = document.getElementById("password-register").value;
+
+
     if (passwordValue.length >= 5) {
         document.getElementById("error-password-register").innerHTML = "";
+
+
     } else {
         document.getElementById("error-password-register").style.color = "red";
         document.getElementById("error-password-register").innerHTML = "menor que 5";
         boolpassword = false;
     }
+})
 
-    //comprobación del password repeat, que sea igual que el password inicial
+//comprobación del password repeat, que sea igual que el password inicial
+document.getElementById("repeat-password").addEventListener("blur", function () {
+
+    let passwordRepeatVal = document.getElementById("repeat-password").value;
+    let passwordValue = document.getElementById("password-register").value;
+
+
     if (passwordValue != passwordRepeatVal) {
         document.getElementById("error-password-repeat").style.color = "red";
         document.getElementById("error-password-repeat").innerHTML = "No coinciden las contraseñas";
         boolpasswordRepeat = false;
     } else {
         document.getElementById("error-password-repeat").innerHTML = "";
+
+
     }
+});
 
 
-    //comprobacion del dni, segun el patron del DNI
+//comprobacion del dni, segun el patron del DNI
+document.getElementById("dni").addEventListener("blur", function (passwordValue) {
+
+    let dniValue = document.getElementById("dni").value;
+
+
     if (!patronDNI.test(dniValue)) {
 
         let num = dniValue.substr(0, 8);
@@ -178,24 +221,17 @@ document.getElementById("registerSubmit").addEventListener("click", () => {
         if (!verificaDNI(num, llet)) {
             document.getElementById("error-dni-repeat").style.color = "red";
             document.getElementById("error-dni-repeat").innerHTML = "DNI incorrecto";
-            boolDni = false;
         }
+
+        boolDni = false;
 
 
     } else {
         document.getElementById("error-dni-repeat").innerHTML = "";
+
+
     }
-
-
-    //comprobamos que todos los valores boolean sean true y mostramos el mensaje, y si no lo son, no mostramos nada
-    if (boolNombre && boolapellido && boolemail && boolpassword && boolpasswordRepeat && boolDni) {
-        document.getElementById("mensaje-registrado").innerHTML = "USUARI ENREGISTRAT CORRECTAMENT";
-    } else {
-        document.getElementById("mensaje-registrado").innerHTML = "";
-    }
-
 });
-
 
 function verificaDNI(num, lle) {
     let flag = false;
@@ -215,4 +251,21 @@ function verificaDNI(num, lle) {
     return flag;
 }
 
+
+document.getElementById("registerSubmit").addEventListener("click", function() {
+
+    console.log(boolNombre)
+    console.log(boolapellido)
+    console.log(boolemail)
+    console.log(boolpassword)
+    console.log(boolpasswordRepeat)
+    console.log(boolDni)
+
+
+    if(boolNombre && boolapellido && boolemail && boolpassword && boolpasswordRepeat && boolDni) {
+        alert("tofo es correcto")
+    }else {
+        alert("algo falla")
+    }
+})
 
