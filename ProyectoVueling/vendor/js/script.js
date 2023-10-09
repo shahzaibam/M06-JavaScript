@@ -2,7 +2,7 @@
 let usuarios = ["usu01", "usu02", "usu03"];
 let contrasenyes = ["pass01", "pass02", "pass03"];
 
-
+ 
 //patrones para formulario de registre
 const patronNombreApellido = /^[A-Za-z\s]+$/;
 const patronEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z0-9.-]+$/;
