@@ -65,18 +65,18 @@ document.getElementById("loginNowBtn").addEventListener("click", () => {
     let i = 0;
     while (i < usuarios.length) {
         console.log("start " + i)
-        if (emailVal == usuarios[i]) {
-            if (passwdVal == contrasenyes[i]) {
+        if (emailVal.toLowerCase() == usuarios[i]) {
+            if (passwdVal.toLowerCase() == contrasenyes[i]) {
                 document.getElementById("result").style.display = "block";
                 document.getElementById("result").innerHTML = "<h2 class='text-center pt-3'>Login Results </h2> <p class='pt-4'>LOGEADO CORRECTAMENTE</p>";
             } else {
                 document.getElementById("result").style.display = "block";
-                document.getElementById("result").innerHTML = "<h2 class='text-center pt-3'>Login Results </h2> <p class='pt-4'>CONTRASEÑA INCORRECTA</p>";
+                document.getElementById("result").innerHTML = "<h2 class='text-center pt-3'>Login Results </h2> <p class='pt-4'>USUARIO Y/O CONTRASEÑA INCORRECTA</p>";
             }
             break;
         } else if (i == usuarios.length - 1) {
             document.getElementById("result").style.display = "block";
-            document.getElementById("result").innerHTML = "<h2 class='text-center pt-3'>Login Results </h2> <p class='pt-4'>USUARIO NO ENCONTRADO</p>";
+            document.getElementById("result").innerHTML = "<h2 class='text-center pt-3'>Login Results </h2> <p class='pt-4'>USUARIO Y/O CONTRASEÑA INCORRECTA</p>";
             break;
         }
 
@@ -103,20 +103,6 @@ document.getElementById("loginNowBtn").addEventListener("click", () => {
 
 
 
-// //validar form registre
-// document.getElementById("registerSubmit").addEventListener("blur", () => {
-
-//booleans para decir true si cumplen, y false si no cumplen
-let boolNombre = true;
-let boolapellido = true;
-let boolemail = true;
-let boolpassword = true;
-let boolpasswordRepeat = true;
-let boolDni = false;
-
-
-
-
 //comprobación del nombre segun el patron
 // document.getElementById("nombre-register").addEventListener("blur", function () {
 //     let nombreValue = document.getElementById("nombre-register").value;
@@ -132,6 +118,7 @@ let boolDni = false;
 //     }
 // })
 
+//comprobación del nombre segun el patron
 function validarNombre() {
     let nombreValue = document.getElementById("nombre-register").value;
 
@@ -167,6 +154,7 @@ document.getElementById("nombre-register").addEventListener("blur", validarNombr
 //     }
 // });
 
+//comprobación del apellido segun el patron
 function validarApellido() {
     let apellidoValue = document.getElementById("apellido").value;
 
@@ -202,7 +190,7 @@ document.getElementById("apellido").addEventListener("blur", validarApellido);
 //     }
 // });
 
-
+//comprobación del email segun el patron
 function validarEmail() {
     let emailValue = document.getElementById("email-register").value;
 
@@ -238,7 +226,7 @@ document.getElementById("email-register").addEventListener("blur", validarEmail)
 //     }
 // })
 
-
+//comprobación del password, que sea mayor de 5 caracteres
 function validarPassword() {
     let passwordValue = document.getElementById("password-register").value;
 
@@ -275,6 +263,8 @@ document.getElementById("password-register").addEventListener("blur", validarPas
 //     }
 // });
 
+
+//comprobación del password repeat, que sea igual que el password inicial
 function validarPasswordRepeat() {
     let passwordRepeatVal = document.getElementById("repeat-password").value;
     let passwordValue = document.getElementById("password-register").value;
@@ -322,6 +312,7 @@ document.getElementById("repeat-password").addEventListener("blur", validarPassw
 // });
 
 
+//comprobacion del dni, segun el patron del DNI
 function validarDNI() {
     let dniValue = document.getElementById("dni").value;
 
@@ -370,7 +361,7 @@ function verificaDNI(num, lle) {
 }
 
 
-
+//funcion que valida si todas las funciones devuelven true, si lo hacen el usuario se habrá registrado correctamente sin errores, pero si no, no será registrado.
 function validarFormulario() {
     const esNombreValido = validarNombre();
     const esApellidoValido = validarApellido();
@@ -398,7 +389,7 @@ function validarFormulario() {
 }
 
 
+//se ejecutará la funcion de validarFormulario() cuando se pulse en el botón de Submit.
 document.getElementById("registerSubmit").addEventListener("click", function() {
     validarFormulario();
-
 })
