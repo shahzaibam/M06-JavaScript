@@ -358,7 +358,7 @@ function verificaDNI(num, lle) {
     }
 
     return flag;
-}
+}     
 
 
 //funcion que valida si todas las funciones devuelven true, si lo hacen el usuario se habrá registrado correctamente sin errores, pero si no, no será registrado.
