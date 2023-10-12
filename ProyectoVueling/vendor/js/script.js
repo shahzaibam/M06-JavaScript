@@ -398,7 +398,8 @@ document.getElementById("registerSubmit").addEventListener("click", function () 
 
 
 
-/////BOOOOOKINGGG!!!!!!
+/////BOOOOOKINGGG!!!!!! --------------------------------------------------------------------
+
 
 document.getElementById("checkIda").addEventListener("click", () => {
     selectIda();
@@ -416,11 +417,8 @@ document.getElementById("bookingSubmit").addEventListener("click", () => {
     origen = selectOrigin();
     destino = selectDestination();
 
-    if(origen == destino) {
-        alert("no pueden ser la misma ciudad")
-    }
 
-
+    validateOriginDestination(origen, destino);
 
 })
 
@@ -468,3 +466,15 @@ function selectDestination() {
     return document.getElementById("destino").value;
 }
 
+function validateOriginDestination(origen, destino) {
+    if(origen == destino) {
+        document.getElementById("mensaje-error-ida").innerHTML = "Ida no puede ser igual a Vuelta";
+        document.getElementById("mensaje-error-vuelta").innerHTML = "Vuelta no puede ser igual a Ida";
+
+        document.getElementById("mensaje-error-ida").style.color = "red";
+        document.getElementById("mensaje-error-vuelta").style.color = "red";
+    }else {
+        document.getElementById("mensaje-error-ida").innerHTML = "";
+        document.getElementById("mensaje-error-vuelta").innerHTML = "";
+    }
+}
