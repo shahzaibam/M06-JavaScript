@@ -130,7 +130,12 @@
                             <h4 class="card-title p-3">Booking</h4>
                         </div>
                         <div class="card-body">
-                            <form class="booking-form">
+                                <div class="form-group text-center">
+                                    <input type="radio" id="checkIda" name="idaVuelta" value="Ida">
+                                    <label for="checkIda" >Ida</label>                            
+                                    <input type="radio" id="checkIdaVuelta" name="idaVuelta" value="idaYvuelta" checked>      
+                                    <label for="checkIdaVuelta">Ida y Vuelta</label><br>                               
+                                </div>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
@@ -157,12 +162,12 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="form-group">
+                                        <div class="form-group" id="idaField">
                                             <label for="dateIda" class="form-label">Ida:</label>
                                             <input type="date" class="form-control" id="dateIda" name="dateIda">
                                         </div>
-                                        <div class="form-group mt-4">
-                                            <label for="dateVuelta" class="form-label">Vuelta:</label>
+                                        <div class="form-group mt-4" id="vueltaField">
+                                            <label for="dateVuelta"  class="form-label">Vuelta:</label>
                                             <input type="date" class="form-control" id="dateVuelta" name="dateVuelta">
                                         </div>
                                         <div class="form-group mt-4">
@@ -173,9 +178,8 @@
                                     </div>
                                 </div>
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-primary btn-block mt-4">Booking</button>
+                                    <button type="submit" id="bookingSubmit" class="btn btn-primary btn-block mt-4">Booking</button>
                                 </div>
-                            </form>
                         </div>
                     </div>
                 </div>

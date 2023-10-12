@@ -391,14 +391,88 @@ function validarFormulario() {
         console.log(usuarios)
         console.log(contrasenyes)
 
-    }else {
+    } else {
         document.getElementById("mensaje-registrado-2").style.display = "block";
         document.getElementById("mensaje-registrado-2").innerHTML = "Datos Incorrectos";
     }
 }
 
 
-document.getElementById("registerSubmit").addEventListener("click", function() {
+document.getElementById("registerSubmit").addEventListener("click", function () {
     validarFormulario();
 
 })
+
+
+
+
+/////BOOOOOKINGGG!!!!!!
+
+document.getElementById("checkIda").addEventListener("click", () => {
+    selectIda();
+});
+
+document.getElementById("checkIdaVuelta").addEventListener("click", () => {
+    selectIdaVuelta();
+});
+
+
+document.getElementById("bookingSubmit").addEventListener("click", () => {
+    var origen;
+    var destino;
+
+    origen = selectOrigin();
+    destino = selectDestination();
+
+    if(origen == destino) {
+        alert("no pueden ser la misma ciudad")
+    }
+
+
+
+})
+
+
+
+
+
+
+
+//funciones booking
+
+function selectIda() {
+    let ida = document.getElementById("checkIda").value;
+
+    if (ida == "Ida") {
+        if (document.getElementById("idaField").style.display == "none") {
+
+            document.getElementById("vueltaField").style.display = "block";
+        } else {
+            document.getElementById("vueltaField").style.display = "none";
+        }
+    }
+}
+
+function selectIdaVuelta() {
+    let idaVuelta = document.getElementById("checkIdaVuelta").value;
+
+    if (idaVuelta == "idaYvuelta") {
+        if (document.getElementById("vueltaField").style.display == "none") {
+
+            document.getElementById("vueltaField").style.display = "block";
+        }
+    } else {
+        document.getElementById("vueltaField").style.display = "none";
+        document.getElementById("idaVuelta").style.display = "none";
+    }
+}
+
+
+function selectOrigin() {
+    return document.getElementById("origen").value;
+}
+
+function selectDestination() {
+    return document.getElementById("destino").value;
+}
+
