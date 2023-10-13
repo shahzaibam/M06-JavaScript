@@ -414,16 +414,23 @@ document.getElementById("bookingSubmit").addEventListener("click", () => {
     let origen;
     let destino;
     let fechaIda;
+    let fechaVuelta;
 
     origen = selectOrigin();
     destino = selectDestination();
 
     validateOriginDestination(origen, destino);
 
+
     fechaIda = document.getElementById("dateIda").value;
+    fechaVuelta = document.getElementById("dateVuelta").value;
 
-    validateUpToSixMonths(fechaIda);
 
+    validateUpToSixMonthsIda(fechaIda);
+    validateUpToSixMonthsVuelta(fechaVuelta);
+    
+    validatePastDays(fechaIda);
+    validatePastDaysThanIda(fechaIda, fechaVuelta);
 
 })
 
@@ -432,8 +439,9 @@ document.getElementById("bookingSubmit").addEventListener("click", () => {
 
 
 
-//funciones booking
+//FUNCIONES BOOKING
 
+//selectIda() function that if you click on "Ida", it will show just one input date for "Ida"
 function selectIda() {
     let ida = document.getElementById("checkIda").value;
 
@@ -447,6 +455,10 @@ function selectIda() {
     }
 }
 
+
+
+
+//selectIdaVuelta() is a function that checks if you choosed "Ida y Vuelta" it will show you the both inputs.
 function selectIdaVuelta() {
     let idaVuelta = document.getElementById("checkIdaVuelta").value;
 
@@ -462,14 +474,25 @@ function selectIdaVuelta() {
 }
 
 
+
+
+//selectOrigin() gets the value of the select input for origen
 function selectOrigin() {
     return document.getElementById("origen").value;
 }
 
+
+
+
+//selectDestination() gets the value of the select input for destino
 function selectDestination() {
     return document.getElementById("destino").value;
 }
 
+
+
+
+//validateOriginDestination(origen, destino) does a validation to check if origen is the same value as the destino, if they are the same will popup an error message but if not it won't show anything.
 function validateOriginDestination(origen, destino) {
     if (origen == destino) {
         document.getElementById("mensaje-error-ida").innerHTML = "Ida no puede ser igual a Vuelta";
@@ -484,8 +507,11 @@ function validateOriginDestination(origen, destino) {
 }
 
 
-function validateUpToSixMonths(fechaIda) {
-    
+
+
+//validateUpToSixMonths(fechaIda) is a function that gets an argument value of the date input of just Ida, and validates that Ida cannot be a date bigger than 6 months since now.
+function validateUpToSixMonthsIda(fechaIda) {
+
     if (fechaIda) {
         const fechaSeleccionada = new Date(fechaIda);
         const fechaActual = new Date();
@@ -493,10 +519,71 @@ function validateUpToSixMonths(fechaIda) {
         // Añade 6 meses a la fecha actual
         fechaActual.setMonth(fechaActual.getMonth() + 6);
 
-        if (fechaSeleccionada <= fechaActual) {
-            alert("La fecha de ida es válida, no es mayor de 6 meses en el futuro.");
+        if (!(fechaSeleccionada <= fechaActual)) {
+            document.getElementById("errorFechaIda").innerHTML = "La fecha de ida no puede ser en más de 6 meses.";
+            document.getElementById("errorFechaIda").style.color = "red";
         } else {
-            alert("La fecha de ida es mayor de 6 meses en el futuro.");
+            document.getElementById("errorFechaIda").innerHTML = "";
+        }
+    }
+}
+
+
+
+function validateUpToSixMonthsVuelta(fechaVuelta) {
+
+    if (fechaVuelta) {
+        const fechaSeleccionada = new Date(fechaVuelta);
+        const fechaActual = new Date();
+
+        // Añade 6 meses a la fecha actual
+        fechaActual.setMonth(fechaActual.getMonth() + 6);
+
+        if (!(fechaSeleccionada <= fechaActual)) {
+            document.getElementById("errorFechaVuelta").innerHTML = "La fecha de ida no puede ser en más de 6 meses.";
+            document.getElementById("errorFechaVuelta").style.color = "red";
+        } else {
+            document.getElementById("errorFechaVuelta").innerHTML = "";
+        }
+    }
+}
+
+
+
+
+//validateUpToSixMonths(fechaIda) is a function that validates the past dates, if you introduce a past date it will popup an error message.
+function validatePastDays(fechaIda) {
+    if (fechaIda) {
+        const fechaSeleccionada = new Date(fechaIda);
+        const fechaActual = new Date();
+
+        // quita 1 dia a la fecha actual
+        fechaActual.setDate(fechaActual.getDate() - 1);
+
+        if (!(fechaSeleccionada > fechaActual)) {
+            document.getElementById("errorFechaIda").innerHTML = "La fecha de ida no puede ser del pasado.";
+            document.getElementById("errorFechaIda").style.color = "red";
+        } 
+    }
+}
+
+
+
+//validateUpToSixMonths(fechaIda) is a function that validates the past dates, if you introduce a past date it will popup an error message.
+function validatePastDaysThanIda(fechaIda, fechaVuelta) {
+
+    if (fechaVuelta) {
+        const fechaSeleccionadaVuelta = new Date(fechaVuelta);
+        const fechaSeleccionadaIda = new Date(fechaIda);
+
+
+
+        // // quita 1 dia a la fecha actual
+        // fechaIdaAnt.setDate(fechaIdaAnt.getDate());
+
+        if (!(fechaSeleccionadaVuelta >= fechaSeleccionadaIda)) {
+            document.getElementById("errorFechaVuelta").innerHTML = "La fecha no puede ser anterior que la de Ida.";
+            document.getElementById("errorFechaVuelta").style.color = "red";
         }
     }
 }
