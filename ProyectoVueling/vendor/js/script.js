@@ -500,9 +500,13 @@ function validateOriginDestination(origen, destino) {
 
         document.getElementById("mensaje-error-ida").style.color = "red";
         document.getElementById("mensaje-error-vuelta").style.color = "red";
+        
+        return false;
     } else {
         document.getElementById("mensaje-error-ida").innerHTML = "";
         document.getElementById("mensaje-error-vuelta").innerHTML = "";
+
+        return true;
     }
 }
 
@@ -522,8 +526,12 @@ function validateUpToSixMonthsIda(fechaIda) {
         if (!(fechaSeleccionada <= fechaActual)) {
             document.getElementById("errorFechaIda").innerHTML = "La fecha de ida no puede ser en más de 6 meses.";
             document.getElementById("errorFechaIda").style.color = "red";
+
+            return false;
         } else {
             document.getElementById("errorFechaIda").innerHTML = "";
+            
+            return true;
         }
     }
 }
@@ -542,8 +550,12 @@ function validateUpToSixMonthsVuelta(fechaVuelta) {
         if (!(fechaSeleccionada <= fechaActual)) {
             document.getElementById("errorFechaVuelta").innerHTML = "La fecha de ida no puede ser en más de 6 meses.";
             document.getElementById("errorFechaVuelta").style.color = "red";
+
+            return false;
         } else {
             document.getElementById("errorFechaVuelta").innerHTML = "";
+
+            return true;
         }
     }
 }
@@ -563,6 +575,8 @@ function validatePastDays(fechaIda) {
         if (!(fechaSeleccionada > fechaActual)) {
             document.getElementById("errorFechaIda").innerHTML = "La fecha de ida no puede ser del pasado.";
             document.getElementById("errorFechaIda").style.color = "red";
+
+            return false;
         } 
     }
 }
@@ -584,6 +598,8 @@ function validatePastDaysThanIda(fechaIda, fechaVuelta) {
         if (!(fechaSeleccionadaVuelta >= fechaSeleccionadaIda)) {
             document.getElementById("errorFechaVuelta").innerHTML = "La fecha no puede ser anterior que la de Ida.";
             document.getElementById("errorFechaVuelta").style.color = "red";
+
+            return false;
         }
     }
 }
