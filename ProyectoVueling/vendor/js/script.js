@@ -2,7 +2,7 @@
 let usuarios = ["usu01", "usu02", "usu03"];
 let contrasenyes = ["pass01", "pass02", "pass03"];
 
- 
+
 //patrones para formulario de registre
 const patronNombreApellido = /^[A-Za-z\s]+$/;
 const patronEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z0-9.-]+$/;
@@ -358,8 +358,8 @@ function verificaDNI(num, lle) {
     }
 
     return flag;
-}        
-   
+}
+
 
 //funcion que valida si todas las funciones devuelven true.., si lo hacen el usuario se habrá registrado correctamente sin errores, pero si no, no será registrado.
 function validarFormulario() {
@@ -411,17 +411,21 @@ document.getElementById("checkIdaVuelta").addEventListener("click", () => {
 
 
 document.getElementById("bookingSubmit").addEventListener("click", () => {
-    var origen;
-    var destino;
+    let origen;
+    let destino;
+    let fechaIda;
 
     origen = selectOrigin();
     destino = selectDestination();
 
-
     validateOriginDestination(origen, destino);
 
-})
+    fechaIda = document.getElementById("dateIda").value;
 
+    validateUpToSixMonths(fechaIda);
+
+
+})
 
 
 
@@ -467,14 +471,33 @@ function selectDestination() {
 }
 
 function validateOriginDestination(origen, destino) {
-    if(origen == destino) {
+    if (origen == destino) {
         document.getElementById("mensaje-error-ida").innerHTML = "Ida no puede ser igual a Vuelta";
         document.getElementById("mensaje-error-vuelta").innerHTML = "Vuelta no puede ser igual a Ida";
 
         document.getElementById("mensaje-error-ida").style.color = "red";
         document.getElementById("mensaje-error-vuelta").style.color = "red";
-    }else {
+    } else {
         document.getElementById("mensaje-error-ida").innerHTML = "";
         document.getElementById("mensaje-error-vuelta").innerHTML = "";
     }
 }
+
+
+function validateUpToSixMonths(fechaIda) {
+    
+    if (fechaIda) {
+        const fechaSeleccionada = new Date(fechaIda);
+        const fechaActual = new Date();
+
+        // Añade 6 meses a la fecha actual
+        fechaActual.setMonth(fechaActual.getMonth() + 6);
+
+        if (fechaSeleccionada <= fechaActual) {
+            alert("La fecha de ida es válida, no es mayor de 6 meses en el futuro.");
+        } else {
+            alert("La fecha de ida es mayor de 6 meses en el futuro.");
+        }
+    }
+}
+
