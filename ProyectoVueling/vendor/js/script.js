@@ -441,8 +441,13 @@ document.getElementById("bookingSubmit").addEventListener("click", () => {
         validationBoolPastDays = validatePastDays(fechaIda);
         validationBoolPastDaysThanIda = validatePastDaysThanIda(fechaIda, fechaVuelta);
 
+        let fechaIdaVuelo = new Date(fechaIda);
+        let fechaVueltaVuelo = new Date(fechaVuelta);
+
         if (validationBoolOriginDestionation && validationBoolUpToSixMonthsIda && validationBoolUpToSixMonthsVuelta && validationBoolPastDays && validationBoolPastDaysThanIda) {
-            alert("TODO CORRECTO")
+            alert("idaa y vueltaaaa")
+            document.getElementById("valorBooking").innerHTML = `${fechaIdaVuelo.getDate()}/${fechaIdaVuelo.getMonth()+1}/${fechaIdaVuelo.getFullYear()} --> Hora de anada : 12:30 - Preu : 120€`;
+            document.getElementById("valorBooking").innerHTML += `${fechaVueltaVuelo.getDate()}/${fechaVueltaVuelo.getMonth()+1}/${fechaVueltaVuelo.getFullYear()} --> Hora de anada : 10:30 - Preu : 220€`;
         } else {
             alert("ALGO FALLA")
         }
@@ -458,8 +463,12 @@ document.getElementById("bookingSubmit").addEventListener("click", () => {
         validationBoolUpToSixMonthsIda = validateUpToSixMonthsIda(fechaIda);
         validationBoolPastDays = validatePastDays(fechaIda);
 
+        let fechaIdaVuelo = new Date(fechaIda);
+
         if (validationBoolOriginDestionation && validationBoolUpToSixMonthsIda && validationBoolPastDays) {
-            alert("TODO CORRECTO")
+            alert("holaaaaaaa")
+            document.getElementById("valorBooking").innerHTML = `${fechaIdaVuelo.getDate()}/${fechaIdaVuelo.getMonth()+1}/${fechaIdaVuelo.getFullYear()} --> Hora de anada : 18:30 - Preu : 120€`;
+            // document.getElementById("valorBooking").innerHTML = `Hora de anada : 18:30" + " Preu : 120€`;
         } else {
             alert("ALGO FALLA")
         }
@@ -503,9 +512,9 @@ function selectIdaVuelta() {
 
             document.getElementById("vueltaField").style.display = "block";
 
-            return true;
         }
     }
+    return true;
 }
 
 
