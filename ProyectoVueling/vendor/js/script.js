@@ -400,13 +400,14 @@ document.getElementById("registerSubmit").addEventListener("click", function () 
 
 /////BOOOOOKINGGG!!!!!! --------------------------------------------------------------------
 
+let validationBoolIdaVuelta;
 
 document.getElementById("checkIda").addEventListener("click", () => {
     selectIda();
 });
 
 document.getElementById("checkIdaVuelta").addEventListener("click", () => {
-    selectIdaVuelta();
+    validationBoolIdaVuelta = selectIdaVuelta();
 });
 
 
@@ -415,22 +416,57 @@ document.getElementById("bookingSubmit").addEventListener("click", () => {
     let destino;
     let fechaIda;
     let fechaVuelta;
-
-    origen = selectOrigin();
-    destino = selectDestination();
-
-    validateOriginDestination(origen, destino);
-
-
+    let validationBoolOriginDestionation;
+    let validationBoolUpToSixMonthsIda;
+    let validationBoolUpToSixMonthsVuelta;
+    let validationBoolPastDays;
+    let validationBoolPastDaysThanIda;
     fechaIda = document.getElementById("dateIda").value;
     fechaVuelta = document.getElementById("dateVuelta").value;
 
 
-    validateUpToSixMonthsIda(fechaIda);
-    validateUpToSixMonthsVuelta(fechaVuelta);
-    
-    validatePastDays(fechaIda);
-    validatePastDaysThanIda(fechaIda, fechaVuelta);
+    if (validationBoolIdaVuelta) {
+
+        alert("ida y vuelta")
+
+
+        origen = selectOrigin();
+        destino = selectDestination();
+
+        validationBoolOriginDestionation = validateOriginDestination(origen, destino);
+
+        validationBoolUpToSixMonthsIda = validateUpToSixMonthsIda(fechaIda);
+        validationBoolUpToSixMonthsVuelta = validateUpToSixMonthsVuelta(fechaVuelta);
+
+        validationBoolPastDays = validatePastDays(fechaIda);
+        validationBoolPastDaysThanIda = validatePastDaysThanIda(fechaIda, fechaVuelta);
+
+        if (validationBoolOriginDestionation && validationBoolUpToSixMonthsIda && validationBoolUpToSixMonthsVuelta && validationBoolPastDays && validationBoolPastDaysThanIda) {
+            alert("TODO CORRECTO")
+        } else {
+            alert("ALGO FALLA")
+        }
+
+    }else{
+        alert("solo ida")
+
+        origen = selectOrigin();
+        destino = selectDestination();
+
+        validationBoolOriginDestionation = validateOriginDestination(origen, destino);
+
+        validationBoolUpToSixMonthsIda = validateUpToSixMonthsIda(fechaIda);
+        validationBoolPastDays = validatePastDays(fechaIda);
+
+        if (validationBoolOriginDestionation && validationBoolUpToSixMonthsIda && validationBoolPastDays) {
+            alert("TODO CORRECTO")
+        } else {
+            alert("ALGO FALLA")
+        }
+
+    }
+
+
 
 })
 
@@ -466,10 +502,9 @@ function selectIdaVuelta() {
         if (document.getElementById("vueltaField").style.display == "none") {
 
             document.getElementById("vueltaField").style.display = "block";
+
+            return true;
         }
-    } else {
-        document.getElementById("vueltaField").style.display = "none";
-        document.getElementById("idaVuelta").style.display = "none";
     }
 }
 
@@ -500,7 +535,7 @@ function validateOriginDestination(origen, destino) {
 
         document.getElementById("mensaje-error-ida").style.color = "red";
         document.getElementById("mensaje-error-vuelta").style.color = "red";
-        
+
         return false;
     } else {
         document.getElementById("mensaje-error-ida").innerHTML = "";
@@ -530,7 +565,7 @@ function validateUpToSixMonthsIda(fechaIda) {
             return false;
         } else {
             document.getElementById("errorFechaIda").innerHTML = "";
-            
+
             return true;
         }
     }
@@ -573,11 +608,15 @@ function validatePastDays(fechaIda) {
         fechaActual.setDate(fechaActual.getDate() - 1);
 
         if (!(fechaSeleccionada > fechaActual)) {
-            document.getElementById("errorFechaIda").innerHTML = "La fecha de ida no puede ser del pasado.";
-            document.getElementById("errorFechaIda").style.color = "red";
+            document.getElementById("errorFechaIda-2").innerHTML = "La fecha de ida no puede ser del pasado.";
+            document.getElementById("errorFechaIda-2").style.color = "red";
 
             return false;
-        } 
+        } else {
+            document.getElementById("errorFechaIda-2").innerHTML = "";
+            return true;
+
+        }
     }
 }
 
@@ -596,10 +635,14 @@ function validatePastDaysThanIda(fechaIda, fechaVuelta) {
         // fechaIdaAnt.setDate(fechaIdaAnt.getDate());
 
         if (!(fechaSeleccionadaVuelta >= fechaSeleccionadaIda)) {
-            document.getElementById("errorFechaVuelta").innerHTML = "La fecha no puede ser anterior que la de Ida.";
-            document.getElementById("errorFechaVuelta").style.color = "red";
+            document.getElementById("errorFechaVuelta-2").innerHTML = "La fecha no puede ser anterior que la de Ida.";
+            document.getElementById("errorFechaVuelta-2").style.color = "red";
 
             return false;
+        } else {
+            document.getElementById("errorFechaVuelta-2").innerHTML = "";
+
+            return true;
         }
     }
 }
