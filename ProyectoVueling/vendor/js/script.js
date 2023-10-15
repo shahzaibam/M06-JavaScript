@@ -4,7 +4,7 @@ let contrasenyes = ["pass01", "pass02", "pass03"];
 
 
 //patrones para formulario de registre
-const patronNombreApellido = /^[A-Za-z\s]+$/;
+let patronNombreApellido = /^[A-Za-z\s]+$/;
 const patronEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z0-9.-]+$/;
 const patronDNI = /^[0-9]{8}[TRWAGMYFPDXBNJZSQVHLCKE]$/i;
 
@@ -403,6 +403,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let validationBoolIdaVuelta;
 
+
+
+
     document.getElementById("checkIda").addEventListener("click", () => {
         selectIda();
     });
@@ -422,6 +425,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let validationBoolUpToSixMonthsVuelta;
         let validationBoolPastDays;
         let validationBoolPastDaysThanIda;
+        let validarNombreBooking;
         fechaIda = document.getElementById("dateIda").value;
         fechaVuelta = document.getElementById("dateVuelta").value;
 
@@ -442,10 +446,13 @@ document.addEventListener("DOMContentLoaded", function () {
             validationBoolPastDays = validatePastDays(fechaIda);
             validationBoolPastDaysThanIda = validatePastDaysThanIda(fechaIda, fechaVuelta);
 
+
             let fechaIdaVuelo = new Date(fechaIda);
             let fechaVueltaVuelo = new Date(fechaVuelta);
 
-            if (validationBoolOriginDestionation && validationBoolUpToSixMonthsIda && validationBoolUpToSixMonthsVuelta && validationBoolPastDays && validationBoolPastDaysThanIda) {
+            validarNombreBooking = nombreBookingValidation();
+
+            if (validationBoolOriginDestionation && validationBoolUpToSixMonthsIda && validationBoolUpToSixMonthsVuelta && validationBoolPastDays && validationBoolPastDaysThanIda && validarNombreBooking) {
                 alert("idaa y vueltaaaa")
                 document.getElementById("valorBooking").innerHTML = `${fechaIdaVuelo.getDate()}/${fechaIdaVuelo.getMonth() + 1}/${fechaIdaVuelo.getFullYear()} --> Hora de anada : 12:30 - Preu : 120€  `;
                 document.getElementById("valorBooking").innerHTML += ` ${fechaVueltaVuelo.getDate()}/${fechaVueltaVuelo.getMonth() + 1}/${fechaVueltaVuelo.getFullYear()} --> Hora de anada : 10:30 - Preu : 220€`;
@@ -463,10 +470,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
             validationBoolUpToSixMonthsIda = validateUpToSixMonthsIda(fechaIda);
             validationBoolPastDays = validatePastDays(fechaIda);
+            validarNombreBooking = nombreBookingValidation();
+
 
             let fechaIdaVuelo = new Date(fechaIda);
 
-            if (validationBoolOriginDestionation && validationBoolUpToSixMonthsIda && validationBoolPastDays) {
+            if (validationBoolOriginDestionation && validationBoolUpToSixMonthsIda && validationBoolPastDays && validarNombreBooking) {
                 alert("holaaaaaaa")
                 document.getElementById("valorBooking").innerHTML = `${fechaIdaVuelo.getDate()}/${fechaIdaVuelo.getMonth() + 1}/${fechaIdaVuelo.getFullYear()} --> Hora de anada : 18:30 - Preu : 120€`;
                 // document.getElementById("valorBooking").innerHTML = `Hora de anada : 18:30" + " Preu : 120€`;
@@ -654,6 +663,24 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 return true;
             }
+        }
+    }
+
+    //comprobación del nombre segun el patron
+    function nombreBookingValidation() {
+
+        let nombreValue = document.getElementById("nombre-booking").value;
+
+        if (!patronNombreApellido.test(nombreValue)) {
+            document.getElementById("error-nombre-booking").style.color = "red";
+            document.getElementById("error-nombre-booking").innerHTML = "Nombre incorrecto";
+
+            return false;
+
+        } else {
+            document.getElementById("error-nombre-booking").innerHTML = "";
+
+            return true;
         }
     }
 })
