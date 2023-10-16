@@ -7,7 +7,7 @@ document.getElementById("textoArea").addEventListener("input", () => {
 
     let vocales = 0;
 
-    
+     
 
     for (let index = 0; index < texto.length; index++) {
         if (texto[index] == "a") {
