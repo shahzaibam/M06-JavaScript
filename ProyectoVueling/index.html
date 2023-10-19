@@ -146,20 +146,20 @@
                                         <div class="form-group mt-4">
                                             <span for="origen" class="form-label">Origen:</span>
                                             <select class="form-select" id="origen" name="origen">
-                                                <option value="barcelona">Barcelona</option>
+                                                <!-- <option value="barcelona">Barcelona</option>
                                                 <option value="madrid">Madrid</option>
                                                 <option value="paris">Paris</option>
-                                                <option value="londres">Londres</option>
+                                                <option value="londres">Londres</option> -->
                                             </select>
                                             <span id="mensaje-error-ida"></span>
                                         </div>
                                         <div class="form-group mt-4">
                                             <label for="destino" class="form-label">Destino:</label>
                                             <select class="form-select" id="destino" name="destino">
-                                                <option value="barcelona">Barcelona</option>
+                                                <!-- <option value="barcelona">Barcelona</option>
                                                 <option value="madrid">Madrid</option>
                                                 <option value="paris">Paris</option>
-                                                <option value="londres">Londres</option>
+                                                <option value="londres">Londres</option> -->
                                             </select>
                                             <span id="mensaje-error-vuelta"></span>
                                         </div>
@@ -177,10 +177,30 @@
                                             <span id="errorFechaVuelta"></span>
                                             <span id="errorFechaVuelta-2"></span>
                                         </div>
-                                        <div class="form-group mt-4">
+                                        <div class="form-group mt-4" id="dropDownParentDiv">
                                             <label for="passengersTotal" class="form-label">Total Passengers:</label>
-                                            <input type="number" class="form-control" id="passengersTotal"
-                                                name="passengersTotal">
+                                            <p class="form-control" id="passengersTotal" name="passengersTotal">
+                                                <span id="detailInfoPassenger">1 Adulto, 1 niño, 1 bebé</span><br>
+                                                3 Pasajeros
+                                            </p>
+
+                                        </div>
+
+                                        
+                                        <div id="dropDown">
+                                            <div id="adultosInfo">
+                                                <p>Adultos</p>
+                                            </div>
+
+
+                                            <div id="ninosInfo">
+                                                <p>Niños</p>
+                                            </div>
+
+
+                                            <div id="bebeInfo">
+                                                <p>Bebés</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

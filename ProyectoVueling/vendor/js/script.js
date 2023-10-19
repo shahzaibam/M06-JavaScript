@@ -401,6 +401,45 @@ document.getElementById("registerSubmit").addEventListener("click", function () 
 /////BOOOOOKINGGG!!!!!! --------------------------------------------------------------------
 document.addEventListener("DOMContentLoaded", function () {
 
+    const selectOrigen = document.getElementById("origen");
+    let cities = ["Barcelona", "Madrid", "Paris", "Londres"];
+
+    for (let index = 0; index < cities.length; index++) {
+        
+        let createOption = document.createElement("option");
+        
+        createOption.value = cities[index];
+
+        createOption.innerHTML = cities[index];
+
+        selectOrigen.appendChild(createOption);
+    }
+
+
+    const selectDestino = document.getElementById("destino");
+
+    for (let index = 0; index < cities.length; index++) {
+        
+        let createOption = document.createElement("option");
+        
+        createOption.value = cities[index];
+
+        createOption.innerHTML = cities[index];
+
+        selectDestino.appendChild(createOption);
+    }
+
+
+    document.getElementById("dropDownParentDiv").addEventListener("click", () => {
+
+        if(document.getElementById("dropDown").style.display == "none") {
+            document.getElementById("dropDown").style.display = "block";
+        }else {
+            document.getElementById("dropDown").style.display = "none";
+        }
+
+    })
+
     let validationBoolIdaVuelta;
 
 

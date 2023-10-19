@@ -35,6 +35,15 @@ body {
     width: 300px;
 }
 
+#detailInfoPassenger {
+    font-size: 10px;
+    color: gray;
+}
+
+#dropDown {
+    display: none;
+}
+
 .footer {
     color: #007bff;
 }
