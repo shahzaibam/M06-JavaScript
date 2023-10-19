@@ -1,3 +1,9 @@
+import {User} from "./classes/User.js";
+
+let user = new User("Shah Zaib", "Asghar");
+console.log(user.printing());
+
+
 let element = document.getElementById("myDiv");
 let select = document.getElementById("myCities");
 
