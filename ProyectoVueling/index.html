@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="./vendor/css/styles.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="./vendor/fontAwesomeIcons/css/fontawesome.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
@@ -180,26 +181,35 @@
                                         <div class="form-group mt-4" id="dropDownParentDiv">
                                             <label for="passengersTotal" class="form-label">Total Passengers:</label>
                                             <p class="form-control" id="passengersTotal" name="passengersTotal">
-                                                <span id="detailInfoPassenger">1 Adulto, 1 niño, 1 bebé</span><br>
-                                                3 Pasajeros
+                                                <span id="detailInfoPassenger"></span><br>
+                                                <span  id="numAllPassengers"></span>
                                             </p>
 
                                         </div>   
 
                                         
-                                        <div id="dropDown">
+                                        <div id="dropDown" style="display: none;">
                                             <div id="adultosInfo">
-                                                <p>Adultos</p>
+                                                <span>Adultos</span>
+                                                <span id="sumarAdultos" style="border: 1px solid black;"><a style="cursor: pointer;">+</a></span>
+                                                <span id="numTotalAdultos">0</span>
+                                                <span id="restarAdultos" style="border: 1px solid black;"><a style="cursor: pointer;">-</a></span>
                                             </div>
 
 
                                             <div id="ninosInfo">
-                                                <p>Niños</p>
+                                                <span>Niños</span>
+                                                <span id="sumarNinos" style="border: 1px solid black;"><a style="cursor: pointer;">+</a></span>
+                                                <span id="numTotalNinos">0</span>
+                                                <span id="restarNinos" style="border: 1px solid black;"><a style="cursor: pointer;">-</a></span>
                                             </div>
 
 
                                             <div id="bebeInfo">
-                                                <p>Bebés</p>
+                                                <span>Bebés</span>
+                                                <span id="sumarBebes" style="border: 1px solid black;"><a style="cursor: pointer;">+</a></span>
+                                                <span id="numTotalBebes">0</span>
+                                                <span id="restarBebes" style="border: 1px solid black;"><a style="cursor: pointer;">-</a></span>
                                             </div>
                                         </div>
                                     </div>

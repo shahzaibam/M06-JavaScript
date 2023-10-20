@@ -405,9 +405,9 @@ document.addEventListener("DOMContentLoaded", function () {
     let cities = ["Barcelona", "Madrid", "Paris", "Londres"];
 
     for (let index = 0; index < cities.length; index++) {
-        
+
         let createOption = document.createElement("option");
-        
+
         createOption.value = cities[index];
 
         createOption.innerHTML = cities[index];
@@ -419,9 +419,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const selectDestino = document.getElementById("destino");
 
     for (let index = 0; index < cities.length; index++) {
-        
+
         let createOption = document.createElement("option");
-        
+
         createOption.value = cities[index];
 
         createOption.innerHTML = cities[index];
@@ -432,16 +432,128 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.getElementById("dropDownParentDiv").addEventListener("click", () => {
 
-        if(document.getElementById("dropDown").style.display == "none") {
+        if (document.getElementById("dropDown").style.display == "none") {
             document.getElementById("dropDown").style.display = "block";
-        }else {
+        } else {
             document.getElementById("dropDown").style.display = "none";
         }
 
     })
 
-    let validationBoolIdaVuelta;
 
+
+
+    //variable adultos
+    let adultos = 0;
+
+    //variable niños
+    let ninos = 0;
+
+    //variable bebés
+    let bebes = 0;
+
+    //info detallada de cuantos adultos hay, cuantos niños hay y cuantos bebes hay
+    document.getElementById("detailInfoPassenger").innerHTML = `${adultos} Adultos, ${ninos} Ninños, ${bebes} Bebés`;
+
+    //suma total de los pasajeros
+    document.getElementById("numAllPassengers").innerHTML = `${adultos + ninos + bebes} Pasajeros`;
+
+
+    ////SECCION SUMAR Y RESTAR ADULTOS
+    //sumar adultos
+    document.getElementById("sumarAdultos").addEventListener("click", () => {
+        adultos++;
+
+        document.getElementById("numTotalAdultos").innerHTML = adultos;
+
+        document.getElementById("detailInfoPassenger").innerHTML = `${adultos} Adultos, ${ninos} Ninños, ${bebes} Bebés`;
+
+        document.getElementById("numAllPassengers").innerHTML = `${adultos + ninos + bebes} Pasajeros`;
+
+    })
+
+    //restar adultos
+    document.getElementById("restarAdultos").addEventListener("click", () => {
+
+        if (adultos > 0) {
+            adultos--;
+            document.getElementById("numTotalAdultos").innerHTML = adultos;
+        } else {
+            document.getElementById("numTotalAdultos").innerHTML = 0;
+        }
+
+        document.getElementById("detailInfoPassenger").innerHTML = `${adultos} Adultos, ${ninos} Ninños, ${bebes} Bebés`;
+
+        document.getElementById("numAllPassengers").innerHTML = `${adultos + ninos + bebes} Pasajeros`;
+
+    })
+
+
+    ////SECCION SUMAR Y RESTAR NIÑOS
+    //sumar niños
+    document.getElementById("sumarNinos").addEventListener("click", () => {
+        ninos++;
+
+        document.getElementById("numTotalNinos").innerHTML = ninos;
+
+        document.getElementById("detailInfoPassenger").innerHTML = `${adultos} Adultos, ${ninos} Ninños, ${bebes} Bebés`;
+
+        document.getElementById("numAllPassengers").innerHTML = `${adultos + ninos + bebes} Pasajeros`;
+        
+    })
+
+    //restar niños
+    document.getElementById("restarNinos").addEventListener("click", () => {
+
+        if (ninos > 0) {
+            ninos--;
+            document.getElementById("numTotalNinos").innerHTML = ninos;
+        } else {
+            document.getElementById("numTotalNinos").innerHTML = 0;
+        }
+
+        document.getElementById("detailInfoPassenger").innerHTML = `${adultos} Adultos, ${ninos} Ninños, ${bebes} Bebés`;
+
+        document.getElementById("numAllPassengers").innerHTML = `${adultos + ninos + bebes} Pasajeros`;
+
+    })
+
+
+
+    ////SECCION SUMAR Y RESTAR BEBÉS
+    //sumar niños
+    document.getElementById("sumarBebes").addEventListener("click", () => {
+        bebes++;
+
+        document.getElementById("numTotalBebes").innerHTML = bebes;
+
+        document.getElementById("detailInfoPassenger").innerHTML = `${adultos} Adultos, ${ninos} Ninños, ${bebes} Bebés`;
+
+        document.getElementById("numAllPassengers").innerHTML = `${adultos + ninos + bebes} Pasajeros`;
+
+    })
+
+    //restar niños
+    document.getElementById("restarBebes").addEventListener("click", () => {
+
+        if (bebes > 0) {
+            bebes--;
+            document.getElementById("numTotalBebes").innerHTML = bebes;
+        } else {
+            document.getElementById("numTotalBebes").innerHTML = 0;
+        }
+
+        document.getElementById("detailInfoPassenger").innerHTML = `${adultos} Adultos, ${ninos} Ninños, ${bebes} Bebés`;
+
+
+        document.getElementById("numAllPassengers").innerHTML = `${adultos + ninos + bebes} Pasajeros`;
+    })
+
+
+    
+
+
+    
 
 
 
