@@ -1008,7 +1008,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     //validateUpToSixMonths(fechaIda) is a function that gets an argument value of the date input of just Ida, and validates that Ida cannot be a date bigger than 6 months since now.
     function validateUpToSixMonthsIda(fechaIda) {
-
         if (fechaIda) {
             const fechaSeleccionada = new Date(fechaIda);
             const fechaActual = new Date();
