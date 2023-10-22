@@ -6,12 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vueling</title>
     <link rel="stylesheet" type="text/css" href="./vendor/css/styles.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="./vendor/fontAwesomeIcons/css/fontawesome.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script> -->
+
+    <link rel="stylesheet" href="./vendor/bootstrap-5.3.2-dist/css/bootstrap.min.css" />
+
 </head>
     
 <body>
@@ -123,7 +126,7 @@
 
 
 
-        <div class="container border-0 mb-5" style="margin-top: 10rem;" id="booking-div">
+        <div class="container border-0 mb-5" style="margin-top: 10rem; " id="booking-div">
             <div class="row justify-content-center">
                 <div class="col-md-5">
                     <div class="card shadow-lg">
@@ -192,7 +195,7 @@
                                             <div id="adultosInfo">
                                                 <span>Adultos</span>
                                                 <span id="sumarAdultos" style="border: 1px solid black;"><a style="cursor: pointer;">+</a></span>
-                                                <span id="numTotalAdultos">0</span>
+                                                <span id="numTotalAdultos">1</span>
                                                 <span id="restarAdultos" style="border: 1px solid black;"><a style="cursor: pointer;">-</a></span>
                                             </div>
 
@@ -221,13 +224,14 @@
                     </div>
 
                 </div>
+                <div class="container border-0 mb-5 bg-light" id="registerIdaVuelta">
+                    <div id="valorBookingIdaVuelta" style="display: block;"></div>
+                    <div id="valorBookingIda" style="display: block;"></div>
+        
+                </div>
             </div>
         </div>
 
-        <div id="registerIdaVuelta" class="bg-light">
-            <h1 id="valorBooking"></h1>
-
-        </div>
 
         <div class="card container mt-5" id="result" style="width: 25rem; margin-top: 10rem;">
             <div class="card-body" >

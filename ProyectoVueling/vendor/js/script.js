@@ -444,7 +444,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     //variable adultos
-    let adultos = 0;
+    let adultos = 1;
 
     //variable niños
     let ninos = 0;
@@ -462,9 +462,15 @@ document.addEventListener("DOMContentLoaded", function () {
     ////SECCION SUMAR Y RESTAR ADULTOS
     //sumar adultos
     document.getElementById("sumarAdultos").addEventListener("click", () => {
-        adultos++;
 
-        document.getElementById("numTotalAdultos").innerHTML = adultos;
+        if (adultos >= 9) {
+            document.getElementById("numTotalAdultos").innerHTML = adultos;
+        } else {
+            adultos++;
+            document.getElementById("numTotalAdultos").innerHTML = adultos;
+
+        }
+
 
         document.getElementById("detailInfoPassenger").innerHTML = `${adultos} Adultos, ${ninos} Ninños, ${bebes} Bebés`;
 
@@ -475,14 +481,30 @@ document.addEventListener("DOMContentLoaded", function () {
     //restar adultos
     document.getElementById("restarAdultos").addEventListener("click", () => {
 
-        if (adultos > 0) {
-            adultos--;
+        if (adultos == 0) {
+            adultos = 1;
             document.getElementById("numTotalAdultos").innerHTML = adultos;
+            document.getElementById("detailInfoPassenger").innerHTML = `${adultos} Adultos, ${ninos} Ninños, ${bebes} Bebés`;
+            document.getElementById("numAllPassengers").innerHTML = `${adultos + ninos + bebes} Pasajeros`;
+
+
         } else {
-            document.getElementById("numTotalAdultos").innerHTML = 0;
+            adultos--;
+
+            if (adultos == 0) {
+                adultos = 1;
+                document.getElementById("numTotalAdultos").innerHTML = adultos;
+                document.getElementById("detailInfoPassenger").innerHTML = `${adultos} Adultos, ${ninos} Ninños, ${bebes} Bebés`;
+                document.getElementById("numAllPassengers").innerHTML = `${adultos + ninos + bebes} Pasajeros`;
+            }
+
+            document.getElementById("numTotalAdultos").innerHTML = adultos;
+            document.getElementById("detailInfoPassenger").innerHTML = `${adultos} Adultos, ${ninos} Ninños, ${bebes} Bebés`;
+            document.getElementById("numAllPassengers").innerHTML = `${adultos + ninos + bebes} Pasajeros`;
+
+
         }
 
-        document.getElementById("detailInfoPassenger").innerHTML = `${adultos} Adultos, ${ninos} Ninños, ${bebes} Bebés`;
 
         document.getElementById("numAllPassengers").innerHTML = `${adultos + ninos + bebes} Pasajeros`;
 
@@ -492,14 +514,19 @@ document.addEventListener("DOMContentLoaded", function () {
     ////SECCION SUMAR Y RESTAR NIÑOS
     //sumar niños
     document.getElementById("sumarNinos").addEventListener("click", () => {
-        ninos++;
 
-        document.getElementById("numTotalNinos").innerHTML = ninos;
+        if (ninos >= 9) {
+            document.getElementById("numTotalNinos").innerHTML = ninos;
+        } else {
+            ninos++;
+            document.getElementById("numTotalNinos").innerHTML = ninos;
+
+        }
 
         document.getElementById("detailInfoPassenger").innerHTML = `${adultos} Adultos, ${ninos} Ninños, ${bebes} Bebés`;
 
         document.getElementById("numAllPassengers").innerHTML = `${adultos + ninos + bebes} Pasajeros`;
-        
+
     })
 
     //restar niños
@@ -523,9 +550,14 @@ document.addEventListener("DOMContentLoaded", function () {
     ////SECCION SUMAR Y RESTAR BEBÉS
     //sumar niños
     document.getElementById("sumarBebes").addEventListener("click", () => {
-        bebes++;
 
-        document.getElementById("numTotalBebes").innerHTML = bebes;
+        if (bebes >= 9) {
+            document.getElementById("numTotalBebes").innerHTML = bebes;
+        } else {
+            bebes++;
+            document.getElementById("numTotalBebes").innerHTML = bebes;
+
+        }
 
         document.getElementById("detailInfoPassenger").innerHTML = `${adultos} Adultos, ${ninos} Ninños, ${bebes} Bebés`;
 
@@ -550,10 +582,10 @@ document.addEventListener("DOMContentLoaded", function () {
     })
 
 
-    
 
 
-    
+
+
 
 
 
@@ -565,6 +597,11 @@ document.addEventListener("DOMContentLoaded", function () {
         selectIdaVuelta();
     });
 
+
+
+
+    const elementIdaVuelta = document.getElementById("valorBookingIdaVuelta");
+    const elementIda = document.getElementById("valorBookingIda");
 
     document.getElementById("bookingSubmit").addEventListener("click", () => {
         let origen;
@@ -580,6 +617,15 @@ document.addEventListener("DOMContentLoaded", function () {
         fechaIda = document.getElementById("dateIda").value;
         fechaVuelta = document.getElementById("dateVuelta").value;
 
+
+
+        let horaIda = ["23:15", "20:40"];
+        let precioIdaCorresp = ["130", "175"];
+
+        let horaVuelta = ["06:00", "07:40"];
+        let precioVueltaCorresp = ["95", "125"];
+
+        let arrayAnada = [];
 
         if (document.getElementById("checkIdaVuelta").checked) {
 
@@ -598,21 +644,162 @@ document.addEventListener("DOMContentLoaded", function () {
             validationBoolPastDaysThanIda = validatePastDaysThanIda(fechaIda, fechaVuelta);
 
 
-            let fechaIdaVuelo = new Date(fechaIda);
-            let fechaVueltaVuelo = new Date(fechaVuelta);
+            // let fechaIdaVuelo = new Date(fechaIda);
+            // let fechaVueltaVuelo = new Date(fechaVuelta);
 
             validarNombreBooking = nombreBookingValidation();
 
             if (validationBoolOriginDestionation && validationBoolUpToSixMonthsIda && validationBoolUpToSixMonthsVuelta && validationBoolPastDays && validationBoolPastDaysThanIda && validarNombreBooking) {
                 alert("idaa y vueltaaaa")
-                document.getElementById("valorBooking").innerHTML = `${fechaIdaVuelo.getDate()}/${fechaIdaVuelo.getMonth() + 1}/${fechaIdaVuelo.getFullYear()} --> Hora de anada : 12:30 - Preu : 120€  `;
-                document.getElementById("valorBooking").innerHTML += ` ${fechaVueltaVuelo.getDate()}/${fechaVueltaVuelo.getMonth() + 1}/${fechaVueltaVuelo.getFullYear()} --> Hora de anada : 10:30 - Preu : 220€`;
+
+                if (elementIdaVuelta.style.display == "none") {
+                    elementIdaVuelta.style.display = "block";
+                    elementIdaVuelta.innerHTML = "";
+                }
+
+                /////// ida
+                let createParagraph = document.createElement("p");
+                createParagraph.innerHTML = "IDA";
+                elementIdaVuelta.appendChild(createParagraph);
+
+                for (let index = 0; index < horaIda.length; index++) {
+
+
+                    let createRadioBtnIda = document.createElement("input");
+                    createRadioBtnIda.type = "radio";
+                    createRadioBtnIda.name = "chooseIdaHoraFecha";
+                    createRadioBtnIda.value = horaIda[index] + " - " + precioIdaCorresp[index];
+                    createRadioBtnIda.id = "radioIda_" + index;
+                    arrayAnada.push(createRadioBtnIda.value);
+                    elementIdaVuelta.appendChild(createRadioBtnIda);
+
+                    let createHoraLabelIda = document.createElement("label");
+                    createHoraLabelIda.innerHTML = horaIda[index] + " - " + precioIdaCorresp[index] + "€";
+                    elementIdaVuelta.appendChild(createHoraLabelIda);
+
+                }
+
+                //////////////// vuelta
+                let createParagraphVuelta = document.createElement("p");
+                createParagraphVuelta.innerHTML = "VUELTA";
+                elementIdaVuelta.appendChild(createParagraphVuelta);
+
+                for (let index = 0; index < horaVuelta.length; index++) {
+
+                    let createRadioBtnVuelta = document.createElement("input");
+                    createRadioBtnVuelta.type = "radio";
+                    createRadioBtnVuelta.name = "chooseVueltaHoraFecha";
+                    createRadioBtnVuelta.value = horaVuelta[index] + " - " + precioVueltaCorresp[index];
+                    createRadioBtnVuelta.id = "radioVuelta_" + index;
+                    arrayAnada.push(createRadioBtnVuelta.value);
+                    elementIdaVuelta.appendChild(createRadioBtnVuelta);
+
+                    let createHoraLabelVuelta = document.createElement("label");
+                    createHoraLabelVuelta.innerHTML = horaVuelta[index] + " - " + precioVueltaCorresp[index] + "€";
+                    elementIdaVuelta.appendChild(createHoraLabelVuelta);
+
+                }
+
+                let createButtonBooking_2 = document.createElement("button");
+                createButtonBooking_2.innerHTML = "Fer el booking";
+                createButtonBooking_2.id = "finalBooking";
+                elementIdaVuelta.appendChild(createButtonBooking_2);
+
+                ////////////// ida
+                document.getElementById("radioIda_0").addEventListener("click", () => {
+                    alert(document.getElementById("radioIda_0").value);
+
+                    for (let index = 0; index < arrayAnada.length; index++) {
+                        if (document.getElementById("radioIda_0").value == arrayAnada[index]) {
+                            alert("son iguales")
+                        }
+
+                    }
+
+                })
+
+                document.getElementById("radioIda_1").addEventListener("click", () => {
+                    alert(document.getElementById("radioIda_1").value);
+
+
+                    for (let index = 0; index < arrayAnada.length; index++) {
+                        if (document.getElementById("radioIda_1").value == arrayAnada[index]) {
+                            alert("son iguales")
+                        }
+
+                    }
+                })
+
+
+
+
+                /////////// vuelta
+                document.getElementById("radioVuelta_0").addEventListener("click", () => {
+                    alert(document.getElementById("radioVuelta_0").value);
+
+                    for (let index = 0; index < arrayAnada.length; index++) {
+                        if (document.getElementById("radioVuelta_0").value == arrayAnada[index]) {
+                            alert("son iguales")
+                        }
+
+                    }
+
+                })
+
+                document.getElementById("radioVuelta_1").addEventListener("click", () => {
+                    alert(document.getElementById("radioVuelta_1").value);
+
+
+                    for (let index = 0; index < arrayAnada.length; index++) {
+                        if (document.getElementById("radioVuelta_1").value == arrayAnada[index]) {
+                            alert("son iguales")
+                        }
+
+                    }
+                })
+
+
+                document.getElementById("finalBooking").addEventListener("click", () => {
+
+                    // Verificar si al menos uno de los botones de radio está seleccionado
+                    const radioButtons = document.querySelectorAll('input[type="radio"][name="chooseIdaHoraFecha"]');
+                    const radioButtonsVuelta = document.querySelectorAll('input[type="radio"][name="chooseVueltaHoraFecha"]');
+                    let atLeastOneSelected = false;
+
+                    for (let i = 0; i < radioButtons.length; i++) {
+                        if (radioButtons[i].checked && radioButtonsVuelta[i].checked) {
+                            atLeastOneSelected = true;
+                            break; // No es necesario seguir verificando si uno ya está seleccionado
+                        }
+                    }
+
+                    if(atLeastOneSelected) {
+
+                        const viaje = {
+                            nombre: document.getElementById("nombre-booking").value,
+                            origen: document.getElementById("origen").value,
+                            destino: document.getElementById("destino").value,
+                            fechaIda: document.getElementById("dateIda").value,
+                            fechaVuelta: document.getElementById("dateVuelta").value,
+                            adultos: adultos,
+                            ninos: ninos,
+                            bebes: bebes,
+                        };
+    
+                        alert("Información del viaje: " + JSON.stringify(viaje));
+                    }else {
+                        alert("selecciona chaval")
+                    }
+
+                })
+
             } else {
                 alert("ALGO FALLA")
             }
 
         } else {
             alert("solo ida")
+
 
             origen = selectOrigin();
             destino = selectDestination();
@@ -624,11 +811,105 @@ document.addEventListener("DOMContentLoaded", function () {
             validarNombreBooking = nombreBookingValidation();
 
 
-            let fechaIdaVuelo = new Date(fechaIda);
+            // let fechaIdaVuelo = new Date(fechaIda);
 
             if (validationBoolOriginDestionation && validationBoolUpToSixMonthsIda && validationBoolPastDays && validarNombreBooking) {
                 alert("holaaaaaaa")
-                document.getElementById("valorBooking").innerHTML = `${fechaIdaVuelo.getDate()}/${fechaIdaVuelo.getMonth() + 1}/${fechaIdaVuelo.getFullYear()} --> Hora de anada : 18:30 - Preu : 120€`;
+
+                if (elementIda.style.display == "none") {
+                    elementIda.style.display = "block";
+                    elementIda.innerHTML = ""; //siempre despues de comprobar, vaciamos el HTML de la variable para que no se duplique lo que hay adentro.
+                }
+
+                //////// ida
+                let createParagraph = document.createElement("p");
+                createParagraph.innerHTML = "IDA";
+                elementIda.appendChild(createParagraph);
+
+                for (let index = 0; index < horaIda.length; index++) {
+
+
+                    let createRadioBtnIda = document.createElement("input");
+                    createRadioBtnIda.type = "radio";
+                    createRadioBtnIda.name = "chooseIdaHoraFecha2";
+                    createRadioBtnIda.value = horaIda[index] + " - " + precioIdaCorresp[index];
+                    createRadioBtnIda.id = "radioIda_" + index;
+                    arrayAnada.push(createRadioBtnIda.value);
+                    elementIda.appendChild(createRadioBtnIda);
+
+                    let createHoraLabelIda = document.createElement("label");
+                    createHoraLabelIda.innerHTML = horaIda[index] + " - " + precioIdaCorresp[index] + "€";
+                    elementIda.appendChild(createHoraLabelIda);
+
+
+
+
+                }
+
+                let createButtonBooking_2 = document.createElement("button");
+                createButtonBooking_2.innerHTML = "Fer el booking";
+                createButtonBooking_2.id = "finalBookingIda";
+                elementIda.appendChild(createButtonBooking_2);
+
+
+
+                document.getElementById("radioIda_0").addEventListener("click", () => {
+                    alert(document.getElementById("radioIda_0").value);
+
+                    for (let index = 0; index < arrayAnada.length; index++) {
+                        if (document.getElementById("radioIda_0").value == arrayAnada[index]) {
+                            alert("son iguales")
+                        }
+
+                    }
+
+                })
+
+                document.getElementById("radioIda_1").addEventListener("click", () => {
+                    alert(document.getElementById("radioIda_1").value);
+
+
+                    for (let index = 0; index < arrayAnada.length; index++) {
+                        if (document.getElementById("radioIda_1").value == arrayAnada[index]) {
+                            alert("son iguales")
+                        }
+
+                    }
+                })
+
+
+                document.getElementById("finalBookingIda").addEventListener("click", () => {
+                    // Verificar si al menos uno de los botones de radio está seleccionado
+                    const radioButtons = document.querySelectorAll('input[type="radio"][name="chooseIdaHoraFecha2"]');
+                    let atLeastOneSelected = false;
+
+                    for (let i = 0; i < radioButtons.length; i++) {
+                        if (radioButtons[i].checked) {
+                            atLeastOneSelected = true;
+                            break; // No es necesario seguir verificando si uno ya está seleccionado
+                        }
+                    }
+
+                    if (atLeastOneSelected) {
+                        // Al menos uno de los botones de radio está seleccionado, procede con la creación del objeto "viaje"
+                        const viaje = {
+                            nombre: document.getElementById("nombre-booking").value,
+                            origen: document.getElementById("origen").value,
+                            fechaIda: document.getElementById("dateIda").value,
+                            fechaVuelta: document.getElementById("dateVuelta").value,
+                            adultos: adultos,
+                            ninos: ninos,
+                            bebes: bebes,
+                        };
+
+                        alert("Información del viaje: " + JSON.stringify(viaje));
+                    } else {
+                        alert("selecciona chaval")
+                    }
+
+                })
+
+                // document.getElementById("valorBooking").innerHTML = `${fechaIdaVuelo.getDate()}/${fechaIdaVuelo.getMonth() + 1}/${fechaIdaVuelo.getFullYear()} --> Hora de anada : 18:30 - Preu : 120€`;
                 // document.getElementById("valorBooking").innerHTML = `Hora de anada : 18:30" + " Preu : 120€`;
             } else {
                 alert("ALGO FALLA")
@@ -657,6 +938,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 document.getElementById("vueltaField").style.display = "block";
             } else {
                 document.getElementById("vueltaField").style.display = "none";
+
+                elementIdaVuelta.style.display = "none";
+
             }
         }
     }
@@ -672,6 +956,10 @@ document.addEventListener("DOMContentLoaded", function () {
             if (document.getElementById("vueltaField").style.display == "none") {
 
                 document.getElementById("vueltaField").style.display = "block";
+
+                elementIda.style.display = "none";
+
+
 
             }
         }
