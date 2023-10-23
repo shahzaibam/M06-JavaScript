@@ -1,3 +1,13 @@
+//variable para ver si todo fue correcto
+let allWentGood = false;
+
+
+let precioIdaVueltaSeleccionado_1;
+let precioIdaVueltaSeleccionado_2;
+let precioIdaSeleccionado;
+
+
+
 //usuario
 let usuarios = ["usu01", "usu02", "usu03"];
 let contrasenyes = ["pass01", "pass02", "pass03"];
@@ -399,6 +409,9 @@ document.getElementById("registerSubmit").addEventListener("click", function () 
 
 
 /////BOOOOOKINGGG!!!!!! --------------------------------------------------------------------
+
+
+
 document.addEventListener("DOMContentLoaded", function () {
 
     const selectOrigen = document.getElementById("origen");
@@ -439,6 +452,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
     })
+
 
 
 
@@ -604,6 +618,23 @@ document.addEventListener("DOMContentLoaded", function () {
     const elementIda = document.getElementById("valorBookingIda");
 
     document.getElementById("bookingSubmit").addEventListener("click", () => {
+
+        if (elementIdaVuelta.style.display == "none") {
+            elementIdaVuelta.style.display = "block";
+            elementIdaVuelta.innerHTML = "";
+        } else {
+            elementIdaVuelta.innerHTML = "";
+
+        }
+
+        if (elementIda.style.display == "none") {
+            elementIda.style.display = "block";
+            elementIda.innerHTML = "";
+        } else {
+            elementIda.innerHTML = "";
+
+        }
+
         let origen;
         let destino;
         let fechaIda;
@@ -626,6 +657,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let precioVueltaCorresp = ["95", "125"];
 
         let arrayAnada = [];
+
 
         if (document.getElementById("checkIdaVuelta").checked) {
 
@@ -669,6 +701,11 @@ document.addEventListener("DOMContentLoaded", function () {
                     createRadioBtnIda.type = "radio";
                     createRadioBtnIda.name = "chooseIdaHoraFecha";
                     createRadioBtnIda.value = horaIda[index] + " - " + precioIdaCorresp[index];
+                    precioIdaVueltaSeleccionado_1 = precioIdaCorresp[index];
+
+                    // Guardar los valores en almacenamiento local
+                    localStorage.setItem('precioIdaVueltaSeleccionado_1', precioIdaVueltaSeleccionado_1);
+
                     createRadioBtnIda.id = "radioIda_" + index;
                     arrayAnada.push(createRadioBtnIda.value);
                     elementIdaVuelta.appendChild(createRadioBtnIda);
@@ -690,6 +727,11 @@ document.addEventListener("DOMContentLoaded", function () {
                     createRadioBtnVuelta.type = "radio";
                     createRadioBtnVuelta.name = "chooseVueltaHoraFecha";
                     createRadioBtnVuelta.value = horaVuelta[index] + " - " + precioVueltaCorresp[index];
+                    precioIdaVueltaSeleccionado_2 = precioVueltaCorresp[index];
+
+                    // Guardar los valores en almacenamiento local
+                    localStorage.setItem('precioIdaVueltaSeleccionado_2', precioIdaVueltaSeleccionado_2);
+
                     createRadioBtnVuelta.id = "radioVuelta_" + index;
                     arrayAnada.push(createRadioBtnVuelta.value);
                     elementIdaVuelta.appendChild(createRadioBtnVuelta);
@@ -767,13 +809,21 @@ document.addEventListener("DOMContentLoaded", function () {
                     let atLeastOneSelected = false;
 
                     for (let i = 0; i < radioButtons.length; i++) {
-                        if (radioButtons[i].checked && radioButtonsVuelta[i].checked) {
-                            atLeastOneSelected = true;
-                            break; // No es necesario seguir verificando si uno ya está seleccionado
+                        for (let j = 0; j < radioButtonsVuelta.length; j++) {
+                            if (radioButtons[i].checked && radioButtonsVuelta[j].checked) {
+                                atLeastOneSelected = true;
+                                allWentGood = true;
+                                window.location.href = "tarifa.html";
+                                break; // No es necesario seguir verificando si una combinación ya está seleccionada
+                            }
+                        }
+                        if (atLeastOneSelected) {
+                            break; // No es necesario seguir verificando si una combinación ya está seleccionada
                         }
                     }
 
-                    if(atLeastOneSelected) {
+
+                    if (atLeastOneSelected) {
 
                         const viaje = {
                             nombre: document.getElementById("nombre-booking").value,
@@ -785,10 +835,14 @@ document.addEventListener("DOMContentLoaded", function () {
                             ninos: ninos,
                             bebes: bebes,
                         };
-    
+
                         alert("Información del viaje: " + JSON.stringify(viaje));
-                    }else {
-                        alert("selecciona chaval")
+
+                        window.location.href = "tarifa.html";
+
+
+                    } else {
+                        alert("selecciona una hora")
                     }
 
                 })
@@ -904,7 +958,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                         alert("Información del viaje: " + JSON.stringify(viaje));
                     } else {
-                        alert("selecciona chaval")
+                        alert("selecciona una hora")
                     }
 
                 })
