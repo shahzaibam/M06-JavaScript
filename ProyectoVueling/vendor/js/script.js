@@ -2,9 +2,15 @@
 let allWentGood = false;
 
 
-let precioIdaVueltaSeleccionado_1;
-let precioIdaVueltaSeleccionado_2;
+
 let precioIdaSeleccionado;
+let precioIdaVueltaSeleccionado;
+
+
+let precioVuelta;
+
+
+const viaje = []; //objeto con toda la info del viaje
 
 
 
@@ -34,6 +40,7 @@ document.getElementById("login-btn").addEventListener("click", () => {
     document.getElementById("login-div").style.display = "block";
     document.getElementById("register-div").style.display = "none";
     document.getElementById("booking-div").style.display = "none";
+    document.getElementById("tarifa-div").style.display = "none";
 
     document.getElementById("result").style.display = "none";
 
@@ -45,6 +52,7 @@ document.getElementById("register-btn").addEventListener("click", () => {
     document.getElementById("login-div").style.display = "none";
     document.getElementById("register-div").style.display = "block";
     document.getElementById("booking-div").style.display = "none";
+    document.getElementById("tarifa-div").style.display = "none";
 
     document.getElementById("result").style.display = "none";
 
@@ -57,6 +65,7 @@ document.getElementById("booking-btn").addEventListener("click", () => {
     document.getElementById("login-div").style.display = "none";
     document.getElementById("register-div").style.display = "none";
     document.getElementById("booking-div").style.display = "block";
+    document.getElementById("tarifa-div").style.display = "none";
 
     document.getElementById("result").style.display = "none";
 
@@ -412,6 +421,9 @@ document.getElementById("registerSubmit").addEventListener("click", function () 
 
 
 
+
+
+
 document.addEventListener("DOMContentLoaded", function () {
 
     const selectOrigen = document.getElementById("origen");
@@ -452,7 +464,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
     })
-
 
 
 
@@ -684,6 +695,8 @@ document.addEventListener("DOMContentLoaded", function () {
             if (validationBoolOriginDestionation && validationBoolUpToSixMonthsIda && validationBoolUpToSixMonthsVuelta && validationBoolPastDays && validationBoolPastDaysThanIda && validarNombreBooking) {
                 alert("idaa y vueltaaaa")
 
+                document.getElementById("booking-div").style.display = "none";
+
                 if (elementIdaVuelta.style.display == "none") {
                     elementIdaVuelta.style.display = "block";
                     elementIdaVuelta.innerHTML = "";
@@ -701,11 +714,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     createRadioBtnIda.type = "radio";
                     createRadioBtnIda.name = "chooseIdaHoraFecha";
                     createRadioBtnIda.value = horaIda[index] + " - " + precioIdaCorresp[index];
-                    precioIdaVueltaSeleccionado_1 = precioIdaCorresp[index];
+                    // precioIdaVueltaSeleccionado_1 = precioIdaCorresp[index];
 
-                    // Guardar los valores en almacenamiento local
-                    localStorage.setItem('precioIdaVueltaSeleccionado_1', precioIdaVueltaSeleccionado_1);
-
+                    
                     createRadioBtnIda.id = "radioIda_" + index;
                     arrayAnada.push(createRadioBtnIda.value);
                     elementIdaVuelta.appendChild(createRadioBtnIda);
@@ -727,10 +738,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     createRadioBtnVuelta.type = "radio";
                     createRadioBtnVuelta.name = "chooseVueltaHoraFecha";
                     createRadioBtnVuelta.value = horaVuelta[index] + " - " + precioVueltaCorresp[index];
-                    precioIdaVueltaSeleccionado_2 = precioVueltaCorresp[index];
+                    // precioIdaVueltaSeleccionado_2 = precioVueltaCorresp[index];
 
-                    // Guardar los valores en almacenamiento local
-                    localStorage.setItem('precioIdaVueltaSeleccionado_2', precioIdaVueltaSeleccionado_2);
 
                     createRadioBtnVuelta.id = "radioVuelta_" + index;
                     arrayAnada.push(createRadioBtnVuelta.value);
@@ -739,6 +748,10 @@ document.addEventListener("DOMContentLoaded", function () {
                     let createHoraLabelVuelta = document.createElement("label");
                     createHoraLabelVuelta.innerHTML = horaVuelta[index] + " - " + precioVueltaCorresp[index] + "€";
                     elementIdaVuelta.appendChild(createHoraLabelVuelta);
+
+                    // precioVuelta = precioIdaCorresp[index];
+
+                    // alert(precioVuelta);
 
                 }
 
@@ -767,6 +780,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     for (let index = 0; index < arrayAnada.length; index++) {
                         if (document.getElementById("radioIda_1").value == arrayAnada[index]) {
                             alert("son iguales")
+
+
                         }
 
                     }
@@ -781,7 +796,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     for (let index = 0; index < arrayAnada.length; index++) {
                         if (document.getElementById("radioVuelta_0").value == arrayAnada[index]) {
-                            alert("son iguales")
+                            alert("son iguales -1")
+
+                            precioIdaVueltaSeleccionado = arrayAnada[index].slice(8,10);
                         }
 
                     }
@@ -813,7 +830,6 @@ document.addEventListener("DOMContentLoaded", function () {
                             if (radioButtons[i].checked && radioButtonsVuelta[j].checked) {
                                 atLeastOneSelected = true;
                                 allWentGood = true;
-                                window.location.href = "tarifa.html";
                                 break; // No es necesario seguir verificando si una combinación ya está seleccionada
                             }
                         }
@@ -838,12 +854,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
                         alert("Información del viaje: " + JSON.stringify(viaje));
 
-                        window.location.href = "tarifa.html";
-
+                        document.getElementById("registerIdaVuelta").style.display = "none";
+                        document.getElementById("tarifa-div").style.display = "block";
 
                     } else {
                         alert("selecciona una hora")
                     }
+
 
                 })
 
@@ -946,7 +963,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     if (atLeastOneSelected) {
                         // Al menos uno de los botones de radio está seleccionado, procede con la creación del objeto "viaje"
-                        const viaje = {
+                        viaje = {
                             nombre: document.getElementById("nombre-booking").value,
                             origen: document.getElementById("origen").value,
                             fechaIda: document.getElementById("dateIda").value,
@@ -954,6 +971,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             adultos: adultos,
                             ninos: ninos,
                             bebes: bebes,
+                            precioVuelta : precioVuelta
                         };
 
                         alert("Información del viaje: " + JSON.stringify(viaje));
@@ -1177,3 +1195,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 })
 
+
+
+
+//TARIFAS ---------------------------
+
+document.getElementById("precioTarifas").innerHTML = precioIdaVueltaSeleccionado;
