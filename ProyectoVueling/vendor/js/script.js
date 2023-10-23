@@ -10,7 +10,7 @@ let precioIdaVueltaSeleccionado;
 let precioVuelta;
 
 
-const viaje = []; //objeto con toda la info del viaje
+// const viaje = []; //objeto con toda la info del viaje
 
 
 
@@ -655,7 +655,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let validationBoolUpToSixMonthsVuelta;
         let validationBoolPastDays;
         let validationBoolPastDaysThanIda;
-        let validarNombreBooking;
+        // let validarNombreBooking;
         fechaIda = document.getElementById("dateIda").value;
         fechaVuelta = document.getElementById("dateVuelta").value;
 
@@ -690,9 +690,9 @@ document.addEventListener("DOMContentLoaded", function () {
             // let fechaIdaVuelo = new Date(fechaIda);
             // let fechaVueltaVuelo = new Date(fechaVuelta);
 
-            validarNombreBooking = nombreBookingValidation();
+            // validarNombreBooking = nombreBookingValidation();
 
-            if (validationBoolOriginDestionation && validationBoolUpToSixMonthsIda && validationBoolUpToSixMonthsVuelta && validationBoolPastDays && validationBoolPastDaysThanIda && validarNombreBooking) {
+            if (validationBoolOriginDestionation && validationBoolUpToSixMonthsIda && validationBoolUpToSixMonthsVuelta && validationBoolPastDays && validationBoolPastDaysThanIda) {
                 alert("idaa y vueltaaaa")
 
                 document.getElementById("booking-div").style.display = "none";
@@ -716,7 +716,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     createRadioBtnIda.value = horaIda[index] + " - " + precioIdaCorresp[index];
                     // precioIdaVueltaSeleccionado_1 = precioIdaCorresp[index];
 
-                    
+
                     createRadioBtnIda.id = "radioIda_" + index;
                     arrayAnada.push(createRadioBtnIda.value);
                     elementIdaVuelta.appendChild(createRadioBtnIda);
@@ -767,7 +767,10 @@ document.addEventListener("DOMContentLoaded", function () {
                     for (let index = 0; index < arrayAnada.length; index++) {
                         if (document.getElementById("radioIda_0").value == arrayAnada[index]) {
                             alert("son iguales")
+                            precioIdaVueltaSeleccionado = arrayAnada[index].slice(8, 10);
                         }
+
+
 
                     }
 
@@ -781,8 +784,11 @@ document.addEventListener("DOMContentLoaded", function () {
                         if (document.getElementById("radioIda_1").value == arrayAnada[index]) {
                             alert("son iguales")
 
-
+                            precioIdaVueltaSeleccionado = arrayAnada[index].slice(8, 11);
                         }
+
+
+                        alert(precioIdaVueltaSeleccionado)
 
                     }
                 })
@@ -798,7 +804,6 @@ document.addEventListener("DOMContentLoaded", function () {
                         if (document.getElementById("radioVuelta_0").value == arrayAnada[index]) {
                             alert("son iguales -1")
 
-                            precioIdaVueltaSeleccionado = arrayAnada[index].slice(8,10);
                         }
 
                     }
@@ -820,6 +825,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 document.getElementById("finalBooking").addEventListener("click", () => {
 
+
                     // Verificar si al menos uno de los botones de radio está seleccionado
                     const radioButtons = document.querySelectorAll('input[type="radio"][name="chooseIdaHoraFecha"]');
                     const radioButtonsVuelta = document.querySelectorAll('input[type="radio"][name="chooseVueltaHoraFecha"]');
@@ -840,9 +846,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
                     if (atLeastOneSelected) {
-
                         const viaje = {
-                            nombre: document.getElementById("nombre-booking").value,
                             origen: document.getElementById("origen").value,
                             destino: document.getElementById("destino").value,
                             fechaIda: document.getElementById("dateIda").value,
@@ -850,12 +854,20 @@ document.addEventListener("DOMContentLoaded", function () {
                             adultos: adultos,
                             ninos: ninos,
                             bebes: bebes,
+                            precio: precioIdaVueltaSeleccionado
                         };
 
                         alert("Información del viaje: " + JSON.stringify(viaje));
 
+
+
                         document.getElementById("registerIdaVuelta").style.display = "none";
                         document.getElementById("tarifa-div").style.display = "block";
+
+
+                        //TARIFAS ---------------------------
+
+                        document.getElementById("precioTarifas").innerHTML = precioIdaVueltaSeleccionado;
 
                     } else {
                         alert("selecciona una hora")
@@ -879,12 +891,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
             validationBoolUpToSixMonthsIda = validateUpToSixMonthsIda(fechaIda);
             validationBoolPastDays = validatePastDays(fechaIda);
-            validarNombreBooking = nombreBookingValidation();
+            // validarNombreBooking = nombreBookingValidation();
 
 
             // let fechaIdaVuelo = new Date(fechaIda);
 
-            if (validationBoolOriginDestionation && validationBoolUpToSixMonthsIda && validationBoolPastDays && validarNombreBooking) {
+            if (validationBoolOriginDestionation && validationBoolUpToSixMonthsIda && validationBoolPastDays) {
                 alert("holaaaaaaa")
 
                 if (elementIda.style.display == "none") {
@@ -971,7 +983,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             adultos: adultos,
                             ninos: ninos,
                             bebes: bebes,
-                            precioVuelta : precioVuelta
+                            precioVuelta: precioVuelta
                         };
 
                         alert("Información del viaje: " + JSON.stringify(viaje));
@@ -980,6 +992,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     }
 
                 })
+
+
 
                 // document.getElementById("valorBooking").innerHTML = `${fechaIdaVuelo.getDate()}/${fechaIdaVuelo.getMonth() + 1}/${fechaIdaVuelo.getFullYear()} --> Hora de anada : 18:30 - Preu : 120€`;
                 // document.getElementById("valorBooking").innerHTML = `Hora de anada : 18:30" + " Preu : 120€`;
@@ -1197,7 +1211,3 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-
-//TARIFAS ---------------------------
-
-document.getElementById("precioTarifas").innerHTML = precioIdaVueltaSeleccionado;
