@@ -1212,7 +1212,33 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     function tariffAction() {
-        document.getElementById("precioTarifas").innerHTML = Number(precioIdaVueltaSeleccionado1) + Number(precioIdaVueltaSeleccionado2);
+        //declare
+        document.getElementById("basicPrice").value = Number(precioIdaVueltaSeleccionado1) + Number(precioIdaVueltaSeleccionado2);
+        document.getElementById("basicPriceLabel").innerHTML = Number(precioIdaVueltaSeleccionado1) + Number(precioIdaVueltaSeleccionado2) + "€";
+        
+        document.getElementById("timeFlexPrice").value = Number(precioIdaVueltaSeleccionado1) + Number(precioIdaVueltaSeleccionado2) + 150 + "€";
+        document.getElementById("timeFlexPriceLabel").innerHTML = Number(precioIdaVueltaSeleccionado1) + Number(precioIdaVueltaSeleccionado2) + 150 + "€";
+
+        document.getElementById("optimaPrice").value = Number(precioIdaVueltaSeleccionado1) + Number(precioIdaVueltaSeleccionado2) + 90;
+        document.getElementById("optimaPriceLabel").innerHTML = Number(precioIdaVueltaSeleccionado1) + Number(precioIdaVueltaSeleccionado2) + 90 + "€";
+    
+    
+        
+        //actions
+        document.getElementById("basicPrice").addEventListener("click", () => {
+            alert(document.getElementById("basicPrice").value)
+        })
+
+        document.getElementById("timeFlexPrice").addEventListener("click", () => {
+            alert(document.getElementById("timeFlexPrice").value)
+        })
+
+        document.getElementById("optimaPrice").addEventListener("click", () => {
+            alert(document.getElementById("optimaPrice").value)
+        })
+
+
+
     }
 })
 

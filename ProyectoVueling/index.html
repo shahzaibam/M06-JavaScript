@@ -247,26 +247,89 @@
         </div>
 
 
-        <div class="container border-0 mb-5" style="display: none; margin-top: 10rem; " id="tarifa-div">
+        <div class="container border-0 mb-5" style="display: none; margin-top: 2rem; " id="tarifa-div">
             <div class="row justify-content-center">
-                <div class="col-md-5">
-                    <div class="card shadow-lg">
-                        <div class="card-header bg-primary text-white text-center">
-                            <h4 class="card-title p-3" id="precioTarifas"></h4>
-                        </div>
-                        <div class="card-body">
+                <div class="col-md-5 ">
+                    <h1 class="text-center text-light">Escull la teva Tarifa</h1>
+                    <div class="d-flex justify-content-around mt-5">
+                        <div class="card shadow-lg col-md-10 m-3">
+                            <div class="card-header bg-primary text-white text-center">
+                                <h4 class="card-title p-3" id="precioTarifas">Básica</h4>
+                            </div>
+                            <div class="card-body">
 
-                            <div class="row">
+                                <div class="row">
 
-                                <div class="col-md-6">
-
+                                    <div class="col-md-6">
+                                        1 pieza de equipaje de mano bajo el asiento
+                                        Máx. 40x20x30 cm
+                                    </div>
+                                </div>
+                                <div class="text-center">
+                                    <input type="radio" id="basicPrice" name="tarifa" value="">
+                                    <label for="basicPrice" id="basicPriceLabel"></label><br>
                                 </div>
                             </div>
-                            <div class="text-center">
-                                <button type="submit" id="bookingSubmit"
-                                    class="btn btn-primary btn-block mt-4">Booking</button>
+                        </div>
+
+
+                        <div class="card shadow-lg col-md-10 m-1">
+                            <div class="card-header bg-primary text-white text-center">
+                                <h4 class="card-title p-3" id="precioTarifas">TimeFlex</h4>
+                            </div>
+                            <div class="card-body">
+
+                                <div class="row">
+
+                                    <div class="col-md-6">
+                                        1 pieza de equipaje de mano bajo el asiento
+                                        Máx. 40x20x30 cm
+                                        1 pieza de equipaje en el compartimento superior
+                                        Máx. 10 kg y 55x40x20 cm
+                                        Elección de asiento
+                                        Embarque prioritario
+                                        Cambios de vuelo ilimitados
+                                        Mostradores exclusivos de facturación
+                                        (En aeropuertos principales)
+                                        Carril rápido en filtro de seguridad
+                                        Cancelación gratuita
+                                        (Crédito de vuelo)
+                                    </div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-center">
+                                        <input type="radio" id="timeFlexPrice" name="tarifa" value="">
+                                        <label for="timeFlexPrice" id="timeFlexPriceLabel"></label><br>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+
+                        <div class="card shadow-lg col-md-10 m-2">
+                            <div class="card-header bg-primary text-white text-center">
+                                <h4 class="card-title p-3" id="precioTarifas">Òptima</h4>
+                            </div>
+                            <div class="card-body">
+
+                                <div class="row">
+
+                                    <div class="col-md-6">
+                                        1 pieza de equipaje de mano bajo el asiento
+                                        Máx. 40x20x30 cm
+                                        Maleta facturada
+                                        (25 kg)
+                                        Elección de asiento
+                                    </div>
+                                </div>
+                                <div class="text-center mb-auto">
+                                    <div class="text-center ">
+                                        <input type="radio" id="optimaPrice" name="tarifa" value="">
+                                        <label for="OptimaPrice" id="optimaPriceLabel"></label><br>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
 
                 </div>
