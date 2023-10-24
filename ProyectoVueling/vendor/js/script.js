@@ -4,7 +4,8 @@ let allWentGood = false;
 
 
 let precioIdaSeleccionado;
-let precioIdaVueltaSeleccionado;
+let precioIdaVueltaSeleccionado1;
+let precioIdaVueltaSeleccionado2;
 
 
 let precioVuelta;
@@ -665,7 +666,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let precioIdaCorresp = ["130", "175"];
 
         let horaVuelta = ["06:00", "07:40"];
-        let precioVueltaCorresp = ["95", "125"];
+        let precioVueltaCorresp = ["195", "125"];
 
         let arrayAnada = [];
 
@@ -714,7 +715,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     createRadioBtnIda.type = "radio";
                     createRadioBtnIda.name = "chooseIdaHoraFecha";
                     createRadioBtnIda.value = horaIda[index] + " - " + precioIdaCorresp[index];
-                    // precioIdaVueltaSeleccionado_1 = precioIdaCorresp[index];
+                    // precioIdaVueltaSeleccionado1_1 = precioIdaCorresp[index];
 
 
                     createRadioBtnIda.id = "radioIda_" + index;
@@ -738,7 +739,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     createRadioBtnVuelta.type = "radio";
                     createRadioBtnVuelta.name = "chooseVueltaHoraFecha";
                     createRadioBtnVuelta.value = horaVuelta[index] + " - " + precioVueltaCorresp[index];
-                    // precioIdaVueltaSeleccionado_2 = precioVueltaCorresp[index];
+                    // precioIdaVueltaSeleccionado1_2 = precioVueltaCorresp[index];
 
 
                     createRadioBtnVuelta.id = "radioVuelta_" + index;
@@ -766,8 +767,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     for (let index = 0; index < arrayAnada.length; index++) {
                         if (document.getElementById("radioIda_0").value == arrayAnada[index]) {
-                            alert("son iguales")
-                            precioIdaVueltaSeleccionado = arrayAnada[index].slice(8, 10);
+                            alert("son iguales 1")
+                            precioIdaVueltaSeleccionado1 = arrayAnada[index].slice(8, 11);
                         }
 
 
@@ -782,13 +783,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     for (let index = 0; index < arrayAnada.length; index++) {
                         if (document.getElementById("radioIda_1").value == arrayAnada[index]) {
-                            alert("son iguales")
+                            alert("son iguales 2")
 
-                            precioIdaVueltaSeleccionado = arrayAnada[index].slice(8, 11);
+                            precioIdaVueltaSeleccionado1 = arrayAnada[index].slice(8, 11);
                         }
-
-
-                        alert(precioIdaVueltaSeleccionado)
 
                     }
                 })
@@ -803,6 +801,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     for (let index = 0; index < arrayAnada.length; index++) {
                         if (document.getElementById("radioVuelta_0").value == arrayAnada[index]) {
                             alert("son iguales -1")
+                            precioIdaVueltaSeleccionado2 = arrayAnada[index].slice(8, 11);
 
                         }
 
@@ -816,7 +815,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     for (let index = 0; index < arrayAnada.length; index++) {
                         if (document.getElementById("radioVuelta_1").value == arrayAnada[index]) {
-                            alert("son iguales")
+                            alert("son iguales -2")
+                            precioIdaVueltaSeleccionado2 = arrayAnada[index].slice(8, 11);
                         }
 
                     }
@@ -854,7 +854,8 @@ document.addEventListener("DOMContentLoaded", function () {
                             adultos: adultos,
                             ninos: ninos,
                             bebes: bebes,
-                            precio: precioIdaVueltaSeleccionado
+                            precioIda: precioIdaVueltaSeleccionado1,
+                            precioVuelta: precioIdaVueltaSeleccionado2
                         };
 
                         alert("Información del viaje: " + JSON.stringify(viaje));
@@ -867,7 +868,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
                         //TARIFAS ---------------------------
 
-                        document.getElementById("precioTarifas").innerHTML = precioIdaVueltaSeleccionado;
+                        tariffAction();
+
 
                     } else {
                         alert("selecciona una hora")
@@ -1190,22 +1192,27 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    //comprobación del nombre segun el patron
-    function nombreBookingValidation() {
+    // //comprobación del nombre segun el patron
+    // function nombreBookingValidation() {
 
-        let nombreValue = document.getElementById("nombre-booking").value;
+    //     let nombreValue = document.getElementById("nombre-booking").value;
 
-        if (!patronNombreApellido.test(nombreValue)) {
-            document.getElementById("error-nombre-booking").style.color = "red";
-            document.getElementById("error-nombre-booking").innerHTML = "Nombre incorrecto";
+    //     if (!patronNombreApellido.test(nombreValue)) {
+    //         document.getElementById("error-nombre-booking").style.color = "red";
+    //         document.getElementById("error-nombre-booking").innerHTML = "Nombre incorrecto";
 
-            return false;
+    //         return false;
 
-        } else {
-            document.getElementById("error-nombre-booking").innerHTML = "";
+    //     } else {
+    //         document.getElementById("error-nombre-booking").innerHTML = "";
 
-            return true;
-        }
+    //         return true;
+    //     }
+    // }
+
+
+    function tariffAction() {
+        document.getElementById("precioTarifas").innerHTML = Number(precioIdaVueltaSeleccionado1) + Number(precioIdaVueltaSeleccionado2);
     }
 })
 
