@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
+/*document.addEventListener("DOMContentLoaded", function () {
     //crear una cookie al navegador
     // console.log(document.cookie);
 
@@ -70,4 +70,34 @@ function checkCookie(cname) {
     }
 
     document.getElementById("totalContador").innerHTML = getCookie("comptador");
-}
+}*/
+
+
+
+
+///LOCAL STORAGE & SESSION STORAGE
+
+localStorage.setItem("test", 1);
+sessionStorage.setItem("name", "Ana");
+
+console.log(localStorage.getItem("test"))
+console.log(sessionStorage.getItem("name"))
+
+localStorage.test = 2;
+console.log(localStorage.test) //equival a fer -- localStorage.getItem("test"); --
+
+
+//esborrar localStorage
+localStorage.removeItem("test");
+console.log(localStorage.getItem("test"))
+
+
+//esborrar totes les localstorage
+localStorage.clear();
+
+
+//aixo no esta ben fet!!!!!!!!!!!!!!!!!!!!!!!
+localStorage.user = {name : "Jhon",dni : "123456789Z"}; //NO ES UN STRING ERROR!!!!!
+alert(localStorage.user);
+
+
