@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sport Online Shop</title>
+    <link rel="stylesheet" href="./vendor/bootstrap-5.3.2-dist/css/bootstrap.min.css">
+    <script src="./vendor/bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js"></script>
+
+</head>
+<body>
+    <div class="container">
+
+        <div class="mt-2" id="form-1">
+            <div class="form-group">
+                <select class="mt-4" id="selectArticles">
+                </select>
+                
+            </div>
+            
+            <div class="form-group">
+    
+                <input type="text" id="numberOfArticles" > <span id="inputErrorMessage"></span>
+            </div>
+        
+            <div class="form-group">
+                <input type="submit" id="btnIntroduceArt" disabled>
+            </div>
+        
+        </div>
+
+    
+        
+        <div class="mt-5" id="form-2" style="display: none;">
+
+            <div id="form-2-div">
+
+
+
+            </div>
+
+            <div class="form-group" >
+                <input type="submit" id="prepare-invoice" value="Prepare Invoice">
+            </div>
+
+            <div class="form-group" >
+                <button type="submit" id="cancel"> Cancel </button>
+            </div>
+
+
+            <div class="form-group" >
+                <span id="info"></span>
+                <span id="errorArticlesLength"></span>
+            </div>
+
+
+        </div>
+
+
+
+        <div class="mt-5" id="form-3" style="display: none;">
+
+            <div id="form-3-div">
+
+
+
+            </div>
+
+
+            <div>
+                <button id="tancar">Tancar</button>
+            </div>
+
+
+            <div>
+                <button id="imprimir">Imprimir</button>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="./JS/script.js"></script>
+</body>
+</html>
