@@ -32,10 +32,10 @@ function rutas() {
     app.post('/vueling/login', function (req, res) {
         console.log("Estamos en login POST");
 
-        const { nombre, password } = req.body;
+        const { email, password } = req.body;
 
         // Verificar el usuario y la contraseña en la base de datos
-        connection.query('SELECT * FROM usuarios WHERE nombre = ? AND password = ?', [nombre, password], function (error, results, fields) {
+        connection.query('SELECT * FROM usuarios WHERE email = ? AND password = ?', [email, password], function (error, results, fields) {
             if (error) {
                 console.error(error);
                 res.status(400).json({

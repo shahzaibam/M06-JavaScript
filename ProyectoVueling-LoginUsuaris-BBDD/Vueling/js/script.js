@@ -85,7 +85,7 @@ document.getElementById("loginNowBtn").addEventListener("click", () => {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ nombre: emailVal, password: passwdVal }),
+        body: JSON.stringify({ email: emailVal, password: passwdVal }),
     })
         .then(response => response.json())
         .then(responseData => {
@@ -99,9 +99,10 @@ document.getElementById("loginNowBtn").addEventListener("click", () => {
                     document.getElementById("result").style.display = "block";
                     document.getElementById("result").innerHTML = "<h2 class='text-center pt-3'>Login Results </h2> <p class='pt-4'>LOGEADO CORRECTAMENTE</p>";
                 } else {
+                    localStorage.setItem("login", false);
                     alert("Credenciales incorrectas");
-                    document.getElementById("result").style.display = "block";
-                    document.getElementById("result").innerHTML = "<h2 class='text-center pt-3'>Login Results </h2> <p class='pt-4'>USUARIO Y/O CONTRASEÑA INCORRECTA</p>";
+                    document.getElementById("result").style.display = "none";
+                    // document.getElementById("result").innerHTML = "<h2 class='text-center pt-3'>Login Results </h2> <p class='pt-4'>USUARIO Y/O CONTRASEÑA INCORRECTA</p>";
                 }
             }
         })
