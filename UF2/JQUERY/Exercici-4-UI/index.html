@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Organizador de imagenes</title>
+    <link rel="stylesheet" href="./vendor/bootstrap-5.3.2-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+
+    <h1 class="mt-4 text-center">Organizador de Imagenes</h1>
+
+    <div id="left-container" class="text-center mt-5">
+        <img src="./img/animales/aguila.jpg" class="draggable animal">
+        <img src="./img/animales/cabra.jpg" class="draggable animal">
+        <img src="./img/animales/coyote.jpg" class="draggable animal">
+        <img src="./img/animales/falcon.jpg" class="draggable animal">
+        <img src="./img/animales/panda.jpg" class="draggable animal">
+        <img src="./img/flores/campo_flores.jpg" class="draggable flores">
+        <img src="./img/flores/margarita.jpeg" class="draggable flores">
+        <img src="./img/flores/rosas.jpg" class="draggable flores">
+        <img src="./img/flores/tulip.jpg" class="draggable flores">
+        <img src="./img/flores/tulip_2.jpg" class="draggable flores">
+    </div>
+
+    <div id="right-container" class="d-flex justify-content-around">
+        <div id="animals-container" class="image-container">
+            <h2>Animals</h2>
+        </div>
+        <div id="flowers-container" class="image-container">
+            <h2>Flors</h2>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="./js/script.js"></script>
+
+</body>
+</html>
