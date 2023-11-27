@@ -10,4 +10,8 @@ import { CommonModule } from '@angular/common';
 })
 export class Componente1Component {
 
+  //atributos de la clase: son publicos (no tienen #)
+  customer:string = "Maria"; //este atributo es una cadena TypeScript
+  age:number = 21;
+  id=12121212; //identificador
 }
