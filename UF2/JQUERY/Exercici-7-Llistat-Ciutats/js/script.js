@@ -32,14 +32,9 @@ $(document).ready(function () {
     });
 
 
-    $("#btn-delete-first-last").click(function () {
-        $("ul").children().last().remove();
+    $("#btn-delete-first-second").click(function () {
+        $("ul").children().first().remove();
         $("ul").children().first().remove();
     });
-
-
-
-
-    // $('.parent').children().last().remove();
 
 });
