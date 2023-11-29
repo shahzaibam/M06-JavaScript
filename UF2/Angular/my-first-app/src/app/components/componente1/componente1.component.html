@@ -1,6 +1,38 @@
 <p>componente1 works!</p>
-<p>
-  {{customer}}
-  {{age}}
-  {{id}}
-</p>
+<div>
+  <p>Nombre del cliente : {{customer}}</p>
+  <p>Edad del cliente : {{age}} </p>
+  <p>Identificador del cliente : {{id}}</p>
+  <p>Primer año : {{years[0]}}</p>
+</div>
+
+<table>
+  <tr>
+    <td>Años</td>
+  </tr>
+
+  <tr *ngFor="let anyo of years">
+    <td>
+      {{anyo}}
+    </td>
+  </tr>
+
+</table>
+
+<div>
+  
+  <p *ngIf="age<18">
+    Eres menor de edad
+  </p>
+
+  <p *ngIf="age>=18">
+    Eres mayor de edad
+  </p>
+
+  <p *ngIf="age<18; else mayor">
+    Eres muy pequeño
+  </p>
+
+  <ng-template #mayor>Eres muy mayor!!!</ng-template>
+
+</div>

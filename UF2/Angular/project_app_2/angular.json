@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "my-first-app": {
+    "project_bootswatch": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/my-first-app",
+            "outputPath": "dist/project_bootswatch",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -25,14 +25,9 @@
               "src/assets"
             ],
             "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
-            "scripts": [
-              "node_modules/jquery/dist/jquery.min.js",
-              "node_modules/@popperjs/core/dist/umd/popper.min.js",
-              "node_modules/bootstrap/dist/js/bootstrap.min.js"
-            ],
+            "scripts": [],
             "server": "src/main.server.ts",
             "prerender": true,
             "ssr": {
@@ -67,10 +62,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "my-first-app:build:production"
+              "buildTarget": "project_bootswatch:build:production"
             },
             "development": {
-              "buildTarget": "my-first-app:build:development"
+              "buildTarget": "project_bootswatch:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -78,7 +73,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "my-first-app:build"
+            "buildTarget": "project_bootswatch:build"
           }
         },
         "test": {
@@ -103,6 +98,6 @@
     }
   },
   "cli": {
-    "analytics": "c7ff3987-bdda-47d5-b91a-3716f2bbc595"
+    "analytics": "103cc45c-209a-488b-90e1-d72b640b515a"
   }
 }

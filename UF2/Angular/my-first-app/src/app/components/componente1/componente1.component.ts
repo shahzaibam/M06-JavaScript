@@ -14,4 +14,6 @@ export class Componente1Component {
   customer:string = "Maria"; //este atributo es una cadena TypeScript
   age:number = 21;
   id=12121212; //identificador
+
+  years:any = [1985, 2023, 2000, 1999, 2002];
 }
