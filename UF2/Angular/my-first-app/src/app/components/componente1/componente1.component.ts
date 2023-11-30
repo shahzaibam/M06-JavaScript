@@ -52,6 +52,6 @@ export class Componente1Component {
   borrar(nombreFruta:string) {
     console.log(nombreFruta);
 
-    this.frutas = this.frutas.filter(x=>x.nombre != nombreFruta); //devuelveme los nombres que sean diferentes a nombreFruta
+    this.frutas = this.frutas.filter(x => x.nombre != nombreFruta); //devuelveme los nombres que sean diferentes a nombreFruta
   }
 }
