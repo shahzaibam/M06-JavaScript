@@ -1,12 +1,10 @@
-'use strict';
-
 const express = require('express');
 const bodyParser = require('body-parser');
 const mysql = require('mysql');
 const cors = require('cors');
 
 const app = express();
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use(cors());
 
@@ -17,27 +15,28 @@ const connection = mysql.createConnection({
     password: '',
 });
 
+// Conectar a la base de datos
 connection.connect(function (err) {
     if (err) {
-        console.error('Error conectando a la bbdd');
+        console.error('Error conectando a la bbdd:', err);
         return;
     }
-    console.log('Connectado!!');
-
+    console.log('Conectado a la base de datos');
     rutas();
 });
+
 
 function rutas() {
     // POST para realizar un login
     app.post('/vueling/login', function (req, res) {
         console.log("Estamos en login POST");
 
-        const { email, password } = req.body;
+        const {email, password} = req.body;
 
         // Verificar el usuario y la contraseña en la base de datos
         connection.query('SELECT * FROM usuarios WHERE email = ? AND password = ?', [email, password], function (error, results, fields) {
             if (error) {
-                console.error(error);
+                console.error('Error en la autenticación:', error);
                 res.status(400).json({
                     error: true,
                     results: null,
@@ -61,18 +60,15 @@ function rutas() {
         });
     });
 
-
-
-
     // GET
     app.get('/vueling/booking', function (req, res) {
-        console.log("Estamos en login GET");
-        connection.query('SELECT nomCiutat FROM ciutats', function (error, results, field) {
+        connection.query('SELECT nom_ciutat FROM ciutats', function (error, results, fields) {
             if (error) {
-                res.status(400).json({
+                console.error('Error en la consulta GET:', error);
+                res.status(500).json({
                     error: true,
                     results: null,
-                    message: "Error en la consulta a la base de datos"
+                    message: "Error en el servidor al procesar la solicitud"
                 });
             } else {
                 res.status(200).json({
@@ -84,41 +80,30 @@ function rutas() {
         });
     });
 
+    // Register
+    app.post('/vueling/register', function (req, res) {
+        const nuevoUsuario = req.body;
+        console.log(nuevoUsuario);
 
-    // POST route for registration
-    app.post('/vueling/registration', function (req, res) {
-        console.log("Estamos en registro POST");
-
-        // Retrieve registration data from the request body
-        const nom = req.body.nom;
-        const cognoms = req.body.cognoms;
-        const email = req.body.email;
-        const password = req.body.password;
-        const dni = req.body.dni;
-
-        // Insert registration data into the database
-        connection.query('INSERT INTO usuarios (nom, cognoms, email, password, dni) VALUES (?, ?, ?, ?, ?)',
-            [nom, cognoms, email, password, dni],
-            function (error, results, fields) {
-                if (error) {
-                    res.status(400).json({
-                        error: true,
-                        results: null,
-                        message: "Error en la inserción en la base de datos"
-                    });
-                } else {
-                    res.status(200).json({
-                        error: false,
-                        results: results,
-                        message: "Inserción en la base de datos exitosa"
-                    });
-                }
+        connection.query('INSERT INTO usuarios SET ?', nuevoUsuario, function (error, results, fields) {
+            if (error) {
+                console.error('Error al insertar en la base de datos:', error);
+                res.status(400).json({
+                    error: true,
+                    results: null,
+                    message: 'Error al insertar en la base de datos'
+                });
+            } else {
+                res.status(200).json({
+                    error: false,
+                    results: results,
+                    message: 'Inserción realizada con éxito'
+                });
             }
-        );
+        });
     });
 
-
     app.listen(3000, () => {
-        console.log('La API-REST está en http://localhost:3000/vueling/booking');
+        console.log('La API-REST está en http://localhost:3000/vueling/..');
     });
 }
