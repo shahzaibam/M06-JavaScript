@@ -295,6 +295,7 @@ document.getElementById("nombre-register").addEventListener("blur", validarNombr
 
 
 
+
 //comprobación del apellido segun el patron
 function validarApellido() {
     let apellidoValue = document.getElementById("apellido").value;
@@ -442,17 +443,67 @@ function validarFormulario() {
     const esPasswordRepeatValido = validarPasswordRepeat();
     const esDNIValido = validarDNI();
 
+
+
+
+
     // Si todas las validaciones son verdaderas, muestra el mensaje de registro exitoso
     if (esNombreValido && esApellidoValido && esEmailValido && esPasswordValido && esPasswordRepeatValido && esDNIValido) {
         document.getElementById("mensaje-registrado-2").style.display = "block";
         document.getElementById("mensaje-registrado-2").innerHTML = "Usuario Registrado Correctamente";
 
 
+
+        let nombreValue = document.getElementById("nombre-register").value;
+        let apellidoValue = document.getElementById("apellido").value;
+        let emailValue = document.getElementById("email-register").value;
+        let passwordRepeatVal = document.getElementById("repeat-password").value;
+        let dniValue = document.getElementById("dni").value;
+
+
+        const nuevoUsuario = {
+            Nom: nombreValue,
+            Cognoms: apellidoValue,
+            email: emailValue,
+            password: passwordRepeatVal,
+            DNI_complet: dniValue
+        };
+
+        console.log(nuevoUsuario);
+
+        //POST
+        // Realizar la solicitud POST usando Fetch
+        fetch('http://localhost:3000/vueling/register', {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(nuevoUsuario),
+        })
+            .then(response => response.json())
+            .then(responseData => {
+                if (responseData.error) {
+                    console.error(responseData.message);
+                } else {
+                    console.log(responseData.message);
+                    // Si no hay error, asumimos que el registro fue exitoso
+                    document.getElementById("mensaje-registrado-2").style.display = "block";
+                    document.getElementById("mensaje-registrado-2").innerHTML = "Usuario Registrado Correctamente";
+                }
+            })
+            .catch(error => console.error('Error en la solicitud:', error));
+
+
+
+        /*
         usuarios.push(document.getElementById("nombre-register").value);
         contrasenyes.push(document.getElementById("repeat-password").value);
 
         console.log(usuarios)
         console.log(contrasenyes)
+        */
+
+
 
     } else {
         document.getElementById("mensaje-registrado-2").style.display = "block";
@@ -471,9 +522,6 @@ document.getElementById("registerSubmit").addEventListener("click", function () 
 
 
 /////BOOOOOKINGGG!!!!!! --------------------------------------------------------------------
-
-
-
 
 
 
