@@ -12,108 +12,106 @@
 <body>
 
 
-    <div class="nav-div bg-white" style="margin-bottom: 4rem;">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="padding: 30px;">
-            <div class="container-fluid">
-                <a class="navbar-brand h1" href="./"><b>ZOO</b></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
-                        aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                    <div class="navbar-nav" style="margin-left: auto;">
-                        <a class="nav-link active" id="llistar-btn" aria-current="page" href="./">Llistar</a>
-                        <a class="nav-link" id="afegir-btn" aria-current="page" href="#">Afegir</a>
-                        <a class="nav-link" id="eliminar-btn" href="#">Eliminar</a>
-                    </div>
+<div class="nav-div bg-white" style="margin-bottom: 4rem;">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="padding: 30px;">
+        <div class="container-fluid">
+            <a class="navbar-brand h1" href="./"><b>ZOO</b></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav" style="margin-left: auto;">
+                    <a class="nav-link active" id="llistar-btn" aria-current="page" href="./">Llistar</a>
+                    <a class="nav-link" id="afegir-btn" aria-current="page" href="#">Afegir</a>
+                    <a class="nav-link" id="eliminar-btn" href="#">Eliminar</a>
                 </div>
             </div>
-        </nav>
-    </div>
-
-
-    <div>
-        <div id="tableList"></div>
-    </div>
-
-
-    <div class="container" id="afegirForm" style="display:none;">
-        <div>
-
-            <div class=" card shadow-lg">
-                <div class="card-header bg-primary text-white text-center">
-                    <h4 class="card-title p-3">Afegir</h4>
-                </div>
-                <div class="card-body">
-                    <div class="form-group">
-                        <label for="especie-register">Especie</label>
-                        <input type="text" class="form-control" id="especie-register" required>
-                        <span id="error-especie-register"></span>
-                    </div>
-
-                    <div class="form-group mt-4">
-                        <label for="sexeChoice1">Mascle</label>
-                        <input type="radio" id="sexeChoice1" name="sexe" value="mascle" />
-                        <label for="sexeChoice2">Femeni</label>
-                        <input type="radio" id="sexeChoice2" name="sexe" value="femeni" />
-                    </div>
-
-                    <div class="form-group" id="fechaNacimiento">
-                        <label for="dateInput" class="form-label">Ida:</label>
-                        <input type="date" class="form-control" id="dateInput" name="dateInput">
-                        <span id="errfechaNacimiento"></span>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="paisOrigen">País origen</label>
-                        <input type="text" class="form-control" id="paisOrigen" required>
-                        <span id="error-paisOrigen"></span>
-                    </div>
-
-                    <div class="form-group mt-4">
-                        <label for="continentSelect" class="form-label">Continent:</label>
-                        <select class="form-select" id="continentSelect" name="continentSelect">
-                            <option value="Europa">Europa</option>
-                            <option value="Asia">Asia</option>
-                            <option value="América">América</option>
-                            <option value="Oceania">Oceania</option>
-                            <option value="África">África</option>
-                        </select>
-                        <span id="mensaje-error-vuelta"></span>
-                    </div>
-
-
-
-                    <div class="text-center">
-                        <button type="submit" id="insertarAnimal"
-                                class="btn btn-primary btn-block mt-4">Insertar</button>
-                    </div>
-                </div>
-            </div>
-
         </div>
-    </div>
+    </nav>
+</div>
 
 
+<div>
+    <div id="tableList"></div>
+</div>
 
 
-    <div id="showEliminar">
-
-    </div>
-
-
+<div class="container" id="afegirForm" style="display:none;">
     <div>
-        <button id="showLocalStorage">Ver localstorage</button>
+
+        <div class=" card shadow-lg">
+            <div class="card-header bg-primary text-white text-center">
+                <h4 class="card-title p-3">Afegir</h4>
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="especie-register">Especie</label>
+                    <input type="text" class="form-control" id="especie-register" required>
+                    <span id="error-especie-register"></span>
+                </div>
+
+                <div class="form-group mt-4">
+                    <label for="sexeChoice1">Mascle</label>
+                    <input type="radio" id="sexeChoice1" name="sexe" value="mascle"/>
+                    <label for="sexeChoice2">Femeni</label>
+                    <input type="radio" id="sexeChoice2" name="sexe" value="femeni"/>
+                </div>
+
+                <div class="form-group" id="fechaNacimiento">
+                    <label for="dateInput" class="form-label">Ida:</label>
+                    <input type="date" class="form-control" id="dateInput" name="dateInput">
+                    <span id="errfechaNacimiento"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="paisOrigen">País origen</label>
+                    <input type="text" class="form-control" id="paisOrigen" required>
+                    <span id="error-paisOrigen"></span>
+                </div>
+
+                <div class="form-group mt-4">
+                    <label for="continentSelect" class="form-label">Continent:</label>
+                    <select class="form-select" id="continentSelect" name="continentSelect">
+                        <option value="Europa">Europa</option>
+                        <option value="Asia">Asia</option>
+                        <option value="América">América</option>
+                        <option value="Oceania">Oceania</option>
+                        <option value="África">África</option>
+                    </select>
+                    <span id="mensaje-error-vuelta"></span>
+                </div>
+
+
+                <div class="text-center">
+                    <button type="submit" id="insertarAnimal"
+                            class="btn btn-primary btn-block mt-4">Insertar
+                    </button>
+                </div>
+            </div>
+        </div>
+
     </div>
+</div>
 
 
-    <div id="verCookie">
+<div id="showEliminar">
 
-    </div>
+</div>
 
-    <!--Mi archivo Jquery-->
-    <script src="./js/script.js"></script>
+
+<div>
+    <button id="showLocalStorage">Ver localstorage</button>
+</div>
+
+
+<div id="verCookie">
+
+</div>
+
+<!--Mi archivo Jquery-->
+<script src="./js/script.js"></script>
 
 </body>
 </html>

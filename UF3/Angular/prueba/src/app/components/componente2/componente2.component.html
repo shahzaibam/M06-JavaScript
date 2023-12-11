@@ -1,0 +1,18 @@
+<p>componente2 works!</p>
+
+<p>Formulario</p>
+
+
+<form [formGroup]="formRegistro" (ngSubmit)="submit()" >
+
+  <p>Nombre:
+    <input type="text" formControlName="nombre" />
+  </p>
+
+  <p>Edad:
+    <input type="text" formControlName="edad" />
+  </p>
+
+  <button type="submit" [disabled]=formRegistro.invalid> Confirma tus datos </button>
+
+</form>

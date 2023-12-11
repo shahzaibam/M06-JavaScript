@@ -1,0 +1,52 @@
+<p>componente1 works!</p>
+<div>
+  <p>Nombre del cliente : {{customer}}</p>
+  <p>Edad del cliente : {{age}} </p>
+  <p>Identificador del cliente : {{id}}</p>
+  <p>Primer año : {{years[0]}}</p>
+</div>
+
+<div *ngIf="age<18; else mayor">
+  <p>Eres menor de edad</p>
+</div>
+<ng-template #mayor>
+  <p>Eres muy mayor!!!</p>
+</ng-template>
+
+<div>
+
+  <p>Introduce el tu nombre: <input type="text" [(ngModel)]="nom" /></p>
+  <p>Value: {{nom}}</p>
+
+</div>
+
+<div>
+
+  Eventos en angular
+
+  <button (click)="subir()">Sube!</button>
+  <p>Valor : {{valor}}</p>
+
+</div>
+
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">Nombre</th>
+    <th scope="col">Precio</th>
+    <th scope="col">Disponibilidad</th>
+    <th>Acción</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let fruta of frutas">
+      <td>{{fruta.nombre}}</td>
+      <td>{{fruta.precio}}</td>
+      <td>{{fruta.cantidad}}</td>
+      <td>
+        <button class="btn btn-danger" (click)="borrar(fruta.nombre)">Eliminar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
