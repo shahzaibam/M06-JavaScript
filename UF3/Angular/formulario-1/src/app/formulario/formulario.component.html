@@ -1,0 +1,65 @@
+<!-- formulario.component.html -->
+
+<form [formGroup]="formulario" (ngSubmit)="enviarFormulario()">
+  <div>
+    <label for="nomUsuari">Nom d’usuari *</label>
+    <input type="text" id="nomUsuari" formControlName="nomUsuari">
+    <div *ngIf="getError('nomUsuari', 'required')">Aquest camp és obligatori.</div>
+    <div *ngIf="getError('nomUsuari', 'pattern')">Només admet lletres i ha de tenir un mínim de 6 caràcters.</div>
+  </div>
+
+  <div>
+    <label for="contrasenya">Contrasenya *</label>
+    <input type="password" id="contrasenya" formControlName="contrasenya">
+    <div *ngIf="getError('contrasenya', 'required')">Aquest camp és obligatori.</div>
+    <div *ngIf="getError('contrasenya', 'pattern')">Ha de contenir lletres i números i tenir un mínim de 8 caràcters.</div>
+  </div>
+
+  <div>
+    <label for="confirmarContrasenya">Confirmar contrasenya *</label>
+    <input type="password" id="confirmarContrasenya" formControlName="confirmarContrasenya">
+    <div *ngIf="getError('confirmarContrasenya', 'required')">Aquest camp és obligatori.</div>
+    <div *ngIf="getError('confirmarContrasenya', 'noCoincide')">Les contrasenyes no coincideixen.</div>
+  </div>
+
+  <div>
+    <label for="correuElectronic">Correu electrònic *</label>
+    <input type="email" id="correuElectronic" formControlName="correuElectronic">
+    <div *ngIf="getError('correuElectronic', 'required')">Aquest camp és obligatori.</div>
+    <div *ngIf="getError('correuElectronic', 'email')">El correu electrònic no té el format correcte.</div>
+  </div>
+
+  <div>
+    <label for="estatCivil">Estat civil *</label>
+    <select id="estatCivil" formControlName="estatCivil">
+      <option value="" disabled selected>Selecciona una opció</option>
+      <option value="Casat/da">Casat/da</option>
+      <option value="Solter/a">Solter/a</option>
+      <option value="Divorciat/da">Divorciat/da</option>
+    </select>
+    <div *ngIf="getError('estatCivil', 'required')">Aquest camp és obligatori.</div>
+  </div>
+
+  <div>
+    <label>Sexe *</label>
+    <label><input type="radio" value="Dona" formControlName="sexe"> Dona</label>
+    <label><input type="radio" value="Home" formControlName="sexe"> Home</label>
+    <label><input type="radio" value="Altres" formControlName="sexe"> Altres</label>
+    <div *ngIf="getError('sexe', 'required')">Aquest camp és obligatori.</div>
+  </div>
+
+  <div>
+    <label>De què vols rebre informació?</label>
+    <label><input type="checkbox" value="Videojocs" formControlName="informacio"> Videojocs</label>
+    <label><input type="checkbox" value="Accesoris" formControlName="informacio"> Accesoris</label>
+    <label><input type="checkbox" value="Novetats del mercat" formControlName="informacio"> Novetats del mercat</label>
+    <div *ngIf="getError('informacio', 'required')">Aquest camp és obligatori.</div>
+  </div>
+
+  <div>
+    <label><input type="checkbox" formControlName="acceptarCondicions"> Acceptar condicions *</label>
+    <div *ngIf="getError('acceptarCondicions', 'required')">Has d'acceptar les condicions.</div>
+  </div>
+
+  <button type="submit" >Enviar</button>
+</form>
