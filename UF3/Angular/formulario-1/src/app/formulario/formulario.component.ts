@@ -33,7 +33,8 @@ export class FormularioComponent {
       estatCivil : ["", [Validators.required]],
       sexe : ["", [Validators.required]],
       informacio : ["", [Validators.required]],
-      acceptarCondicions : ["", [Validators.required]]
+      acceptarCondicions : ["", [Validators.required]],
+      edad : ["", [Validators.required]]
 
     })
   }

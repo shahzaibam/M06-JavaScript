@@ -43,6 +43,9 @@
     </div>
 
 
+
+
+
     <div>
       <label for="confirmarContrasenya">Confirmar contrasenya *</label>
       <input type="password" id="confirmarContrasenya" formControlName="confirmarContrasenya">
@@ -103,6 +106,20 @@
       </div>
     </div>
 
+    <div>
+      <label for="edad">Edad *</label>
+      <input type="text" id="edad" formControlName="edad" mayorEdad>
+      <div *ngIf="this.formulari.get('edad')?.errors?.['required'] && this.formulari.get('edad')?.touched"
+           class="alert alert-danger">
+        Aquest camp és obligatori.
+      </div>
+      <div *ngIf="this.formulari.get('edad')?.errors?.['custom'] && this.formulari.get('edad')?.touched"
+           class="alert alert-danger">
+        Has de tenir més de 18 anys
+      </div>
+    </div>
+
+
 
     <div>
       <label><input type="checkbox" formControlName="acceptarCondicions"> Acceptar condicions *</label>
@@ -110,9 +127,16 @@
     </div>
 
 
+
+
+
     <button type="submit" [disabled]="formulari.invalid">Enviar</button>
 
   </form>
+
+  <div>
+    {{"hola" | uppercase}}
+  </div>
 
 </div>
 
