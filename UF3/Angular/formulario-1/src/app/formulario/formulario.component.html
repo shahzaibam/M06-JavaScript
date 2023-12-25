@@ -18,12 +18,12 @@
   <form [formGroup]="formulari" (ngSubmit)="onSubmit()" class="mt-5">
     <div>
       <label for="nomUsuari">Nom d’usuari *</label>
-      <input type="text" id="nomUsuari" formControlName="nomUsuari">
+      <input type="text" id="nomUsuari" formControlName="nomUsuari" appValidarNombre>
       <div *ngIf="this.formulari.get('nomUsuari')?.errors?.['required'] && this.formulari.get('nomUsuari')?.touched"
            class="alert alert-danger">
         Aquest camp és obligatori.
       </div>
-      <div *ngIf="this.formulari.get('nomUsuari')?.errors?.['pattern'] && this.formulari.get('nomUsuari')?.touched"
+      <div *ngIf="this.formulari.get('nomUsuari')?.errors?.['custom'] && this.formulari.get('nomUsuari')?.touched"
            class="alert alert-danger">Només
         admet lletres i ha de tenir un mínim de 6 caràcters.
       </div>
@@ -48,24 +48,30 @@
 
     <div>
       <label for="confirmarContrasenya">Confirmar contrasenya *</label>
-      <input type="password" id="confirmarContrasenya" formControlName="confirmarContrasenya">
+      <input type="password" id="confirmarContrasenya"  formControlName="confirmarContrasenya" appValidarPassword="contrasenya">
       <div
         *ngIf="this.formulari.get('confirmarContrasenya')?.errors?.['required'] && this.formulari.get('confirmarContrasenya')?.touched"
         class="alert alert-danger">
         Aquest camp és obligatori.
       </div>
+
+      <div *ngIf="this.formulari.get('confirmarContrasenya')?.errors?.['custom'] && this.formulari.get('confirmarContrasenya')?.touched" class="alert alert-danger">
+        Error las contraseñas no coinciden
+      </div>
+
+
     </div>
 
 
     <div>
       <label for="correuElectronic">Correu electrònic *</label>
-      <input type="email" id="correuElectronic" formControlName="correuElectronic">
+      <input type="email" id="correuElectronic" formControlName="correuElectronic" appValidarEmail>
       <div
         *ngIf="this.formulari.get('correuElectronic')?.errors?.['required'] && this.formulari.get('correuElectronic')?.touched"
         class="alert alert-danger">Aquest camp és obligatori.
       </div>
       <div
-        *ngIf="this.formulari.get('correuElectronic')?.errors?.['email'] && this.formulari.get('correuElectronic')?.touched"
+        *ngIf="this.formulari.get('correuElectronic')?.errors?.['custom'] && this.formulari.get('correuElectronic')?.touched"
         class="alert alert-danger">El correu electrònic no té el format correcte.
       </div>
     </div>
@@ -134,10 +140,18 @@
 
   </form>
 
+
+  <!-- Muestra la información del usuario creado -->
+  <div *ngIf="newUser">
+    <h3>Información del Usuario Creado:</h3>
+    <pre>{{ newUser | json }}</pre>
+  </div>
+
+  <!--
   <div>
     {{"hola" | uppercase}}
   </div>
-
+-->
 </div>
 
 </body>
