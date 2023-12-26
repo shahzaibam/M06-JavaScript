@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { User } from '../model/user.model';
+import {Component} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {UserModel} from "../model/User.model";
 
 @Component({
   selector: 'app-formulario',
@@ -9,9 +9,10 @@ import { User } from '../model/user.model';
 })
 export class FormularioComponent {
   formulari!: FormGroup;
-  newUser: User | undefined;
+  newUser?: UserModel;
 
-  constructor(private readonly fb: FormBuilder) {}
+  constructor(private readonly fb: FormBuilder) {
+  }
 
   ngOnInit(): void {
     this.formulari = this.initForm();
@@ -20,8 +21,9 @@ export class FormularioComponent {
   onSubmit(): void {
     console.log(this.formulari.value);
 
-    if (this.formulari.valid) {
-      this.newUser = new User(
+
+    if(this.formulari.valid) {
+      this.newUser = new UserModel(
         this.formulari.value.nomUsuari,
         this.formulari.value.contrasenya,
         this.formulari.value.correuElectronic,
@@ -32,9 +34,11 @@ export class FormularioComponent {
         this.formulari.value.edad
       );
 
-      console.log('Nuevo Usuario:', this.newUser);
+      console.log(this.newUser);
     }
+
   }
+
 
   initForm(): FormGroup {
     return this.fb.group({

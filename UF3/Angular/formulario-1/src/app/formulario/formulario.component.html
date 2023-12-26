@@ -141,10 +141,10 @@
   </form>
 
 
-  <!-- Muestra la información del usuario creado -->
   <div *ngIf="newUser">
-    <h3>Información del Usuario Creado:</h3>
-    <pre>{{ newUser | json }}</pre>
+    <pre>
+      {{newUser | json}}
+    </pre>
   </div>
 
   <!--
