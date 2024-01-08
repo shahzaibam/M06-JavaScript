@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {UserModel} from "../model/User.model";
 
@@ -7,11 +7,21 @@ import {UserModel} from "../model/User.model";
   templateUrl: './formulario.component.html',
   styleUrls: ['./formulario.component.css']
 })
-export class FormularioComponent {
+
+
+export class FormularioComponent implements OnInit{
+
+  //propietats de la clase
   formulari!: FormGroup;
+  sex:string[];
+  status:string[];
+  info:string[];
   newUser?: UserModel;
 
   constructor(private readonly fb: FormBuilder) {
+    this.sex = ["Home", "Dona", "Altres"];
+    this.status = ["Casat/da", "Solter/a", "Divorciat/da"];
+    this.info = ["Videojocs", "Accessoris", "Novetats del mercat"];
   }
 
   ngOnInit(): void {
