@@ -16,7 +16,7 @@ export class ValidarPasswordDirective implements Validator {
     const contrasenya = control.value;
     const contrasenyaValidar = control.root.get(this.contrasenyaValidarName);
 
-      if (contrasenya.toLowerCase() !== contrasenyaValidar!.value.toLowerCase()) {
+      if (contrasenya !== contrasenyaValidar!.value) {
         return { custom: true };
       }
 
