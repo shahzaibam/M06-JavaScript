@@ -10,6 +10,10 @@ import { Componente2Component } from './componentes/componente2/componente2.comp
 
 //cargar a mano
 import { ReactiveFormsModule } from '@angular/forms';
+import {CookieService} from "ngx-cookie-service";
+
+
+
 
 
 
@@ -24,7 +28,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     AppRoutingModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
