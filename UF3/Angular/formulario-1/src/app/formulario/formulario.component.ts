@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {UserModel} from "../model/User.model";
+import {UserServeisService} from "../serveis/user-serveis.service";
 
 @Component({
   selector: 'app-formulario',
@@ -17,15 +18,23 @@ export class FormularioComponent implements OnInit{
   status:string[];
   info:string[];
   newUser?: UserModel;
+  allUsers: UserModel[] = []; // Afegit una nova propietat per emmagatzemar tots els usuaris
 
-  constructor(private readonly fb: FormBuilder) {
+  constructor(private readonly fb: FormBuilder, private userService: UserServeisService) {
     this.sex = ["Home", "Dona", "Altres"];
     this.status = ["Casat/da", "Solter/a", "Divorciat/da"];
     this.info = ["Videojocs", "Accessoris", "Novetats del mercat"];
+
+    // Genera usuaris aleatoris quan es crea el component
+    userService.generateRandomUsers();
+
+    // Obtenir tots els usuaris
+    this.allUsers = userService.getAllUsers();
   }
 
   ngOnInit(): void {
     this.formulari = this.initForm();
+    console.log('Todos los usuarios:', this.allUsers);
   }
 
   onSubmit(): void {
@@ -45,6 +54,21 @@ export class FormularioComponent implements OnInit{
       );
 
       console.log(this.newUser);
+
+      // Ara pots fer servir el servei per validar l'usuari
+      const isValid = this.userService.validateUser({
+        nomUsuari: this.newUser.nomUsuari,
+        contrasenya: this.newUser.contrasenya,
+      });
+
+      if(isValid) {
+        alert("Te has logueado correctamente !!");
+      }else {
+        alert("No estás registrado, Usuario incorrecto !!!")
+      }
+
+
+
     }
 
   }
