@@ -11,6 +11,7 @@ import { ValidarPasswordDirective } from './validarPassword/validar-password.dir
 import { ValidarNombreDirective } from './validarNombre/validar-nombre.directive';
 import { ValidarEmailDirective } from './validarEmail/validar-email.directive';
 import { NotFoundComponent } from './NotFoundComponent/not-found/not-found.component';
+import { ListadoUsuariosComponent } from './listado-usuarios/listado-usuarios.component';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { NotFoundComponent } from './NotFoundComponent/not-found/not-found.compo
     ValidarNombreDirective,
     ValidarEmailDirective,
     NotFoundComponent,
+    ListadoUsuariosComponent,
 
   ],
   imports: [

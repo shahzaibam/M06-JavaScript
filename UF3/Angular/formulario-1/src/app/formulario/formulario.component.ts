@@ -30,6 +30,8 @@ export class FormularioComponent implements OnInit{
 
     // Obtenir tots els usuaris
     this.allUsers = userService.getAllUsers();
+
+
   }
 
   ngOnInit(): void {
@@ -60,6 +62,8 @@ export class FormularioComponent implements OnInit{
         nomUsuari: this.newUser.nomUsuari,
         contrasenya: this.newUser.contrasenya,
       });
+
+
 
       if(isValid) {
         alert("Te has logueado correctamente !!");

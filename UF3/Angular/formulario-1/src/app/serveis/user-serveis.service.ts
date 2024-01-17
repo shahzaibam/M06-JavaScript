@@ -5,19 +5,19 @@ import {UserModel} from "../model/User.model";
   providedIn: 'root'
 })
 export class UserServeisService {
-  private users: UserModel[] = [];
+  public users: UserModel[] = [];
 
   constructor() {
     this.generateRandomUsers();
   }
 
   public generateRandomUsers(): void {
-    for (let i = 1; i <= 300; i++) {
+    for (let i = 1; i <= 5; i++) {
       const randomName = this.generateRandomName();
       const randomPassword = `Password${i}`;
 
       this.users.push({
-        nomUsuari: `User${randomName}`,
+        nomUsuari: `UserA${randomName}`,
         contrasenya: `Password${i}`,
         correuElectronic: `user${i}@example.com`,
         estatCivil: 'Solter/a',
@@ -31,7 +31,7 @@ export class UserServeisService {
 
   private generateRandomName(): string {
     const letters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    const nameLength = Math.floor(Math.random() * 2) + 1; // Longitud del nombre (máximo 10 caracteres)
+    const nameLength = Math.floor(Math.random() * 2); // Longitud del nombre entre 5 y 10 caracteres
 
     let randomName = '';
     for (let j = 0; j < nameLength; j++) {
@@ -41,6 +41,7 @@ export class UserServeisService {
 
     return randomName;
   }
+
 
 
   getAllUsers(): UserModel[] {
