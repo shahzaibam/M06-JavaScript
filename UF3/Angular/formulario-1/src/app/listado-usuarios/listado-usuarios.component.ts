@@ -14,7 +14,7 @@ export class ListadoUsuariosComponent implements OnInit{
 
   constructor( private userService: UserServeisService) {
 
-    // Genera usuaris aleatoris quan es crea el component
+    // Generar usuaris aleatoris quan es crea el component
     userService.generateRandomUsers();
 
     // Obtenir tots els usuaris
@@ -26,5 +26,7 @@ export class ListadoUsuariosComponent implements OnInit{
   ngOnInit(): void {
     console.log('Todos los usuarios:', this.allUsers);
   }
+
+
 
 }

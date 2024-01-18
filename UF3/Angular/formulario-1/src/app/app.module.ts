@@ -12,6 +12,7 @@ import { ValidarNombreDirective } from './validarNombre/validar-nombre.directive
 import { ValidarEmailDirective } from './validarEmail/validar-email.directive';
 import { NotFoundComponent } from './NotFoundComponent/not-found/not-found.component';
 import { ListadoUsuariosComponent } from './listado-usuarios/listado-usuarios.component';
+import { EditarComponenteComponent } from './editar-componente/editar-componente.component';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { ListadoUsuariosComponent } from './listado-usuarios/listado-usuarios.co
     ValidarEmailDirective,
     NotFoundComponent,
     ListadoUsuariosComponent,
+    EditarComponenteComponent,
 
   ],
   imports: [

@@ -1,0 +1,16 @@
+<div class="d-flex">
+
+  <div *ngIf="!estaEditando">
+    <button class="btn-primary" (click)="iniciarEdicion()">Editar</button>
+  </div>
+
+
+  <div *ngIf="estaEditando">
+    <input type="text" [(ngModel)]="nuevoNombre"/>
+    <input type="password" [(ngModel)]="nuevaContrasenya"  />
+    <button class="btn-success" (click)="guardarEdicion(user)">Guardar</button>
+  </div>
+
+</div>
+
+
