@@ -1,0 +1,12 @@
+<!-- merchandising.component.html -->
+<div *ngFor="let producto of productos">
+    <img [src]="producto.nomImatge" alt="{{ producto.nomProducte }}">
+    <h3>{{ producto.nomProducte }}</h3>
+    <p>{{ producto.descripcio }}</p>
+    <p>Preu: {{ producto.preu }} €</p>
+    <p>Disponibilitat màxima: {{ producto.disponibilitatMaxima }}</p>
+    <button (click)="comprarProducto(producto)">Comprar</button>
+    <button (click)="afegirProducte(producto)">Afegir producte</button>
+    <hr>
+  </div>
+  

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./registre.component.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <title>Form Page</title>
+</head>
+<body>
+
+<div class="container">
+  <h2 class="mt-5 text-center">Registre</h2>
+
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="mt-5">
+
+    <div class="form-group">
+      <label for="nomUsuari">Nombre de Usuario:</label>
+      <input type="text" id="nomUsuari" formControlName="nomUsuari" />
+
+      <div *ngIf="this.registerForm.get('nomUsuari')?.errors?.['required'] && this.registerForm.get('nomUsuari')?.touched"
+           class="alert alert-danger">
+        Aquest camp és obligatori.
+      </div>
+
+      <div *ngIf="this.registerForm.get('nomUsuari')?.errors?.['pattern'] && this.registerForm.get('nomUsuari')?.touched"
+           class="alert alert-danger">Només admet lletres i ha de tenir un mínim de 6 caràcters i un máxim de 8 caràcters.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="correuElectronic">Correo Electrónico:</label>
+      <input type="email" id="correuElectronic" formControlName="correuElectronic" />
+
+      <div
+        *ngIf="this.registerForm.get('correuElectronic')?.errors?.['required'] && this.registerForm.get('correuElectronic')?.touched"
+        class="alert alert-danger">Aquest camp és obligatori.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="repetirCorreuElectronic">Repetir Correo Electrónico:</label>
+      <input type="email" id="repetirCorreuElectronic" formControlName="repetirCorreuElectronic" />
+
+      <div *ngIf="this.registerForm.get('repetirCorreuElectronic')?.errors?.['required'] && this.registerForm.get('repetirCorreuElectronic')?.touched"
+           class="alert alert-danger">Aquest camp és obligatori.
+      </div>
+      <div *ngIf="this.registerForm.get('repetirCorreuElectronic')?.errors?.['custom'] && this.registerForm.get('repetirCorreuElectronic')?.touched"
+           class="alert alert-danger">El correu electrònic no coincideix amb l'anterior.
+      </div>
+    </div>
+
+
+    <div>
+      <div class="form-group">
+        <label for="edat">Edat:</label>
+        <input type="text" id="edat" formControlName="edat" />
+      </div>
+      <div *ngIf="registerForm.get('edat')?.errors?.['required'] && registerForm.get('edat')?.touched"
+           class="alert alert-danger">
+        Aquest camp és obligatori.
+      </div>
+      <div *ngIf="registerForm.get('edat')?.errors?.['underAge'] && registerForm.get('edat')?.touched"
+           class="alert alert-danger">
+        Has de tenir més de 18 anys.
+      </div>
+
+    </div>
+
+
+
+
+
+    <div class="form-group">
+      <label>T'agrada aquest joc?</label>
+      <div>
+        <label>
+          <input type="radio" formControlName="tAgradaJoc" value="Si" />
+          Sí
+        </label>
+        <label>
+          <input type="radio" formControlName="tAgradaJoc" value="No" />
+          No
+        </label>
+        <label>
+          <input type="radio" formControlName="tAgradaJoc" value="NS/NC" />
+          NS/NC
+        </label>
+      </div>
+
+
+      <div *ngIf="this.registerForm.get('tAgradaJoc')?.errors?.['required'] && this.registerForm.get('tAgradaJoc')?.touched"
+           class="alert alert-danger">Aquest camp és obligatori.
+      </div>
+    </div>
+
+
+
+
+
+
+    <button type="submit" [disabled]="!registerForm.valid">Registrar</button>
+
+  </form>
+
+
+
+
+  <div *ngIf="mostrarMensaje">
+    {{ "Bienvenido a nuestra Web nuevo usuario !!" | uppercase }}
+  </div>
+</div>
+
+</body>
+</html>
