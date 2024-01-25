@@ -8,6 +8,8 @@ import { Component } from '@angular/core';
 export class CalibraintParentComponent {
 
   parentMessage = "soy tu padre";
+  username = "shebi";
+  password = "123";
   message:string = "";
 
   constructor() {

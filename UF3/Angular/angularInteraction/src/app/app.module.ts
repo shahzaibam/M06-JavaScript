@@ -5,16 +5,20 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CalibraintParentComponent } from './components/calibraint-parent/calibraint-parent.component';
 import { CalibraintChildComponent } from './components/calibraint-child/calibraint-child.component';
+import { LoginComponent } from './components/login/login.component';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
     AppComponent,
     CalibraintParentComponent,
-    CalibraintChildComponent
+    CalibraintChildComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
