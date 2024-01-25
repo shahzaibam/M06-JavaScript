@@ -1,0 +1,3 @@
+<p>enviando datos de parent a hijo</p>
+<app-calibraint-child [childMessage]="parentMessage"  (messageEvent)="receiveMessage($event)" ></app-calibraint-child>
+<p>{{message}}</p>
