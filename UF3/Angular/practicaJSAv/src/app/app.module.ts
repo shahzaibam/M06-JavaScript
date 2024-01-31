@@ -14,6 +14,7 @@ import {EquipComponent} from "./equip/equip.component";
 import {MerchandisingComponent} from "./merchandising/merchandising.component";
 import {QuiensomComponent} from "./quiensom/quiensom.component";
 import { LogoutComponent } from './logout/logout.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { LogoutComponent } from './logout/logout.component';
     EquipComponent,
     MerchandisingComponent,
     QuiensomComponent,
-    LogoutComponent
+    LogoutComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -38,6 +40,10 @@ import { LogoutComponent } from './logout/logout.component';
     RouterOutlet
   ],
   providers: [],
+  exports: [
+    HomeComponent,
+    MenuComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

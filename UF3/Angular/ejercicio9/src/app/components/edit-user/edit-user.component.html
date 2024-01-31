@@ -1,0 +1,61 @@
+<div class="container">
+
+  <h2 class="mt-5 text-center">Editar un usuari</h2>
+
+  <form [formGroup]="editformulari" (ngSubmit)="enviament()" class="mt-5">
+    <fieldset>
+      <!--Nom-->
+      <div class="form-group">
+        <legend class="mt-4">Nom d'usuari* :</legend>
+        <!--considero que nom és el camp únic dins de l'usuari-->
+        <input type="text" readonly class="form-control" id="nomUsuari"  formControlName="nomUsuari">
+      </div>
+
+      <!--Correu electrònic-->
+      <div class="form-group">
+        <legend class="mt-4">Correu electrònic* :</legend>
+        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+           formControlName="correuElectronic" appValidarEmail>
+        <div
+          *ngIf="this.editformulari.get('correuElectronic')?.errors?.['required'] && this.editformulari.get('correuElectronic')?.touched"
+          class="alert alert-danger">Aquest camp és obligatori.
+        </div>
+      </div>
+
+      <!-- Status-->
+      <div class="form-group">
+        <legend class="mt-4">Estat civil *:</legend>
+        <select id="estatCivil" class="form-select" formControlName="estatCivil">
+
+          <option [value]="item" *ngFor="let item of status">
+            {{item}}
+          </option>
+
+        </select>
+        <div *ngIf="this.editformulari.get('estatCivil')?.errors?.['required'] && this.editformulari.get('estatCivil')?.touched"
+          class="alert alert-danger">Aquest camp és obligatori.
+        </div>
+      </div>
+      <!--Sexe-->
+      <fieldset class="form-group">
+        <legend class="mt-4">Sexe *:</legend>
+        <div class="form-check">
+
+          <div *ngFor="let item of sex">
+            <input formControlName="sexe" type="radio" [value]="item" />
+            <label for="sexo">{{item}}</label>
+          </div>
+
+          <div *ngIf="this.editformulari.get('sexe')?.errors?.['required'] && this.editformulari.get('sexe')?.touched">Aquest
+            camp
+            és obligatori.
+          </div>
+        </div>
+      </fieldset>
+
+
+
+      <button type="submit" class="btn btn-primary" [disabled]="editformulari.invalid">Modifica usuari</button>
+    </fieldset>
+  </form>
+

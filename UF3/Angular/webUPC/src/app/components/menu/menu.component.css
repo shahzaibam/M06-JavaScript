@@ -1,0 +1,14 @@
+@import url('https://fonts.cdnfonts.com/css/new-comic-title');
+
+#menuBar {
+  background-color: transparent;
+}
+
+.navbar-nav li a {
+  color: black;
+}
+
+p {
+  font-family: 'New Comic Title', sans-serif;
+
+}

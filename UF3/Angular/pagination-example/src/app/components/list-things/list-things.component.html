@@ -1,0 +1,11 @@
+<div *ngFor="let thing of allThings | slice:(currentPage - 1) * itemsPerPage : currentPage * itemsPerPage">
+  <p>{{ thing.name }}</p>
+</div>
+
+<div>
+  <pagination-controls
+    (pageChange)="currentPage = $event"
+    previousLabel="Anterior"
+    nextLabel="Siguiente">
+  </pagination-controls>
+</div>
