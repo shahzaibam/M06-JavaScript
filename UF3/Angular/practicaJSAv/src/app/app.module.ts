@@ -14,33 +14,36 @@ import {EquipComponent} from "./equip/equip.component";
 import {MerchandisingComponent} from "./merchandising/merchandising.component";
 import {QuiensomComponent} from "./quiensom/quiensom.component";
 import { LogoutComponent } from './logout/logout.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        RegistreComponent,
-        NotFoundComponent,
-        LoginComponent,
-        MenuComponent,
-        EquipComponent,
-        MerchandisingComponent,
-        QuiensomComponent,
-        LogoutComponent
-    ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        JsonPipe,
-        NgForOf,
-        NgIf,
-        ReactiveFormsModule,
-        RouterLink,
-        RouterOutlet
-    ],
-    providers: [],
-    exports: [
-        LoginComponent
-    ],
-    bootstrap: [AppComponent]
+  declarations: [
+    AppComponent,
+    RegistreComponent,
+    NotFoundComponent,
+    LoginComponent,
+    MenuComponent,
+    EquipComponent,
+    MerchandisingComponent,
+    QuiensomComponent,
+    LogoutComponent,
+    HomeComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    JsonPipe,
+    NgForOf,
+    NgIf,
+    ReactiveFormsModule,
+    RouterLink,
+    RouterOutlet
+  ],
+  providers: [],
+  exports: [
+    HomeComponent,
+    MenuComponent
+  ],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+#homeBody {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+}
+
+#title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-weight: 900;
+  position: fixed;
+  bottom: 2rem;
+}
+
