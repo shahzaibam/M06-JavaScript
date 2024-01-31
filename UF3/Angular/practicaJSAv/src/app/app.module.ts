@@ -16,28 +16,31 @@ import {QuiensomComponent} from "./quiensom/quiensom.component";
 import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    RegistreComponent,
-    NotFoundComponent,
-    LoginComponent,
-    MenuComponent,
-    EquipComponent,
-    MerchandisingComponent,
-    QuiensomComponent,
-    LogoutComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    JsonPipe,
-    NgForOf,
-    NgIf,
-    ReactiveFormsModule,
-    RouterLink,
-    RouterOutlet
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        RegistreComponent,
+        NotFoundComponent,
+        LoginComponent,
+        MenuComponent,
+        EquipComponent,
+        MerchandisingComponent,
+        QuiensomComponent,
+        LogoutComponent
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        JsonPipe,
+        NgForOf,
+        NgIf,
+        ReactiveFormsModule,
+        RouterLink,
+        RouterOutlet
+    ],
+    providers: [],
+    exports: [
+        LoginComponent
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
