@@ -1,9 +1,7 @@
-/* You can add global styles to this file, and also import other style files */
-@import"~bootswatch/dist/Vapor/bootstrap.min.css";
-
 body {
     background-image: url(./assets/img/fondo.jpg);
-    background-size: 100% 107%; 
+    background-size: 100% 107%;
     background-repeat: no-repeat;
-    width: 97vw; 
-    height: 98.2vh; }
+    width: 97vw;
+    height: 98.2vh;
+}
