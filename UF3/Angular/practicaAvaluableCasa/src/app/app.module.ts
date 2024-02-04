@@ -9,6 +9,7 @@ import { EquipComponent } from './components/equip/equip.component';
 import { RegistreComponent } from './components/registre/registre.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {NgIf, UpperCasePipe} from "@angular/common";
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import {NgIf, UpperCasePipe} from "@angular/common";
     NavbarComponent,
     QuisomComponent,
     EquipComponent,
-    RegistreComponent
+    RegistreComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +26,10 @@ import {NgIf, UpperCasePipe} from "@angular/common";
     FormsModule,
     NgIf,
     ReactiveFormsModule,
-    UpperCasePipe
+    UpperCasePipe,
+    NgIf,
+    ReactiveFormsModule,
+    NgIf
   ],
   providers: [],
   bootstrap: [AppComponent]

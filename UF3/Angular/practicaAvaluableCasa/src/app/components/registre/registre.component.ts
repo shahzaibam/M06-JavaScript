@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserModel } from "../../model/User";
+import {DataSharingService} from "../../shared/data-sharing.service";
+import {share} from "rxjs";
 
 @Component({
   selector: 'app-registre',
@@ -11,8 +13,9 @@ export class RegistreComponent {
   registerForm!: FormGroup;
   newUser?: UserModel;
   mostrarMensaje: boolean = false;
+  sending!:object;
 
-  constructor(private readonly fb: FormBuilder) {}
+  constructor(private readonly fb: FormBuilder, private share: DataSharingService) {}
 
   ngOnInit(): void {
     this.registerForm = this.initForm();
@@ -31,6 +34,16 @@ export class RegistreComponent {
 
       console.log("new", this.newUser);
       this.mostrarMensaje = true;
+
+      this.sending = {
+        username: this.registerForm.value.nomUsuari,
+        password: this.registerForm.value.correuElectronic
+      }
+
+      this.share.enviarMensaje(this.sending);
+
+      console.log("enviando..." + this.registerForm.value.nomUsuari);
+      console.log("enviando..." + this.registerForm.value.correuElectronic);
     }
   }
 

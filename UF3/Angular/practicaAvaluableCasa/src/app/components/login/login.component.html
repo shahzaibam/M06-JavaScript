@@ -1,0 +1,29 @@
+<app-navbar></app-navbar>
+<div class="container">
+
+  <h2 class="mt-5 text-center">Login</h2>
+
+    <fieldset>
+      <!--Nom-->
+      <div class="form-group">
+        <legend class="mt-4">Nom d'usuari* :</legend>
+        <input type="text" class="form-control" id="nomUsuari" placeholder="Nom" name="username" [(ngModel)]="usernameInput">
+      </div>
+
+      <!--Contrasenya-->
+      <div class="form-group">
+        <legend class="mt-4">Contrasenya* :</legend>
+        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Contrasenya" name="password" [(ngModel)]="passwordInput" >
+      </div>
+      <div class="text-center mt-5">
+        <button type="submit" class="btn btn-primary" (click)="checkCredentials()">Login</button>
+      </div>
+
+
+      <div *ngIf="loggedIn" class="alert alert-success mt-3">
+        Logueado Correctamente
+      </div>
+    </fieldset>
+
+
+</div>
