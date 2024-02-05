@@ -14,6 +14,11 @@ export class CompraComponent implements OnInit {
 
 //creamos el Producto
   carrito: Producte[] = [];
+
+  precioTotal:number = 0;
+
+  mensaje:string = "";
+
   constructor(private cookie:CookieService){
 
   }
@@ -23,6 +28,20 @@ export class CompraComponent implements OnInit {
     if (carritoString) { // Verificar si la cadena existe
       this.carrito = JSON.parse(carritoString); // Convertir la cadena a un array de Producte
     }
-    console.log(this.carrito);
+
+    for (let i = 0; i<this.carrito.length; i++) {
+      this.precioTotal += this.carrito[i].preu * this.carrito[i].quantitat;
+    }
+  }
+
+
+  cancelarCesta() {
+    this.cookie.set("comprat", '');
+
+    location.reload();
+  }
+
+  comprar() {
+    this.mensaje = "Comprado correctamente!!";
   }
 }

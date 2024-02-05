@@ -1,6 +1,7 @@
 <div class="container">
   <div class="row mt-5">
     <div class="col">
+
       <table class="table table-striped">
         <thead>
         <tr>
@@ -15,12 +16,28 @@
         <tr *ngFor="let producto of carrito">
           <td>{{ producto.nomProducte }}</td>
           <td><img src="assets/img/{{ producto.nomImatge }}" alt="" width="100px"></td>
-          <td>{{ producto.preu }}</td>
+          <td>{{ producto.preu }}€</td>
           <td>{{ producto.descripcio }}</td>
           <td>{{ producto.quantitat }}</td> <!-- Mostrar la cantidad real de unidades compradas -->
         </tr>
         </tbody>
       </table>
+      <h2>Total: {{ precioTotal }}€</h2>
+
+
     </div>
+    <div>
+      <button class="btn btn-danger" (click)="cancelarCesta()">Cancelar</button>
+      <button class="btn btn-success" (click)="comprar()">Comprar</button>
+    </div>
+
+    <div *ngIf="precioTotal == 0">
+      <h1>Cesta está vacía</h1>
+    </div>
+
+    <div>
+      <h1>{{mensaje}}</h1>
+    </div>
+
   </div>
 </div>

@@ -24,10 +24,6 @@ export class MerchandisingComponent {
     this.productoAAnyadir = [];
   }
 
-  // Método para convertir el array de productos a JSON
-  convertirAJSON(productoArray: Producte[]): string {
-    return JSON.stringify(productoArray);
-  }
 
 //añadimos el producto
   afegirProducte(producto: Producte) {
