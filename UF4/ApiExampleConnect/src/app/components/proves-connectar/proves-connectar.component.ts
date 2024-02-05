@@ -8,7 +8,8 @@ import {ConectarService} from "../../services/conectar.service";
 })
 export class ProvesConnectarComponent implements OnInit{
 
-
+  posts!:any[];
+  data!:any[];
   constructor(private connectar: ConectarService) {
   }
 
@@ -16,6 +17,24 @@ export class ProvesConnectarComponent implements OnInit{
     this.connectar.getPosts().subscribe(
       (result) => {
         console.log(result);
+
+        this.posts = result;
+
+        console.log(this.posts);
+
+      }
+    );
+
+
+    this.connectar.getUsers().subscribe(
+      (result) => {
+        console.log(result);
+
+        this.data = result.data;
+
+
+        console.log(this.data);
+
       }
     );
   }

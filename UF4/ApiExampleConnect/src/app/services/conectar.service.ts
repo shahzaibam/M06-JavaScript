@@ -13,4 +13,8 @@ export class ConectarService {
   getPosts():Observable<any>{
     return this.http.get('https://jsonplaceholder.typicode.com/posts');
   }
+
+  getUsers():Observable<any>{
+    return this.http.get('https://reqres.in/api/users');
+  }
 }
