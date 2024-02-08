@@ -35,9 +35,6 @@ connection.connect(function (error) {
     console.log("Connected as id " + connection.threadId);
 });
 
-
-
-
 app.listen(3000, () => {
     console.log('API-REST en ejecución en http://localhost:3000');
 
