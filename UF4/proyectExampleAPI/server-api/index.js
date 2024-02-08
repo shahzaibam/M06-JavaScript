@@ -1,4 +1,6 @@
 'use strict';
+const path = require('path');
+
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -10,6 +12,11 @@ app.use(cors()); // Inicializa el middleware de CORS
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
+
+
+// Servir archivos estáticos desde la carpeta "public"
+const publicFolderPath = path.join(__dirname, 'public');
+app.use(express.static(publicFolderPath));
 
 // Cadena de conexión
 const connection = mysql.createConnection({
@@ -45,7 +52,7 @@ app.listen(3000, () => {
         console.log(usuari);
         console.log(contra);
 
-        connection.query('SELECT * from users where username ="' + usuari + '"AND userpass = "' + contra + '"', function (error, results) {
+        connection.query('SELECT username from users where username = ?' + 'AND userpass = ?', [usuari,contra], function (error, results) {
             if (error) {
                 res.status(400).send({results: null});
             } else {
@@ -81,6 +88,9 @@ app.listen(3000, () => {
             message: 'Hola món'
         });
     })
+
+
+
 
 });
 
