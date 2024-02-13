@@ -1,7 +1,5 @@
 'use strict';
 const path = require('path');
-
-
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -9,16 +7,13 @@ const mysql = require('mysql');
 
 const app = express();
 app.use(cors()); // Inicializa el middleware de CORS
-
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
-
-// Servir archivos estáticos desde la carpeta "public"
 const publicFolderPath = path.join(__dirname, 'public');
 app.use(express.static(publicFolderPath));
 
-// Cadena de conexión
+//nos conectamos a la base de datos
 const connection = mysql.createConnection({
     host: 'localhost',
     database: 'm06',
@@ -35,60 +30,57 @@ connection.connect(function (error) {
     console.log("Connected as id " + connection.threadId);
 });
 
-app.listen(3000, () => {
-    console.log('API-REST en ejecución en http://localhost:3000');
+app.post('/api/login', function (req, res) {
+    console.log("Estamos en login");
 
-    app.post('/api/login', function (req, res) {
-        console.log("Estamos en login");
+    // Recojo los valores enviados desde el cliente
+    const usuari = req.body.user;
+    const contra = req.body.password;
 
+    console.log(usuari);
+    console.log(contra);
 
-        //recojo los valores enviados desde cliente
-        const usuari = req.body.user;
-        const contra = req.body.password;
-
-        console.log(usuari);
-        console.log(contra);
-
-        connection.query('SELECT username from users where username = ?' + 'AND userpass = ?', [usuari,contra], function (error, results) {
-            if (error) {
-                res.status(400).send({results: null});
-            } else {
-                res.status(200).send({results: results});
-            }
-        });
+    connection.query('SELECT username from users where username = ?' + 'AND userpass = ?', [usuari, contra], function (error, results) {
+        if (error) {
+            res.status(400).send({results: null});
+        } else {
+            res.status(200).send({results: results});
+        }
     });
-
-    // GET para realizar una consulta a la base de datos
-    app.get('/api/select/:userName', function (req, res) {
-        console.log("Estamos en login");
-
-
-        //recojo los valores enviados desde cliente
-        const usuari = req.params.userName;
-
-
-        console.log(usuari);
-
-        connection.query('SELECT username from users', function (error, results) {
-            if (error) {
-                res.status(400).send({results: null});
-            } else {
-                res.status(200).send({results: results});
-            }
-        });
-    });
-
-
-    //només fem la petició get
-    app.get('/', (req, res) => {
-        res.send({
-            message: 'Hola món'
-        });
-    })
-
-
-
-
 });
 
+app.get('/api/select/:userName', function (req, res) {
+    console.log("Estamos en login");
 
+    // Recojo los valores enviados desde el cliente
+    const usuari = req.params.userName;
+
+    console.log(usuari);
+
+    connection.query('SELECT username from users', function (error, results) {
+        if (error) {
+            res.status(400).send({results: null});
+        } else {
+            res.status(200).send({results: results});
+        }
+    });
+});
+
+// Ruta de bienvenida
+app.get('/', (req, res) => {
+    res.send({
+        message: 'Hola món'
+    });
+});
+
+// configuramos una ruta genérica para servir el archivo HTML de la aplicación Angular
+// para cualquier otra ruta no manejada anteriormente.
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public/index.html'));
+});
+
+// Iniciamos el servidor
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+    console.log(`API-REST en execució a http://localhost:${port}`);
+});
