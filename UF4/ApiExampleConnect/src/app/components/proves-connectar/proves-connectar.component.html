@@ -15,8 +15,28 @@
 <div>
   <button (click)="getAllUsers()">List All Users</button>
   <div *ngFor="let item of users | keyvalue">
-    Username: {{item.value.username}} - Password: {{item.value.userpass}}
+    Username: {{ item.value.username }} - Password: {{ item.value.userpass }}
   </div>
-
 </div>
+
+<div>
+  <button (click)="getSingleUserPassword()">List One Users</button>
+  <div *ngFor="let item of singleUser | keyvalue">
+    Password: {{ item.value.userpass }}
+  </div>
+</div>
+
+<div style="margin-top: 20px;">
+  <form (ngSubmit)="createUser()">
+    <div>
+      <input type="text" name="username" id="username" [(ngModel)]="username" placeholder="Username">
+    </div>
+    <div>
+      <input type="password" name="userpass" id="userpass" [(ngModel)]="userpass" placeholder="Password">
+    </div>
+
+    <button type="submit">Create User</button>
+  </form>
+</div>
+
 

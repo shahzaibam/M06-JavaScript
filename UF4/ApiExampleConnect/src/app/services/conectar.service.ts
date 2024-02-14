@@ -28,4 +28,13 @@ export class ConectarService {
   }
 
 
+  getSingleUserPassword():Observable<any>{
+    return this.http.get('http://localhost:3000/api/select/user1');
+  }
+
+
+  createUser(username: string, userpass: string): Observable<any> {
+    return this.http.post('http://localhost:3000/api/create-user', { username, userpass });
+  }
+
 }

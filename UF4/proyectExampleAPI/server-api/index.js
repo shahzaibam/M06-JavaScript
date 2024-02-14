@@ -49,7 +49,9 @@ app.post('/api/login', function (req, res) {
     });
 });
 
-app.get('/api/select/:userName', function (req, res) {
+//app.get('/api/select/:userName', function (req, res) {
+app.get('/api/select', function (req, res) {
+
     console.log("Estamos en login");
 
     // Recojo los valores enviados desde el cliente
@@ -57,7 +59,7 @@ app.get('/api/select/:userName', function (req, res) {
 
     console.log(usuari);
 
-    connection.query('SELECT username from users', function (error, results) {
+    connection.query('SELECT * from users', function (error, results) {
         if (error) {
             res.status(400).send({results: null});
         } else {
@@ -65,6 +67,40 @@ app.get('/api/select/:userName', function (req, res) {
         }
     });
 });
+
+
+app.get('/api/select/user1', function (req, res) {
+
+    console.log("Estamos en login");
+
+    // Recojo los valores enviados desde el cliente
+    const usuari = req.params.userName;
+
+    console.log(usuari);
+
+    connection.query('SELECT userpass from users where username = "user1"', function (error, results) {
+        if (error) {
+            res.status(400).send({results: null});
+        } else {
+            res.status(200).send({results: results});
+        }
+    });
+});
+
+
+
+app.post('/api/create-user', function(req, res) {
+    const { username, userpass } = req.body;
+    connection.query('INSERT INTO users (username, userpass) VALUES (?, ?)', [username, userpass], function(error, results) {
+        if (error) {
+            res.status(400).send({ message: 'Failed to create user' });
+        } else {
+            res.status(201).send({ message: 'User created successfully' });
+        }
+    });
+});
+
+
 
 // Ruta de bienvenida
 app.get('/', (req, res) => {

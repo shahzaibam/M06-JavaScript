@@ -11,6 +11,12 @@ export class ProvesConnectarComponent implements OnInit{
   posts!:any[];
   data!:any[];
   users!:any[];
+  singleUser!:any[];
+
+  username!:string;
+  userpass!:string;
+
+
   constructor(private connectar: ConectarService) {
   }
 
@@ -53,6 +59,37 @@ export class ProvesConnectarComponent implements OnInit{
       }
     );
   }
+
+
+  getSingleUserPassword() {
+    this.connectar.getSingleUserPassword().subscribe(
+      (result) => {
+        console.log(result); // Verifica la estructura de result
+        this.singleUser = result.results; // Asumiendo que result es el objeto completo
+      }
+    );
+  }
+
+
+
+  createUser() {
+    if (this.username && this.userpass) {
+      this.connectar.createUser(this.username, this.userpass).subscribe(
+        (result) => {
+          console.log(result); // Maneja la respuesta del servidor
+          // Realiza cualquier acción adicional según sea necesario
+          this.username = ''; // Limpia los campos del formulario
+          this.userpass = '';
+        },
+        (error) => {
+          console.error(error); // Maneja los errores
+        }
+      );
+    } else {
+      console.error('Username and userpass are required');
+    }
+  }
+
 
 
 }
