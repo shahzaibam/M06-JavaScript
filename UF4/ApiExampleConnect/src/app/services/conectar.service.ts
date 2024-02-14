@@ -11,10 +11,21 @@ export class ConectarService {
 
   //metodes que retornern valors que veneen d'una API
   getPosts():Observable<any>{
-    return this.http.get('https://jsonplaceholder.typicode.com/posts');
+    // return this.http.get('https://jsonplaceholder.typicode.com/posts/1', {responseType:'json'});
+    return this.http.post('https://jsonplaceholder.typicode.com/posts', {'hero':'Marc'}, {responseType:'json'});
+    // return this.http.delete('https://jsonplaceholder.typicode.com/posts/1', {responseType:'json'});
+
   }
 
   getUsers():Observable<any>{
     return this.http.get('https://reqres.in/api/users');
   }
+
+
+  //pruebas angular-node express
+  getAllUsers():Observable<any>{
+    return this.http.get('http://localhost:3000/api/select');
+  }
+
+
 }

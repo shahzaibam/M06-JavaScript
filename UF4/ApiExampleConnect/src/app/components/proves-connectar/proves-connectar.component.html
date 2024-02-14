@@ -1,13 +1,22 @@
-<p>proves-connectar works!</p>
-<div *ngFor="let post of posts">
-    {{post.id}} --- {{post.title}}
+<!--<p>proves-connectar works!</p>-->
+<!--<div *ngFor="let post of posts">-->
+<!--    {{post.id}} -&#45;&#45; {{post.title}}-->
+<!--</div>-->
+
+<!--<h1>Users -&#45;&#45;&#45;&#45; </h1>-->
+<!--<div *ngFor="let person of data">-->
+<!--  {{person.id}} -&#45;&#45; {{person.first_name}}-->
+
+<!--  Id : {{person.id}} -&#45;&#45;-->
+<!--  Email : {{person.email}} <br>-->
+
+<!--</div>-->
+
+<div>
+  <button (click)="getAllUsers()">List All Users</button>
+  <div *ngFor="let item of users | keyvalue">
+    Username: {{item.value.username}} - Password: {{item.value.userpass}}
+  </div>
+
 </div>
 
-<h1>Users ----- </h1>
-<div *ngFor="let person of data">
-  {{person.id}} --- {{person.first_name}}
-
-  Id : {{person.id}} ---
-  Email : {{person.email}} <br>
-
-</div>
