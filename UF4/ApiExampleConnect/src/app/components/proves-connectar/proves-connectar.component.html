@@ -19,12 +19,42 @@
   </div>
 </div>
 
+<br>
+
+
 <div>
-  <button (click)="getSingleUserPassword()">List One Users</button>
-  <div *ngFor="let item of singleUser | keyvalue">
+  <form (ngSubmit)="getSingleUserPassword()">
+    <div>
+      <input type="text" name="singleUser" id="singleUser" [(ngModel)]="singleUser" placeholder="Username">
+    </div>
+    <div>
+      <input type="submit" value="single User Post">
+    </div>
+  </form>
+
+  <div *ngFor="let item of singleUserData | keyvalue">
     Password: {{ item.value.userpass }}
   </div>
 </div>
+
+<br>
+
+<div>
+  <form (ngSubmit)="getSingleUserPasswordByURL()">
+    <div>
+      <input type="text" name="singleUserUrl" id="singleUserUrl" [(ngModel)]="singleUserURL" placeholder="Username">
+    </div>
+    <div>
+      <input type="submit" value="singleUser Get By Url">
+    </div>
+  </form>
+
+  <div *ngFor="let item of singleUserDataURL | keyvalue">
+    Password: {{ item.value.userpass }}
+  </div>
+</div>
+<br>
+
 
 <div style="margin-top: 20px;">
   <form (ngSubmit)="createUser()">

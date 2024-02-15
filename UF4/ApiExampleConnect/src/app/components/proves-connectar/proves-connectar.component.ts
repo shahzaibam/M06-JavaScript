@@ -11,10 +11,17 @@ export class ProvesConnectarComponent implements OnInit{
   posts!:any[];
   data!:any[];
   users!:any[];
-  singleUser!:any[];
+
+  singleUser!:string;
+  singleUserURL!:string;
+
+  singleUserData!:any[];
+  singleUserDataURL!:any[];
 
   username!:string;
   userpass!:string;
+
+
 
 
   constructor(private connectar: ConectarService) {
@@ -62,14 +69,27 @@ export class ProvesConnectarComponent implements OnInit{
 
 
   getSingleUserPassword() {
-    this.connectar.getSingleUserPassword().subscribe(
-      (result) => {
-        console.log(result); // Verifica la estructura de result
-        this.singleUser = result.results; // Asumiendo que result es el objeto completo
-      }
-    );
+    if (this.singleUser) {
+      this.connectar.getSingleUserPassword(this.singleUser).subscribe(
+        (result) => {
+          console.log(result); // Verifica la estructura de result
+          this.singleUserData = result.results; // Asumiendo que result es el objeto completo
+        }
+      );
+    }
   }
 
+
+  getSingleUserPasswordByURL() {
+    if (this.singleUserURL) {
+      this.connectar.getSingleUserPassword(this.singleUserURL).subscribe(
+        (result) => {
+          console.log(result); // Verifica la estructura de result
+          this.singleUserDataURL = result.results; // Asumiendo que result es el objeto completo
+        }
+      );
+    }
+  }
 
 
   createUser() {
