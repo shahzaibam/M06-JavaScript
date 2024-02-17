@@ -1,0 +1,44 @@
+<div class="container">
+
+  <h2 class="mt-5 text-center">Formulari de registre</h2>
+
+  <form [formGroup]="formulari" (ngSubmit)="checkLogin()" class="mt-5">
+    <fieldset>
+      <!--Nom-->
+      <div class="form-group">
+        <legend class="mt-4">Nom d'usuari* :</legend>
+        <input type="text" class="form-control" id="nomUsuari" placeholder="Nom" formControlName="nomUsuari"
+               appValidarNom>
+
+        <div *ngIf="this.formulari.get('nomUsuari')?.errors?.['required'] && this.formulari.get('nomUsuari')?.touched"
+             class="alert alert-danger">
+          Aquest camp és obligatori.
+        </div>
+      </div>
+
+      <!--Contrasenya-->
+      <div class="form-group">
+        <legend class="mt-4">Contrasenya* :</legend>
+        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Contrasenya"
+               autocomplete="off" formControlName="contrasenya">
+        <div
+          *ngIf="this.formulari.get('contrasenya')?.errors?.['required'] && this.formulari.get('contrasenya')?.touched"
+          class="alert alert-danger">
+          Aquest camp és obligatori.
+        </div>
+
+      </div>
+
+
+
+
+      <button type="submit" class="btn btn-primary" [disabled]="formulari.invalid">Enviar dades</button>
+      <div *ngIf="this.logFalso">
+        <div class="alert alert-danger">
+          <p>Usuari o contrasenya incorrecte</p>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+
+</div>

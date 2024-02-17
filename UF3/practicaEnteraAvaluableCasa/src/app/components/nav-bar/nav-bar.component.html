@@ -1,0 +1,36 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link active" href="/quisom">Qui Som</a>
+    </div>
+    <div class="navbar-nav">
+      <a class="nav-item nav-link active" href="/equip">Equip</a>
+    </div>
+
+    <div class="navbar-nav" *ngIf="this.cookieValue == ''"> <!-- le digo que si el valor de la cookie es vacio (no esta logeado)
+    que se vean las opciones, obviamente cuando se logee sera true y ya tendra valor, asi que no se veran cuando este logeado -->
+      <a class="nav-item nav-link active" href="/register">Register</a>
+    </div>
+
+    <div class="navbar-nav" *ngIf="this.cookieValue == ''">
+      <a class="nav-item nav-link active" href="/login">Login</a>
+    </div>
+
+    <div class="navbar-nav" *ngIf="this.cookieValue != ''">
+      <a class="nav-item nav-link active" href="/merchandising">Merchandising</a>
+    </div>
+
+    <div class="navbar-nav" *ngIf="this.cookieValue != ''">
+      <a class="nav-item nav-link active" href="/compra">Compra</a>
+    </div>
+
+    <div class="navbar-nav" *ngIf="this.cookieValue != ''">
+      <a class="nav-item nav-link active" href="/login" (click)="deleteCookie()">LogOut</a>
+    </div>
+
+  </div>
+</nav>
