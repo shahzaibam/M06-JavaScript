@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {Producte} from "../../model/Producte";
+import {CookieService} from "ngx-cookie-service";
 
 @Component({
   selector: 'app-merchandising',
@@ -15,7 +16,39 @@ export class MerchandisingComponent {
     new Producte('producto4.jpg', 'Producto4', 'Descripción4', 10, 5, 0),
   ]
 
-  constructor() {
+  carrito: Producte[] = [];
+
+  constructor(private cookie:CookieService) {
+
+  }
+
+  afegirProducte(producte: Producte) {
+
+
+    if(producte.disponibilitat != 0) {
+      producte.disponibilitat--;
+
+      let producteJaAfegit = this.carrito.find(item => item.nomProducte == producte.nomProducte);
+
+      if(producteJaAfegit) {
+        alert("producte ja afegit");
+        producteJaAfegit.quantitat++;
+      }else {
+        alert("afegint nou producte");
+        producte.quantitat++;
+        this.carrito.push(producte);
+      }
+
+
+    } else {
+      alert("Producte esgotat");
+    }
+
+    console.log(this.carrito);
+
+    this.cookie.set('compra', JSON.stringify(this.carrito));
+
+
   }
 
 }

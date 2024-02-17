@@ -71,15 +71,15 @@ export class Producte {
     this.#quantitat = value;
   }
 
-  toObjectJS(): any {
-    let myObject = {
+  toJSON():any {
+    return {
       nomImatge: this.#nomImatge,
       nomProducte: this.#nomProducte,
       descripcio: this.#descripcio,
       preu: this.#preu,
       disponibilitat: this.#disponibilitat,
+      quantitat: this.#quantitat,
     };
-    return myObject;
   }
 
 }
