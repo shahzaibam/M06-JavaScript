@@ -12,26 +12,29 @@ import {NgIf, UpperCasePipe} from "@angular/common";
 import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NavbarComponent,
-    QuisomComponent,
-    EquipComponent,
-    RegistreComponent,
-    LoginComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    NgIf,
-    ReactiveFormsModule,
-    UpperCasePipe,
-    NgIf,
-    ReactiveFormsModule,
-    NgIf
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        NavbarComponent,
+        QuisomComponent,
+        EquipComponent,
+        RegistreComponent,
+        LoginComponent
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        NgIf,
+        ReactiveFormsModule,
+        UpperCasePipe,
+        NgIf,
+        ReactiveFormsModule,
+        NgIf
+    ],
+    providers: [],
+    exports: [
+        NavbarComponent
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
