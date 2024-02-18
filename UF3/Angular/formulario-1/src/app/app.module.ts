@@ -16,25 +16,28 @@ import { EditarComponenteComponent } from './editar-componente/editar-componente
 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    FormularioComponent,
-    MayorEdadDirectiveDirective,
-    ValidarPasswordDirective,
-    ValidarNombreDirective,
-    ValidarEmailDirective,
-    NotFoundComponent,
-    ListadoUsuariosComponent,
-    EditarComponenteComponent,
+    declarations: [
+        AppComponent,
+        FormularioComponent,
+        MayorEdadDirectiveDirective,
+        ValidarPasswordDirective,
+        ValidarNombreDirective,
+        ValidarEmailDirective,
+        NotFoundComponent,
+        ListadoUsuariosComponent,
+        EditarComponenteComponent,
 
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    ReactiveFormsModule,
-    AppRoutingModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        ReactiveFormsModule,
+        AppRoutingModule
+    ],
+    providers: [],
+    exports: [
+        FormularioComponent
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

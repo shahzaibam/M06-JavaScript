@@ -1,0 +1,64 @@
+<div>
+
+  <form [formGroup]="register" (ngSubmit)="printName()">
+
+    <div id="name">
+      <label for="nameInput">Name</label>
+      <input id="nameInput" type="text" name="name" formControlName="name">
+      <div *ngIf="this.register.get('name')?.errors?.['required'] && this.register.get('name')?.touched"
+           class="alert alert-danger">
+        Aquest camp és obligatori.
+      </div>
+
+      <div *ngIf="this.register.get('name')?.errors?.['pattern'] && this.register.get('name')?.touched"
+           class="alert alert-danger">
+        El patron de nombre es incorrecto.
+      </div>
+    </div>
+
+
+    <div id="email">
+      <label for="emailInput">Email</label>
+      <input id="emailInput" type="email" name="email" formControlName="email">
+      <div *ngIf="this.register.get('email')?.errors?.['required'] && this.register.get('email')?.touched"
+           class="alert alert-danger">
+        Email és obligatori.
+      </div>
+    </div>
+
+
+    <div id="password">
+      <label for="passwordInput">Password</label>
+      <input id="passwordInput" type="password" name="password" formControlName="password">
+      <div *ngIf="this.register.get('password')?.errors?.['required'] && this.register.get('password')?.touched"
+           class="alert alert-danger">
+        Aquest camp és obligatori.
+      </div>
+
+      <div *ngIf="this.register.get('password')?.errors?.['pattern'] && this.register.get('password')?.touched"
+           class="alert alert-danger">
+        El patron de password es incorrecto.
+      </div>
+    </div>
+
+
+    <legend class="mt-4">Options *:</legend>
+    <div class="form-check">
+
+      <div *ngFor="let item of option">
+        <input id="option_{{item}}" formControlName="option" type="radio" [value]="item" />
+        <label for="option_{{item}}">{{item}}</label>
+      </div>
+
+      <div *ngIf="this.register.get('option')?.errors?.['required'] && this.register.get('option')?.touched">Aquest
+        camp
+        és obligatori.
+      </div>
+    </div>
+
+    <div id="submit">
+      <input id="btn-submit" [disabled]="register.invalid" type="submit">
+    </div>
+  </form>
+
+</div>

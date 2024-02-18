@@ -12,10 +12,11 @@ export class CompraComponent implements OnInit{
 
   parsedData!:any;
 
-  preciosProductos = 0;
-  cantidad = 0;
+  preuxcuantitat = 0;
 
   precioFinal = 0;
+
+  messageFinalizarCompra = '';
 
   constructor(private cookie: CookieService) {
   }
@@ -31,14 +32,29 @@ export class CompraComponent implements OnInit{
 
 
     this.parsedData.forEach((item:any) => {
-      this.preciosProductos += item.preu;
-      this.cantidad += item.quantitat;
+      this.preuxcuantitat += item.preu * item.quantitat;
     })
 
-    this.precioFinal = this.preciosProductos * this.cantidad;
+
+
+    this.precioFinal = this.preuxcuantitat;
 
     console.log(this.parsedData);
   }
 
+
+
+  finalizarCompra() {
+    if(this.parsedData) {
+      this.messageFinalizarCompra = 'La compra se ha realizado con éxito !!';
+    }else {
+      this.messageFinalizarCompra = 'Porfavor compra algo !!';
+    }
+  }
+
+  cancelarCompra() {
+    this.cookie.set("compra", '');
+    location.reload();
+  }
 
 }

@@ -1,0 +1,4 @@
+<p>father-component works!</p>
+<button (click)="sendMessage()">Send to child</button>
+<app-child-component [messageFromFather]="message" (messageToFather)="receiveMessage($event)"></app-child-component>
+<p>Message from Child --> {{messageFromChild}}</p>

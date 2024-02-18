@@ -24,7 +24,20 @@
         </tbody>
 
 
-
       </table>
+
+      <div>
+        <h2>Total :  {{this.preuxcuantitat}}€</h2>
+      </div>
+
+      <div>
+        <button class="btn btn-success" (click)="finalizarCompra()">Compra final</button>
+        <button class="btn btn-danger m-2" (click)="cancelarCompra()">Cancelar</button>
+      </div>
+
+
+      <div>
+        <h3>{{this.messageFinalizarCompra}}</h3>
+      </div>
     </div>
   </div>
