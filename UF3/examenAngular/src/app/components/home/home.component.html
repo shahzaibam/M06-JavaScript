@@ -1,0 +1,17 @@
+<div>
+  <div>
+    <h1 class="text-danger">HERMES</h1>
+  </div>
+
+  <div id="cookies" *ngIf="mostrarDiv" class="display-flex">
+    <div class="position-fixed bottom-0">
+      <div>
+        Acepta las cookies para poder seguir
+      </div>
+      <div>
+        <button (click)="aceptarCookie()">Aceptar</button>
+        <button (click)="rechazarCookie()">Rechazar</button>
+      </div>
+    </div>
+  </div>
+</div>

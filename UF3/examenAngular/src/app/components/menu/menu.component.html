@@ -1,0 +1,42 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup" *ngIf="!getLocalStorage()">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link active" href="/">Home</a>
+    </div>
+    <div class="navbar-nav">
+      <a class="nav-item nav-link active" readonly>Suscripcio</a>
+    </div>
+    <div class="navbar-nav">
+      <a class="nav-item nav-link active" href="/identificar">Identificar</a>
+    </div>
+  </div>
+
+
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkupLoggedIn" *ngIf="getLocalStorage()">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link active" href="/quisom">Quisom</a>
+    </div>
+    <div class="navbar-nav">
+      <a class="nav-item nav-link active" href="/coleccions">Colleccions</a>
+    </div>
+
+    <div class="navbar-nav">
+      <a class="nav-item nav-link active" href="/cistella">Cistella</a>
+    </div>
+
+    <div class="navbar-nav">
+      <a class="nav-item nav-link active" href="/areaPrivada">Area Privada</a>
+    </div>
+
+    <div class="navbar-nav">
+      <a class="nav-item nav-link active" href="/logOut">Log Out</a>
+    </div>
+  </div>
+
+
+
+</nav>
