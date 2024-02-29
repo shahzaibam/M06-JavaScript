@@ -1,8 +1,9 @@
 #menuBar {
-  background-color: transparent;
+  background-color: #afaeaf;
 }
 
 .navbar-nav li a {
   color: black;
+  font-size: 18px;
 }
 
