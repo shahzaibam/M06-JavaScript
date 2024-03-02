@@ -1,0 +1,30 @@
+<div class="container">
+  <h2 class="mt-5 text-center">Formulario de Inicio de Sesión</h2>
+  <form [formGroup]="formulari" (ngSubmit)="checkLogin()" class="mt-5">
+    <fieldset>
+      <!-- Nombre de Usuario -->
+      <div class="form-group">
+        <legend class="mt-4">Nombre de Usuario*:</legend>
+        <input type="text" class="form-control" id="nomUsuari" placeholder="Nombre de Usuario" formControlName="nomUsuari">
+        <div *ngIf="formulari.get('nomUsuari')?.invalid && formulari.get('nomUsuari')?.touched" class="alert alert-danger">
+          Este campo es obligatorio.
+        </div>
+      </div>
+
+      <!-- Contraseña -->
+      <div class="form-group">
+        <legend class="mt-4">Contraseña*:</legend>
+        <input type="password" class="form-control" id="contrasenya" placeholder="Contraseña" formControlName="contrasenya">
+        <div *ngIf="formulari.get('contrasenya')?.invalid && formulari.get('contrasenya')?.touched" class="alert alert-danger">
+          Este campo es obligatorio.
+        </div>
+      </div>
+
+      <!-- Botón de envío -->
+      <button type="submit" class="btn btn-primary" [disabled]="formulari.invalid">Iniciar Sesión</button>
+      <div *ngIf="logFalso" class="alert alert-danger mt-2">
+        Usuario o contraseña incorrecta.
+      </div>
+    </fieldset>
+  </form>
+</div>
