@@ -1,20 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
 #homeBody {
-  background-image: url('/assets/img/blanco_ed2.png');
+  background-image: url('/assets/img/blanco_ed2.2.png');
+  background-repeat: no-repeat;
   background-size: cover;
+  background-position: center;
   max-width: 100vw;
   min-height: 100vh;
-
-
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: end;
-
-  position: relative;
-
 }
+
 
 
 
