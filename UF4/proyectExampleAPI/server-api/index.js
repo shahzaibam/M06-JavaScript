@@ -16,7 +16,7 @@ app.use(express.static(publicFolderPath));
 //nos conectamos a la base de datos
 const connection = mysql.createConnection({
     host: 'localhost',
-    database: 'm06',
+    database: 'testingangular',
     user: 'userangular',
     password: 'alumne123'
 });

@@ -19,16 +19,8 @@
 
 
 
-
-/*#title {*/
-/*  font-family: 'Bebas Neue', sans-serif;*/
-/*  font-weight: 900;*/
-/*  position: absolute;*/
-/*  bottom: 2rem;*/
-/*}*/
-
 .bod {
-  margin: 0;
+  margin-top: 100px;
   padding: 0;
   display: flex;
   justify-content: center; /* Centra el contenedor de las tarjetas horizontalmente */

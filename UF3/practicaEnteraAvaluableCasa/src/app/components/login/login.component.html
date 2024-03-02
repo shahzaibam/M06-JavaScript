@@ -10,6 +10,7 @@
         <input type="text" class="form-control" id="nomUsuari" placeholder="Nom" formControlName="nomUsuari"
                appValidarNom>
 
+
         <div *ngIf="this.formulari.get('nomUsuari')?.errors?.['required'] && this.formulari.get('nomUsuari')?.touched"
              class="alert alert-danger">
           Aquest camp és obligatori.

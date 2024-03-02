@@ -8,6 +8,9 @@ import {HomeComponent} from "./components/home/home.component";
 import { EventComponent } from './components/event/event.component';
 import { AboutusComponent } from './components/aboutus/aboutus.component';
 import { ContactusComponent } from './components/contactus/contactus.component';
+import { LoginComponent } from './components/login/login.component';
+import {ReactiveFormsModule} from "@angular/forms";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -16,11 +19,14 @@ import { ContactusComponent } from './components/contactus/contactus.component';
     HomeComponent,
     EventComponent,
     AboutusComponent,
-    ContactusComponent
+    ContactusComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule, // Asegúrate de incluir HttpClientModule en la lista de imports
   ],
   providers: [],
   bootstrap: [AppComponent]

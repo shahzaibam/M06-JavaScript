@@ -146,8 +146,6 @@ app.get('/allUsers',authenticateJWT,function (req, res) {
       }else{
         res.json({error:true, data:'NO hi ha dades al servidor'});
       }
-     
-     
       
     }
     
