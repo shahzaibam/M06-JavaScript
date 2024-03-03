@@ -37,19 +37,41 @@ const authenticateJWT = (req, res, next) => {
 
 
 app.post('/login', function (req, res) {
-    const { name, password } = req.body;
-    connection.query('SELECT * FROM users WHERE name = ? AND password = ?', [name, password], function (error, results, fields) {
+    const { email, password } = req.body;
+    connection.query('SELECT * FROM users WHERE email = ? AND password = ?', [email, password], function (error, results, fields) {
         if (error) {
             return res.json({ error: true, data: 'Problemas con el servidor' });
         }
         if (results.length > 0) {
-            const accessToken = jwt.sign({ username: name }, accessTokenSecret, { expiresIn: '20m' });
+            const accessToken = jwt.sign({ username: email }, accessTokenSecret, { expiresIn: '20m' });
             res.json({ error: false, data: accessToken });
         } else {
             res.json({ error: true, data: 'Credenciales incorrectas' });
         }
     });
 });
+
+
+
+app.post('/register', function (req, res) {
+    const { name, email, dni, password } = req.body;
+    const sql = 'INSERT INTO users (name, email, dni, password) VALUES (?, ?, ?, ?)';
+    connection.query(sql, [name, email, dni, password], function (error, results) {
+        if (error) {
+            console.error('Error en la base de datos:', error);
+            return res.json({ error: true, data: 'Problemas con el servidor: ' + error.message });
+        }
+        // Comprobar si se insertó el nuevo usuario correctamente
+        if (results.affectedRows > 0) {
+            res.json({ error: false, data: 'Usuario registrado exitosamente' });
+        } else {
+            // Esto realmente no debería suceder a menos que haya un problema con la inserción,
+            // ya que no insertarías un usuario duplicado por ejemplo
+            res.json({ error: true, data: 'No se pudo registrar el usuario' });
+        }
+    });
+});
+
 
 
 app.get('/allUsers', authenticateJWT, function (req, res) {
