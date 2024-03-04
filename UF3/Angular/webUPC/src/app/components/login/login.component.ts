@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from "@angular/forms";
-import { Router } from "@angular/router";
-import {HttpClient} from "@angular/common/http";
+import {Component, OnInit} from '@angular/core';
+import {FormGroup, FormControl, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
+import {HttpService} from '../../services/http.service';
 
 @Component({
   selector: 'app-login',
@@ -12,9 +12,13 @@ export class LoginComponent implements OnInit {
   formulari: FormGroup;
   logFalso: boolean = false;
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private myHttpService: HttpService, private router: Router) {
+    if (this.myHttpService.usuariData()) {
+      this.router.navigate(['/home']);
+    }
+
     this.formulari = new FormGroup({
-      email: new FormControl('', Validators.required),
+      email: new FormControl('', [Validators.required, Validators.email]),
       contrasenya: new FormControl('', Validators.required),
     });
   }
@@ -23,34 +27,27 @@ export class LoginComponent implements OnInit {
   }
 
   checkLogin(): void {
-
-    const loginData = {
-      email: this.formulari.get('email')?.value,
-      password: this.formulari.get('contrasenya')?.value
-    };
-
     if (this.formulari.valid) {
+      const loginData = {
+        email: this.formulari.get('email')?.value,
+        password: this.formulari.get('contrasenya')?.value
+      };
 
-      console.log(this.formulari.get('email')?.value);
-      console.log(this.formulari.get('contrasenya')?.value);
-
-      this.http.post('http://localhost:3000/login', loginData).subscribe(
-        (response: any) => {
-          console.log(response);
+      this.myHttpService.validateLogin(loginData).subscribe(
+        response => {
           if (!response.error) {
-            // Aquí manejas la lógica de éxito, por ejemplo, guardar el token y redirigir
             this.router.navigate(['/']);
           } else {
-            // Maneja la lógica de error, por ejemplo, mostrar un mensaje de error
+            console.error('Login failed:', response.data);
             this.logFalso = true;
           }
         },
-        (error) => {
+        error => {
           console.error('Error al hacer login:', error);
           this.logFalso = true;
         }
       );
+
     }
   }
-
 }

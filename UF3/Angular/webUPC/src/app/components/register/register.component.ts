@@ -44,10 +44,8 @@ export class RegisterComponent {
         (response: any) => {
           console.log(response);
           if (!response.error) {
-            // Aquí manejas la lógica de éxito, por ejemplo, guardar el token y redirigir
             this.router.navigate(['/']);
           } else {
-            // Maneja la lógica de error, por ejemplo, mostrar un mensaje de error
             this.logFalso = true;
           }
         },
