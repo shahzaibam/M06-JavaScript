@@ -9,9 +9,9 @@ const accessTokenSecret = "67463fghfgh43473";
 
 const connection = mysql.createConnection({
     host: 'localhost',
-    database: 'project_upc_angular',
-    user: 'root', // Asegúrate de usar credenciales seguras y apropiadas
-    password: '' // Idealmente, las credenciales no deben estar hard-coded
+    database: 'upc_angular',
+    user: 'userangular',
+    password: 'alumne123'
 });
 
 app.use(cors());
@@ -38,8 +38,11 @@ const authenticateJWT = (req, res, next) => {
 
 app.post('/login', function (req, res) {
     const { email, password } = req.body;
+    console.log('Login attempt:', email, password); // Log incoming credentials
     connection.query('SELECT * FROM users WHERE email = ? AND password = ?', [email, password], function (error, results, fields) {
+        console.log('DB query results:', results); // Log query results
         if (error) {
+            console.error('DB error:', error);
             return res.json({ error: true, data: 'Problemas con el servidor' });
         }
         if (results.length > 0) {
@@ -50,6 +53,7 @@ app.post('/login', function (req, res) {
         }
     });
 });
+
 
 
 
@@ -65,8 +69,6 @@ app.post('/register', function (req, res) {
         if (results.affectedRows > 0) {
             res.json({ error: false, data: 'Usuario registrado exitosamente' });
         } else {
-            // Esto realmente no debería suceder a menos que haya un problema con la inserción,
-            // ya que no insertarías un usuario duplicado por ejemplo
             res.json({ error: true, data: 'No se pudo registrar el usuario' });
         }
     });
@@ -75,7 +77,6 @@ app.post('/register', function (req, res) {
 
 
 app.get('/allUsers', authenticateJWT, function (req, res) {
-    // Igual que antes, asegúrate de gestionar los roles correctamente
     connection.query('SELECT * FROM users', function (error, results, fields) {
         if (error) {
             connection.end();
