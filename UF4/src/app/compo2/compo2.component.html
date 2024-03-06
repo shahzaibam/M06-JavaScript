@@ -1,0 +1,9 @@
+<p>Usuaris: ruta /allUsers al servidor</p>
+<div *ngIf="users">
+  <div *ngFor="let u of users">
+    {{u.dni}} -- {{u.usuari}}
+
+  </div>
+</div>
+
+{{message}}

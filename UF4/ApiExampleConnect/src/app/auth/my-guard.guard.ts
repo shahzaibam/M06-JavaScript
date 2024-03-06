@@ -17,9 +17,9 @@ export class MyGuardGuard implements CanActivate {
     if(usuario!=null){
 
       return true;
-    } 
-      this.route.navigate(['/com1']);
+    }
+      this.route.navigate(['/home']);
       return false;
   }
-  
+
 }

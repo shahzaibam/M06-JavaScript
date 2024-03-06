@@ -1,0 +1,17 @@
+<div class="loginform">
+  <h2>Login</h2>
+  <form [formGroup]="formulari" (ngSubmit)="checkLogin()" class="mt-5">
+    <p>Username</p>
+    <input type="text" name="email" placeholder="email" formControlName="email">
+    <div *ngIf="formulari.get('email')?.invalid && formulari.get('email')?.touched" class="alert alert-danger">
+      Este campo es obligatorio.
+    </div>
+
+    <p>Password</p>
+    <input type="password" name="password" placeholder="Password" formControlName="password">
+    <div *ngIf="formulari.get('password')?.invalid && formulari.get('password')?.touched" class="alert alert-danger">
+      Este campo es obligatorio.
+    </div>
+    <input type="submit" name="login-btn" value="Login">
+  </form>
+</div>
