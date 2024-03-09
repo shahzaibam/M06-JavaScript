@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {HttpService} from '../../services/http.service';
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-login',
@@ -12,10 +13,7 @@ export class LoginComponent implements OnInit {
   formulari: FormGroup;
   logFalso: boolean = false;
 
-  constructor(private myHttpService: HttpService, private router: Router) {
-    if (this.myHttpService.usuariData()) {
-      this.router.navigate(['/home']);
-    }
+  constructor(private myHttpService: HttpService, private router: Router, private  authService: AuthService) {
 
     this.formulari = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
@@ -35,10 +33,11 @@ export class LoginComponent implements OnInit {
 
       this.myHttpService.validateLogin(loginData).subscribe(
         response => {
-          if (!response.error) {
+          if (response.token) {
+            this.authService.login(response.token); // Aquí se actualiza el estado de autenticación
             this.router.navigate(['/']);
           } else {
-            console.error('Login failed:', response.data);
+            console.error('Error en el login:', response.message);
             this.logFalso = true;
           }
         },

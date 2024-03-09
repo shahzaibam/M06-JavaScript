@@ -6,23 +6,37 @@
         <li class="nav-item">
           <a class="nav-link active" href="/">Home</a>
         </li>
-        <!-- Menu -->
-        <li class="nav-item">
-          <a class="nav-link" href="/event">Event</a>
-        </li>
+
+
         <li class="nav-item">
           <a class="nav-link" href="/aboutus">About us</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/contactus">Contact Us</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/login">Login</a>
-        </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="/register">Register</a>
+          <a class="nav-link" href="/events">Events</a>
         </li>
+
+
+        <div class="d-flex" *ngIf="!hasToken">
+          <li class="nav-item">
+            <a class="nav-link" href="/login">Login</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/register">Register</a>
+          </li>
+        </div>
+
+        <div *ngIf="hasToken">
+          <li class="nav-item" >
+            <a class="nav-link" href="/logout">Log Out</a>
+          </li>
+        </div>
+
+
 
       </ul>
       <div style="margin-right: 100px;">

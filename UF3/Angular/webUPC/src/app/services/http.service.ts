@@ -7,55 +7,39 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class HttpService {
-  url: string = 'http://localhost:3000';
-  private usuariSubject: BehaviorSubject<any>;
+  url: string = 'http://localhost:8000/api'; // Cambia esto a la URL base de tu API de Laravel
+  private usuarioSubject: BehaviorSubject<any>;
   public usuario: Observable<any>;
 
   constructor(private _http: HttpClient) {
-    this.usuariSubject = new BehaviorSubject<any>(localStorage.getItem('myToken'));
-    this.usuario = this.usuariSubject.asObservable();
+    this.usuarioSubject = new BehaviorSubject<any>(JSON.parse(localStorage.getItem('myToken') || '{}'));
+    this.usuario = this.usuarioSubject.asObservable();
   }
 
-  public usuariData(): any {
-    return this.usuariSubject.value;
+  public get usuarioData(): any {
+    return this.usuarioSubject.value;
   }
-
-  getUsers(): Observable<any> {
-    return this._http.get(`${this.url}/allUsers`);
-  }
-
 
   validateRegister(registerData: any): Observable<any> {
-
-    return this._http.post<any>(`${this.url}/register`, {
-      "name": registerData.name,
-      "email": registerData.email,
-      "dni": registerData.dni,
-      "password": registerData.password
-    }, { responseType: 'json' }).pipe(
+    return this._http.post<any>(`${this.url}/register`, registerData, { responseType: 'json' }).pipe(
       map(res => {
-        if (!res.error) {
-          this.usuariSubject.next(res.data);
+        // Suponiendo que tu API de Laravel devuelve un token en el registro exitoso
+        if (res.token) {
+          localStorage.setItem('myToken', JSON.stringify(res.token));
+          this.usuarioSubject.next(res.token);
         }
         return res;
       })
     );
   }
 
-
   validateLogin(loginData: any): Observable<any> {
-
-    console.log(loginData.email);
-    console.log(loginData.password);
-
-    return this._http.post<any>(`${this.url}/login`, {
-      "email": loginData.email,
-      "password": loginData.password
-    }, { responseType: 'json' }).pipe(
+    return this._http.post<any>(`${this.url}/login`, loginData, { responseType: 'json' }).pipe(
       map(res => {
-        if (!res.error) {
-          localStorage.setItem('myToken', res.data);
-          this.usuariSubject.next(res.data);
+        // Suponiendo que tu API de Laravel devuelve un token en el login exitoso
+        if (res.token) {
+          localStorage.setItem('myToken', JSON.stringify(res.token));
+          this.usuarioSubject.next(res.token);
         }
         return res;
       })
@@ -64,6 +48,6 @@ export class HttpService {
 
   logout(): void {
     localStorage.removeItem('myToken');
-    this.usuariSubject.next(null);
+    this.usuarioSubject.next(null);
   }
 }
