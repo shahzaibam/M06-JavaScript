@@ -11,7 +11,7 @@ export class DashboardEmpresaComponent {
   eventos: any[] = [];
   torneos: any[] = [];
   isLoading: boolean = true;
-  selectedEvent: any = { name: '', description: '', date: '', time: '' }; // Debes inicializar las propiedades con los valores adecuados
+  selectedEvent: any = { name: '', description: '', date: '', time: '' };
   isCompany: boolean = false; // Variable para controlar si es una empresa o no
   @ViewChild('addEventModalRef') addEventModalRef!: ElementRef;
   @ViewChild('editEventModalRef') editEventModalRef!: ElementRef;

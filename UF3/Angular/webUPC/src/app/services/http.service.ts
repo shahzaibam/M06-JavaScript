@@ -122,7 +122,6 @@ export class HttpService {
   validateRegister(registerData: any): Observable<any> {
     return this._http.post<any>(`${this.url}/register`, registerData, { responseType: 'json' }).pipe(
       map(res => {
-        // Suponiendo que tu API de Laravel devuelve un token en el registro exitoso
         if (res.token) {
           localStorage.setItem('myToken', JSON.stringify(res.token));
           this.usuarioSubject.next(res.token);
@@ -135,7 +134,6 @@ export class HttpService {
   validateLogin(loginData: any): Observable<any> {
     return this._http.post<any>(`${this.url}/login`, loginData, { responseType: 'json' }).pipe(
       map(res => {
-        // Suponiendo que tu API de Laravel devuelve un token en el login exitoso
         if (res.token) {
           localStorage.setItem('myToken', JSON.stringify(res.token));
           this.usuarioSubject.next(res.token);
@@ -159,7 +157,6 @@ export class HttpService {
 
     return this._http.get<any>(`${this.url}/userType`, { headers }).pipe(
       map(res => {
-        // Supongamos que tu API de Laravel devuelve el tipo de usuario como un string
         return res.userType;
       })
     );
