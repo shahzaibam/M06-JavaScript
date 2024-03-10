@@ -33,9 +33,11 @@
           </a>
 
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="/dashboard">Dashboard</a></li>
+            <li *ngIf="userType !== 'empresa'"><a class="dropdown-item" href="/dashboardAutonomo">Dashboard</a></li>
+            <li *ngIf="userType === 'empresa'"><a class="dropdown-item" href="/dashboardEmpresa">Empresa Dashboard</a></li>
             <li><a class="dropdown-item" href="/logout">Log Out</a></li>
           </ul>
+
         </li>
         <!-- Conditional rendering for non-authenticated users -->
         <li class="nav-item" *ngIf="!hasToken">

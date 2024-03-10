@@ -1,6 +1,7 @@
 import { Component, OnDestroy, NgZone } from '@angular/core';
 import { AuthService } from "../../services/auth.service";
 import { Subscription } from 'rxjs';
+import {HttpService} from "../../services/http.service";
 
 @Component({
   selector: 'app-menu',
@@ -11,8 +12,9 @@ export class MenuComponent {
   hasToken: boolean = false;
   userName: string = '';
   private authSubscription!: Subscription;
+  userType!: string;
 
-  constructor(public authService: AuthService, private ngZone: NgZone) {
+  constructor(public authService: AuthService, private http: HttpService,private ngZone: NgZone) {
     this.hasToken = !!localStorage.getItem('myToken'); // Comprobar si el token está presente
     this.userName = localStorage.getItem('name') || ''; // Obtener el nombre de usuario
 
@@ -25,6 +27,16 @@ export class MenuComponent {
         });
       }
     );
+  }
+
+  ngOnInit(): void {
+
+    if(this.hasToken) {
+      this.http.getUserType().subscribe((type: string) => {
+        this.userType = type;
+      });
+    }
+
   }
 
 }

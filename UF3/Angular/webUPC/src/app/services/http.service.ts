@@ -149,4 +149,19 @@ export class HttpService {
     localStorage.removeItem('myToken');
     this.usuarioSubject.next(null);
   }
+
+
+  getUserType(): Observable<string> {
+    const token = localStorage.getItem('myToken');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this._http.get<any>(`${this.url}/userType`, { headers }).pipe(
+      map(res => {
+        // Supongamos que tu API de Laravel devuelve el tipo de usuario como un string
+        return res.userType;
+      })
+    );
+  }
 }

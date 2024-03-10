@@ -17,6 +17,9 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { TournamentsComponent } from './components/tournaments/tournaments.component';
 import {NgIf} from "@angular/common";
 import { FooterComponent } from './components/footer/footer.component';
+import {DashboardEmpresaComponent} from "./components/dashboard-empresa/dashboard-empresa.component";
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import {DniValidatorDirective} from "./dniValidator/dni-validator.directive";
 
 @NgModule({
   declarations: [
@@ -31,7 +34,10 @@ import { FooterComponent } from './components/footer/footer.component';
     LogoutComponent,
     DashboardComponent,
     TournamentsComponent,
-    FooterComponent
+    FooterComponent,
+    DashboardEmpresaComponent,
+    NotFoundComponent,
+    DniValidatorDirective
   ],
   imports: [
     BrowserModule,
