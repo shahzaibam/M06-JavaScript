@@ -1,0 +1,125 @@
+<div *ngIf="!isLoading">
+
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-header">Gestión de Eventos</div>
+
+          <div class="card-body">
+            <div class="container">
+              <div class="d-flex justify-content-between m-3">
+                <div class="title">
+                  <h2>Eventos</h2>
+                </div>
+
+                <div class="buttonAdd">
+                  <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#addEventModal"
+                          style="background-color:#afaeaf">
+                    <i class="fa-solid fa-square-plus"></i>
+                  </button>
+
+
+                  <!-- Modal para añadir un evento -->
+                  <div class="modal fade" id="addEventModal" tabindex="-1"
+                       aria-labelledby="addEventModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="addEventModalLabel">Añadir
+                            Evento</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                  aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <!-- Formulario de Evento -->
+                          <form (submit)="addEvent($event)">
+                            <!-- Cambia 'eventos.store' por tu ruta correcta -->
+                            <div class="mb-3">
+                              <label for="eventName" class="form-label">Nombre del
+                                Evento</label>
+                              <input type="text" class="form-control" id="eventName"
+                                     name="name" required/>
+                            </div>
+                            <div class="mb-3">
+                              <label for="eventDescription"
+                                     class="form-label">Descripción</label>
+                              <textarea class="form-control" id="eventDescription"
+                                        name="description" rows="3"
+                                        required></textarea>
+                            </div>
+
+                            <div class="mb-3">
+                              <label for="fecha" class="form-label">Fecha</label>
+                              <input class="form-control" type="date" id="fecha"
+                                     name="fecha" rows="3" required/>
+                            </div>
+
+
+                            <div class="mb-3">
+                              <label for="hora" class="form-label">Hora</label>
+                              <input class="form-control" type="time" id="hora"
+                                     name="hora" rows="3" required/>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Guardar Evento</button>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Modal structure would need to be controlled by your JS or Front-end framework -->
+                  <!-- Omitiré el modal para simplificar, pero necesitarías implementarlo en tu JS -->
+                </div>
+              </div>
+
+
+              <div *ngIf="eventos.length === 0">
+                <p>No hay eventos disponibles.</p>
+              </div>
+              <div *ngIf="eventos.length > 0">
+                <table class="table">
+                  <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Fecha</th>
+                    <th>Hora</th>
+                    <th>Creado por</th>
+                    <th>Acciones</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let evento of eventos">
+                    <td>{{ evento.id }}</td>
+                    <td>{{ evento.name }}</td>
+                    <td>{{ evento.description }}</td>
+                    <td>{{ evento.date }}</td>
+                    <td>{{ evento.time }}</td>
+                    <td>{{ evento.user.name }}</td>
+                    <td class="d-flex">
+                      <!-- Gestiona estas acciones en tu JS o framework -->
+                      <button class="btn btn-success m-1"><i class="fa-solid fa-pencil"></i></button>
+                      <button class="btn btn-danger m-1"><i class="fa-solid fa-trash"></i></button>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="container py-4" *ngIf="isLoading">
+  <div class="d-flex justify-content-center align-items-center" style="height: 60vh;">
+    <div class="spinner-border" role="status" style="color:#afaeaf">
+      <span class="visually-hidden">Cargando...</span>
+    </div>
+  </div>
+</div>

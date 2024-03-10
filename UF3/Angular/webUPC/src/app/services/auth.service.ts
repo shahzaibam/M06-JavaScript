@@ -18,18 +18,22 @@ export class AuthService {
     this.isAuthenticatedSubject.next(!!token);
   }
 
-  register(token: string): void {
-    localStorage.setItem('myToken', token);
+  register(response: any): void {
+    localStorage.setItem('myToken', response.token);
+    localStorage.setItem('name', response.user.name);
     this.isAuthenticatedSubject.next(true);
   }
 
-  login(token: string): void {
-    localStorage.setItem('myToken', token);
+  login(response: any): void {
+    localStorage.setItem('myToken', response.token);
+    localStorage.setItem('name', response.user.name);
     this.isAuthenticatedSubject.next(true);
   }
 
   logout(): void {
     localStorage.removeItem('myToken');
+    localStorage.removeItem('name');
     this.isAuthenticatedSubject.next(false);
   }
+
 }

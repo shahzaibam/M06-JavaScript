@@ -37,7 +37,7 @@ export class RegisterComponent implements OnInit {
       this.myHttpService.validateRegister(registerData).subscribe(
         response => {
           if (response.token) {
-            this.authService.register(response.token); // Utiliza el token de la respuesta
+            this.authService.register(response); // Utiliza el token de la respuesta
             this.router.navigate(['/']); // Redirige al usuario donde corresponda
           } else {
             // Maneja la respuesta sin éxito

@@ -1,48 +1,47 @@
-<nav
-  class="navbar sticky-top navbar-expand-lg" id="menuBar">
+<nav class="navbar sticky-top navbar-expand-lg" id="menuBar">
   <div class="container-fluid">
-    <div class="collapse navbar-collapse" id="navbarColor01">
-      <ul class="navbar-nav me-auto">
+    <!-- Logo -->
+    <a class="navbar-brand" href="/">
+      <img src="assets/img/logo.png" width="100px" height="100px" alt="Logo">
+    </a>
+    <!-- Toggle button for mobile view -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <!-- Navbar items -->
+    <div class="collapse navbar-collapse justify-content-end navbarTop" id="navbarColor01">
+      <ul class="navbar-nav">
+        <!-- Static navigation items -->
         <li class="nav-item">
           <a class="nav-link active" href="/">Home</a>
         </li>
-
-
         <li class="nav-item">
           <a class="nav-link" href="/aboutus">About us</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/contactus">Contact Us</a>
         </li>
-
         <li class="nav-item">
           <a class="nav-link" href="/events">Events</a>
         </li>
+        <li class="nav-item dropdown dropdown-center" *ngIf="hasToken">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            {{ userName }} <!-- Usa la variable del componente aquí -->
+          </a>
 
-
-        <div class="d-flex" *ngIf="!hasToken">
-          <li class="nav-item">
-            <a class="nav-link" href="/login">Login</a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" href="/register">Register</a>
-          </li>
-        </div>
-
-        <div *ngIf="hasToken">
-          <li class="nav-item" >
-            <a class="nav-link" href="/logout">Log Out</a>
-          </li>
-        </div>
-
-
-
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="/dashboard">Dashboard</a></li>
+            <li><a class="dropdown-item" href="/logout">Log Out</a></li>
+          </ul>
+        </li>
+        <!-- Conditional rendering for non-authenticated users -->
+        <li class="nav-item" *ngIf="!hasToken">
+          <a class="nav-link" href="/login">Login</a>
+        </li>
+        <li class="nav-item" *ngIf="!hasToken">
+          <a class="nav-link" href="/register">Register</a>
+        </li>
       </ul>
-      <div style="margin-right: 100px;">
-        <img src="assets/img/logo.png" width="100px" height="100px">
-      </div>
     </div>
   </div>
 </nav>
-

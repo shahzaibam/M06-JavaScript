@@ -1,24 +1,57 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
+import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
+import {BehaviorSubject, Observable, throwError} from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpService {
-  url: string = 'http://localhost:8000/api'; // Cambia esto a la URL base de tu API de Laravel
+  url: string = 'http://localhost:8000/api'; //URL DE LA API DE LARAVEL
   private usuarioSubject: BehaviorSubject<any>;
   public usuario: Observable<any>;
 
   constructor(private _http: HttpClient) {
-    this.usuarioSubject = new BehaviorSubject<any>(JSON.parse(localStorage.getItem('myToken') || '{}'));
+    this.usuarioSubject = new BehaviorSubject<any>(localStorage.getItem('myToken') || '{}');
     this.usuario = this.usuarioSubject.asObservable();
   }
 
-  public get usuarioData(): any {
-    return this.usuarioSubject.value;
+
+  getEvents() {
+    const token = localStorage.getItem('myToken') || '';
+
+    const headers = { 'Authorization': 'Bearer ' + token };
+
+    return this._http.get<any>(`${this.url}/events`, { headers }).pipe(
+      map(res => {
+
+        if(res.events) {
+          return res;
+        }
+      })
+    );
   }
+
+
+  // En tu HttpService
+  getSingleUserEvents(): Observable<any> {
+    const token = localStorage.getItem('myToken');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this._http.get<any>(`${this.url}/my-events`, { headers });
+  }
+
+
+  createEvent(eventData: any): Observable<any> {
+    const token = localStorage.getItem('myToken');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this._http.post<any>(`${this.url}/events`, eventData, { headers });
+  }
+
 
   validateRegister(registerData: any): Observable<any> {
     return this._http.post<any>(`${this.url}/register`, registerData, { responseType: 'json' }).pipe(
