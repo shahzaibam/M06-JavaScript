@@ -1,26 +1,40 @@
 <div class="container">
-  <h2 class="mt-5 text-center">Register</h2>
+  <h2 class="mt-5 text-center">Registro</h2>
   <form [formGroup]="formulari" (ngSubmit)="checkRegister()" class="mt-5">
     <fieldset>
       <!-- Nombre de Usuario -->
       <div class="form-group">
-        <legend class="mt-4">Nombre de Usuario*:</legend>
+        <label for="nomUsuari">Nombre de Usuario*:</label>
         <input type="text" class="form-control" id="nomUsuari" placeholder="Nombre de Usuario" formControlName="nomUsuari">
         <div *ngIf="formulari.get('nomUsuari')?.invalid && formulari.get('nomUsuari')?.touched" class="alert alert-danger">
           Este campo es obligatorio.
         </div>
       </div>
 
+      <!-- Email -->
       <div class="form-group">
-        <legend class="mt-4">Email*:</legend>
+        <label for="email">Email*:</label>
         <input type="text" class="form-control" id="email" placeholder="Email" formControlName="email">
         <div *ngIf="formulari.get('email')?.invalid && formulari.get('email')?.touched" class="alert alert-danger">
           Este campo es obligatorio.
         </div>
       </div>
 
+      <!-- Tipo de usuario -->
       <div class="form-group">
-        <legend class="mt-4">DNI*:</legend>
+        <label for="userType">Tipo de usuario*:</label>
+        <select class="form-control" id="userType" name="userType" formControlName="userType">
+          <option value="empresa">Empresa</option>
+          <option value="autonomo">Autónomo</option>
+        </select>
+        <div *ngIf="formulari.get('userType')?.invalid && formulari.get('userType')?.touched" class="alert alert-danger">
+          Este campo es obligatorio.
+        </div>
+      </div>
+
+      <!-- DNI -->
+      <div class="form-group">
+        <label for="dni">DNI*:</label>
         <input type="text" class="form-control" id="dni" placeholder="DNI" formControlName="dni">
         <div *ngIf="formulari.get('dni')?.invalid && formulari.get('dni')?.touched" class="alert alert-danger">
           Este campo es obligatorio.
@@ -29,7 +43,7 @@
 
       <!-- Contraseña -->
       <div class="form-group">
-        <legend class="mt-4">Contraseña*:</legend>
+        <label for="contrasenya">Contraseña*:</label>
         <input type="password" class="form-control" id="contrasenya" placeholder="Contraseña" formControlName="contrasenya">
         <div *ngIf="formulari.get('contrasenya')?.invalid && formulari.get('contrasenya')?.touched" class="alert alert-danger">
           Este campo es obligatorio.
@@ -37,7 +51,7 @@
       </div>
 
       <!-- Botón de envío -->
-      <button type="submit" class="btn btn-primary" [disabled]="formulari.invalid">Iniciar Sesión</button>
+      <button type="submit" class="btn btn-primary" [disabled]="formulari.invalid">Registrar</button>
       <div *ngIf="logFalso" class="alert alert-danger mt-2">
         Usuario o contraseña incorrecta.
       </div>

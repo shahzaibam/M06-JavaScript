@@ -1,27 +1,37 @@
-<form [formGroup]="eventForm" (ngSubmit)="onSubmit()">
-  <div>
-    <label for="name">Name:</label>
-    <input type="text" id="name" formControlName="name">
+<div class="container py-4">
+  <div class="row justify-content-center">
+      <div class="col-md-10">
+          <div class="card border-0 shadow">
+              <div class="card-header bg-primary text-white">Gestión de Eventos</div>
+              <div class="card-body">
+                  <div *ngIf="status" class="alert alert-success" role="alert">
+                      {{ status }}
+                  </div>
+                  <div class="text-center mb-4">
+                      <h2 class="mb-0">Eventos Destacados</h2>
+                      <p>Descubre los próximos eventos</p>
+                  </div>
+                  <div *ngIf="eventos.length == 0" class="alert alert-info">No hay eventos disponibles en este momento.</div>
+                  <div *ngIf="eventos.length > 0" class="row row-cols-1 row-cols-md-3 g-4">
+                      <div class="col" *ngFor="let evento of eventos">
+                          <div class="card h-100 border-0">
+                              <div class="card-body">
+                                  <h5 class="card-title text-primary">{{ evento.name }}</h5>
+                                  <p class="card-text">{{ evento.description }}</p>
+                                  <p class="card-text">
+                                      <small class="text-muted">Fecha: {{ evento.fecha }}</small> |
+                                      <small class="text-muted">Hora: {{ evento.hora }}</small>
+                                  </p>
+                                  <p class="card-text"><small class="text-muted">Autor: {{ evento.nombreCreador }}</small></p>
+                              </div>
+                              <div *ngIf="userType === 'guest'">
+                                  <button class="btn btn-outline-primary" (click)="apuntar(evento.id)">Apuntar</button>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
   </div>
-  <div>
-    <label for="description">Description:</label>
-    <input type="text" id="description" formControlName="description">
-  </div>
-  <div>
-    <label for="date">Date:</label>
-    <input type="date" id="date" formControlName="date">
-  </div>
-  <div>
-    <label for="time">Time:</label>
-    <input type="time" id="time" formControlName="time">
-  </div>
-  <button type="submit">Add Event</button>
-</form>
-
-
-
-<div *ngFor="let event of events">
-  <h2>{{ event.name }}</h2>
-  <p>{{ event.description }}</p>
-  <p>{{ event.date | date }} at {{ event.time }}</p>
 </div>

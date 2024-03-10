@@ -1,6 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {EventService} from "../../services/event.service";
+
+interface Evento {
+  id: number;
+  name: string;
+  description: string;
+  fecha: string;
+  hora: string;
+  nombreCreador: string;
+}
 
 @Component({
   selector: 'app-event',
@@ -8,32 +15,33 @@ import {EventService} from "../../services/event.service";
   styleUrls: ['./event.component.css']
 })
 export class EventComponent implements OnInit {
+  eventos: Evento[] = [];
+  status?: string;
+  userType: string = 'guest';
 
-  eventForm: FormGroup;
-  events: any[] = [];
-
-  constructor(private fb: FormBuilder, private eventService: EventService) {
-    this.eventForm = this.fb.group({
-      name: ['', Validators.required],
-      description: ['', Validators.required],
-      date: ['', Validators.required],
-      time: ['', Validators.required]
-    });
+  constructor() {
   }
 
   ngOnInit(): void {
-    this.eventService.getEvents().subscribe({
-      next: (response:any) => this.events = response.events,
-      error: (error:any) => console.error('Error getting events', error)
-    });
+    this.cargarEventos();
   }
 
-  onSubmit(): void {
-    if (this.eventForm.valid) {
-      this.eventService.addEvent(this.eventForm.value).subscribe({
-        next: (response:any) => console.log('Event added', response),
-        error: (error:any) => console.error('Error adding event', error)
+  cargarEventos(): void {
+    this.eventos = []; // Limpiar la lista de torneos antes de cargar nuevos
+    // Generar 10 torneos con información aleatoria
+    for (let i = 1; i <= 10; i++) {
+      this.eventos.push({
+        id: i,
+        name: `Torneo ${i}`,
+        description: `Este es un torneo emocionante número ${i} con competiciones intensas.`,
+        fecha: `2024-0${Math.floor(Math.random() * 9) + 1}-0${Math.floor(Math.random() * 9) + 1}`, // Genera fechas aleatorias
+        hora: `${Math.floor(Math.random() * 23) + 1}:00`, // Genera horas aleatorias
+        nombreCreador: `Organizador ${Math.floor(Math.random() * 10) + 1}` // Nombres de organizadores aleatorios
       });
     }
+  }
+
+  apuntar(eventoId: number): void {
+    console.log(`El usuario se ha apuntado al evento con ID ${eventoId}`);
   }
 }

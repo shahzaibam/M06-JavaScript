@@ -1,0 +1,47 @@
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 100px;
+  margin: auto;
+  max-width: 1200px;
+}
+
+.login-form {
+  width: 50%;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.register-btn {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #6a5acd;
+  /* Ajusta el color según tu diseño */
+  color: white;
+}
+
+a {
+  color: #6a5acd;
+  /* Ajusta el color según tu diseño */
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+#errors_div{
+  margin-top: 5px;
+}

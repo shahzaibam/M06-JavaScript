@@ -1,0 +1,84 @@
+<div class="login-container">
+  <div class="login-form">
+    <h2>Register</h2>
+    <form [formGroup]="formulari" (ngSubmit)="enviament()">
+      <!-- Nombre -->
+      <div class="form-group">
+        <label for="text">Enter your Name</label>
+        <input type="text" id="name" formControlName="name" class="form-control">
+
+        <!-- Es obligatoria -->
+        <div *ngIf="this.formulari.get('name')?.errors?.['required'] && this.formulari.get('name')?.touched"
+          class="alert alert-danger" id="errors_div">
+          Aquest camp és obligatori.
+        </div>
+      </div>
+
+      <!-- Email -->
+      <div class="form-group">
+        <label for="email">Enter your email</label>
+        <input type="email" id="email" formControlName="email" class="form-control" appValidarEmail>
+
+        <!-- Es obligatoria -->
+        <div *ngIf="this.formulari.get('email')?.errors?.['required'] && this.formulari.get('email')?.touched"
+          class="alert alert-danger" id="errors_div">
+          Aquest camp és obligatori.
+        </div>
+
+        <!-- Directiva con el patron -->
+        <div *ngIf="this.formulari.get('email')?.errors?.['custom'] && this.formulari.get('email')?.touched"
+          class="alert alert-danger" id="errors_div">
+          Pon un formato de mail valido.
+        </div>
+      </div>
+
+      <!-- Password -->
+      <div class="form-group">
+        <label for="password">Enter your password</label>
+        <input type="password" id="password" formControlName="password" class="form-control" appValidarPassword>
+
+        <!-- Es obligatoria -->
+        <div *ngIf="this.formulari.get('password')?.errors?.['required'] && this.formulari.get('password')?.touched"
+          class="alert alert-danger" id="errors_div">
+          Aquest camp és obligatori.
+        </div>
+
+        <!-- Directiva con el patron -->
+        <div *ngIf="this.formulari.get('password')?.errors?.['custom'] && this.formulari.get('password')?.touched"
+          class="alert alert-danger" id="errors_div">
+          Tiene que contener una mayuscula, una letra i al menos 8 caracteres
+        </div>
+      </div>
+
+      <!-- Repeat password -->
+      <div class="form-group">
+        <label for="repeatPassword">Enter your password</label>
+        <input type="password" appValidarRepetir=password class="form-control" id="exampleInputPassword2"
+          formControlName="repeatPassword">
+
+        <!-- Es obligatoria -->
+        <div
+          *ngIf="this.formulari.get('repeatPassword')?.errors?.['required'] && this.formulari.get('repeatPassword')?.touched"
+          class="alert alert-danger">
+          Aquest camp és obligatori.
+        </div>
+      </div>
+
+      <!-- Directiva con el patron -->
+      <div
+        *ngIf="this.formulari.get('repeatPassword')?.errors?.['custom'] && this.formulari.get('repeatPassword')?.touched"
+        class="alert alert-danger">
+        Les contrasenyes no coincideixen
+      </div>
+
+      <!-- Mensaje de errores -->
+      <div *ngIf="mensaje" [ngClass]="mensaje.includes('Error') ? 'alert-danger' : 'alert-success'" class="alert mt-3">
+        {{ mensaje }}
+      </div>
+
+      <!-- Boton enviar-->
+      <button type="submit" class="btn register-btn">Create an account</button>
+      <p>Do you have an account? <a href="#">Login</a></p>
+    </form>
+  </div>
+</div>

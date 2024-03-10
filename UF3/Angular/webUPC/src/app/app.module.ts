@@ -9,11 +9,14 @@ import { EventComponent } from './components/event/event.component';
 import { AboutusComponent } from './components/aboutus/aboutus.component';
 import { ContactusComponent } from './components/contactus/contactus.component';
 import { LoginComponent } from './components/login/login.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import { RegisterComponent } from './components/register/register.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { TournamentsComponent } from './components/tournaments/tournaments.component';
+import {NgIf} from "@angular/common";
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -26,13 +29,20 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     LoginComponent,
     RegisterComponent,
     LogoutComponent,
-    DashboardComponent
+    DashboardComponent,
+    TournamentsComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule, // Asegúrate de incluir HttpClientModule en la lista de imports
+    HttpClientModule,
+    FormsModule,
+    FormsModule,
+    NgIf,
+    ReactiveFormsModule,
+    // Asegúrate de incluir HttpClientModule en la lista de imports
   ],
   providers: [],
   bootstrap: [AppComponent]
