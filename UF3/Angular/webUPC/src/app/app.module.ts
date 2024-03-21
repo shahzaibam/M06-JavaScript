@@ -9,9 +9,17 @@ import { EventComponent } from './components/event/event.component';
 import { AboutusComponent } from './components/aboutus/aboutus.component';
 import { ContactusComponent } from './components/contactus/contactus.component';
 import { LoginComponent } from './components/login/login.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import { RegisterComponent } from './components/register/register.component';
+import { LogoutComponent } from './components/logout/logout.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { TournamentsComponent } from './components/tournaments/tournaments.component';
+import {NgIf} from "@angular/common";
+import { FooterComponent } from './components/footer/footer.component';
+import {DashboardEmpresaComponent} from "./components/dashboard-empresa/dashboard-empresa.component";
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import {DniValidatorDirective} from "./dniValidator/dni-validator.directive";
 
 @NgModule({
   declarations: [
@@ -22,13 +30,25 @@ import { RegisterComponent } from './components/register/register.component';
     AboutusComponent,
     ContactusComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    LogoutComponent,
+    DashboardComponent,
+    TournamentsComponent,
+    FooterComponent,
+    DashboardEmpresaComponent,
+    NotFoundComponent,
+    DniValidatorDirective
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule, // Asegúrate de incluir HttpClientModule en la lista de imports
+    HttpClientModule,
+    FormsModule,
+    FormsModule,
+    NgIf,
+    ReactiveFormsModule,
+    // Asegúrate de incluir HttpClientModule en la lista de imports
   ],
   providers: [],
   bootstrap: [AppComponent]

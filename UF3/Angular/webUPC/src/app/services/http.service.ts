@@ -1,61 +1,142 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
+import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
+import {BehaviorSubject, Observable, throwError} from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpService {
-  url: string = 'http://localhost:3000';
-  private usuariSubject: BehaviorSubject<any>;
+  url: string = 'http://localhost:8000/api'; //URL DE LA API DE LARAVEL
+  private usuarioSubject: BehaviorSubject<any>;
   public usuario: Observable<any>;
 
   constructor(private _http: HttpClient) {
-    this.usuariSubject = new BehaviorSubject<any>(localStorage.getItem('myToken'));
-    this.usuario = this.usuariSubject.asObservable();
+    this.usuarioSubject = new BehaviorSubject<any>(localStorage.getItem('myToken') || '{}');
+    this.usuario = this.usuarioSubject.asObservable();
   }
 
-  public usuariData(): any {
-    return this.usuariSubject.value;
+
+  getEvents() {
+    return this._http.get<any>(`${this.url}/eventsAll`).pipe(
+      map(res => {
+
+        if(res.events) {
+          return res;
+        }
+      })
+    );
   }
 
-  getUsers(): Observable<any> {
-    return this._http.get(`${this.url}/allUsers`);
+
+  getTournaments() {
+    return this._http.get<any>(`${this.url}/tournamentsAll`).pipe(
+      map(res => {
+
+        if(res) {
+          return res;
+        }
+      })
+    );
+  }
+
+
+
+
+  getSingleUserEvents(): Observable<any> {
+    const token = localStorage.getItem('myToken');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this._http.get<any>(`${this.url}/my-events`, { headers });
+  }
+
+
+  getSingleUserTournaments(): Observable<any> {
+    const token = localStorage.getItem('myToken');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this._http.get<any>(`${this.url}/my-tournaments`, { headers });
+  }
+
+
+  createEvent(eventData: any): Observable<any> {
+    const token = localStorage.getItem('myToken');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this._http.post<any>(`${this.url}/events`, eventData, { headers });
+  }
+
+
+  createTournament(tournamentData: any): Observable<any> {
+    const token = localStorage.getItem('myToken');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this._http.post<any>(`${this.url}/tournaments`, tournamentData, { headers });
+  }
+
+
+  updateEvent(eventId: number, eventData: any): Observable<any> {
+    const token = localStorage.getItem('myToken');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this._http.put<any>(`${this.url}/events/${eventId}`, eventData, { headers });
+  }
+
+
+  updateTournament(tournamentId: number, tournamentData: any): Observable<any> {
+    const token = localStorage.getItem('myToken');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this._http.put<any>(`${this.url}/tournaments/${tournamentId}`, tournamentData, { headers });
+  }
+
+
+  deleteEvent(eventId:any): Observable<any> {
+    const token = localStorage.getItem('myToken');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this._http.delete<any>(`${this.url}/events/${eventId}`, { headers });
+  }
+
+
+  deleteTournament(tournamentId:any): Observable<any> {
+    const token = localStorage.getItem('myToken');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this._http.delete<any>(`${this.url}/tournaments/${tournamentId}`, { headers });
   }
 
 
   validateRegister(registerData: any): Observable<any> {
-
-    return this._http.post<any>(`${this.url}/register`, {
-      "name": registerData.name,
-      "email": registerData.email,
-      "dni": registerData.dni,
-      "password": registerData.password
-    }, { responseType: 'json' }).pipe(
+    return this._http.post<any>(`${this.url}/register`, registerData, { responseType: 'json' }).pipe(
       map(res => {
-        if (!res.error) {
-          this.usuariSubject.next(res.data);
+        if (res.token) {
+          localStorage.setItem('myToken', JSON.stringify(res.token));
+          this.usuarioSubject.next(res.token);
         }
         return res;
       })
     );
   }
 
-
   validateLogin(loginData: any): Observable<any> {
-
-    console.log(loginData.email);
-    console.log(loginData.password);
-
-    return this._http.post<any>(`${this.url}/login`, {
-      "email": loginData.email,
-      "password": loginData.password
-    }, { responseType: 'json' }).pipe(
+    return this._http.post<any>(`${this.url}/login`, loginData, { responseType: 'json' }).pipe(
       map(res => {
-        if (!res.error) {
-          localStorage.setItem('myToken', res.data);
-          this.usuariSubject.next(res.data);
+        if (res.token) {
+          localStorage.setItem('myToken', JSON.stringify(res.token));
+          this.usuarioSubject.next(res.token);
         }
         return res;
       })
@@ -64,6 +145,20 @@ export class HttpService {
 
   logout(): void {
     localStorage.removeItem('myToken');
-    this.usuariSubject.next(null);
+    this.usuarioSubject.next(null);
+  }
+
+
+  getUserType(): Observable<string> {
+    const token = localStorage.getItem('myToken');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this._http.get<any>(`${this.url}/userType`, { headers }).pipe(
+      map(res => {
+        return res.userType;
+      })
+    );
   }
 }

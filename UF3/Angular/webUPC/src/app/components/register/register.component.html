@@ -1,43 +1,71 @@
 <div class="container">
-  <h2 class="mt-5 text-center">Register</h2>
+  <h2 class="mt-5 text-center">Registro</h2>
   <form [formGroup]="formulari" (ngSubmit)="checkRegister()" class="mt-5">
     <fieldset>
-      <!-- Nombre de Usuario -->
       <div class="form-group">
-        <legend class="mt-4">Nombre de Usuario*:</legend>
+        <label for="nomUsuari">Nombre de Usuario*:</label>
         <input type="text" class="form-control" id="nomUsuari" placeholder="Nombre de Usuario" formControlName="nomUsuari">
-        <div *ngIf="formulari.get('nomUsuari')?.invalid && formulari.get('nomUsuari')?.touched" class="alert alert-danger">
+        <div *ngIf="formulari.get('nomUsuari')?.errors?.['required'] && formulari.get('nomUsuari')?.touched" class="alert alert-danger">
           Este campo es obligatorio.
         </div>
+        <div *ngIf="formulari.get('nomUsuari')?.errors?.['minlength'] && formulari.get('nomUsuari')?.touched" class="alert alert-danger">
+          El nombre de usuario debe tener al menos 4 caracteres.
+        </div>
+        <div *ngIf="formulari.get('nomUsuari')?.errors?.['maxlength'] && formulari.get('nomUsuari')?.touched" class="alert alert-danger">
+          El nombre de usuario no debe exceder los 20 caracteres.
+        </div>
       </div>
-
       <div class="form-group">
-        <legend class="mt-4">Email*:</legend>
+        <label for="email">Email*:</label>
         <input type="text" class="form-control" id="email" placeholder="Email" formControlName="email">
-        <div *ngIf="formulari.get('email')?.invalid && formulari.get('email')?.touched" class="alert alert-danger">
+        <div *ngIf="formulari.get('email')?.errors?.['required'] && formulari.get('email')?.touched" class="alert alert-danger">
           Este campo es obligatorio.
         </div>
       </div>
-
       <div class="form-group">
-        <legend class="mt-4">DNI*:</legend>
-        <input type="text" class="form-control" id="dni" placeholder="DNI" formControlName="dni">
-        <div *ngIf="formulari.get('dni')?.invalid && formulari.get('dni')?.touched" class="alert alert-danger">
+        <label for="userType">Tipo de usuario*:</label>
+        <select class="form-control" id="userType" formControlName="userType">
+          <option value="empresa">Empresa</option>
+          <option value="autonomo">Autónomo</option>
+        </select>
+        <div *ngIf="formulari.get('userType')?.errors?.['required'] && formulari.get('userType')?.touched" class="alert alert-danger">
           Este campo es obligatorio.
         </div>
       </div>
-
-      <!-- Contraseña -->
       <div class="form-group">
-        <legend class="mt-4">Contraseña*:</legend>
+        <label for="dni">DNI*:</label>
+        <input type="text" class="form-control" id="dni" placeholder="DNI" formControlName="dni" appDniValidator>
+        <div *ngIf="formulari.get('dni')?.errors?.['required'] && formulari.get('dni')?.touched" class="alert alert-danger">
+          Este campo es obligatorio.
+        </div>
+        <div *ngIf="formulari.get('dni')?.errors?.['invalidDni'] && formulari.get('dni')?.touched" class="alert alert-danger">
+          El DNI no es válido.
+        </div>
+        <div *ngIf="formulari.get('dni')?.errors?.['invalidDniLetter'] && formulari.get('dni')?.touched" class="alert alert-danger">
+          La letra del DNI es incorrecta.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="contrasenya">Contraseña*:</label>
         <input type="password" class="form-control" id="contrasenya" placeholder="Contraseña" formControlName="contrasenya">
-        <div *ngIf="formulari.get('contrasenya')?.invalid && formulari.get('contrasenya')?.touched" class="alert alert-danger">
+        <div *ngIf="formulari.get('contrasenya')?.errors?.['required'] && formulari.get('contrasenya')?.touched" class="alert alert-danger">
           Este campo es obligatorio.
         </div>
+        <div *ngIf="formulari.get('contrasenya')?.errors?.['pattern'] && formulari.get('contrasenya')?.touched" class="alert alert-danger">
+          La contraseña debe seguir el patrón requerido.
+        </div>
       </div>
-
-      <!-- Botón de envío -->
-      <button type="submit" class="btn btn-primary" [disabled]="formulari.invalid">Iniciar Sesión</button>
+      <div class="form-group">
+        <label for="confirmarContrasenya">Confirmar Contraseña*:</label>
+        <input type="password" class="form-control" id="confirmarContrasenya" placeholder="Confirmar Contraseña" formControlName="confirmarContrasenya">
+        <div *ngIf="formulari.get('confirmarContrasenya')?.errors?.['required'] && formulari.get('confirmarContrasenya')?.touched" class="alert alert-danger">
+          Este campo es obligatorio.
+        </div>
+        <div *ngIf="formulari.errors?.['notSame'] && (formulari.get('contrasenya')?.touched || formulari.get('confirmarContrasenya')?.touched)" class="alert alert-danger">
+          Las contraseñas no coinciden.
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="formulari.invalid">Registrar</button>
       <div *ngIf="logFalso" class="alert alert-danger mt-2">
         Usuario o contraseña incorrecta.
       </div>

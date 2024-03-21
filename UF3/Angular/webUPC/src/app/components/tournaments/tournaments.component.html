@@ -1,0 +1,49 @@
+<div *ngIf="!isLoading">
+  <div class="container py-4">
+
+    <div class="row justify-content-center">
+      <div class="col-md-10">
+        <div class="card border-0 shadow">
+          <div class="card-header text-white" style="background-color: #afaeaf;">Gestión de Eventos</div>
+
+          <div class="card-body">
+
+            <div class="text-center mb-4">
+              <h2 class="mb-0">Torneos Destacados</h2>
+              <p>Descubre los próximos torneos</p>
+            </div>
+
+            <div *ngIf="tournaments && tournaments.length == 0" class="alert alert-info">No hay eventos disponibles en este
+              momento.
+            </div>
+            <div *ngIf="tournaments && tournaments.length > 0" class="row row-cols-1 row-cols-md-3 g-4">
+              <div class="col" *ngFor="let tournament of tournaments">
+                <div class="card h-100 border-0">
+                  <div class="card-body">
+                    <h5 class="card-title" style="color: #afaeaf">{{ tournament.name }}</h5>
+                    <p class="card-text">{{ tournament.description }}</p>
+                    <p class="card-text">
+                      <small class="text-muted">Fecha: {{ tournament.date }}</small> |
+                      <small class="text-muted">Hora: {{ tournament.time }}</small>
+                    </p>
+                    <p class="card-text"><small class="text-muted">Autor: {{ tournament.user.name }}</small></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<div class="container py-4" *ngIf="isLoading">
+  <div class="d-flex justify-content-center align-items-center" style="height: 60vh;">
+    <div class="spinner-border" role="status" style="color:#afaeaf">
+      <span class="visually-hidden">Cargando...</span>
+    </div>
+  </div>
+</div>

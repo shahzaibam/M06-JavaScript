@@ -1,0 +1,349 @@
+<div class="container" ng-controller="EventController as events">
+  <div ng-if="events.userType === 'empresa' || events.userType === 'autonomo'">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-header">Gestión de Events</div>
+          <div class="card-body">
+            <div ng-if="events.status" class="alert alert-success" role="alert">
+              {{ events }}
+            </div>
+            <div class="container">
+              <div class="d-flex justify-content-between m-3">
+                <div class="title">
+                  <h2>Events</h2>
+                </div>
+                <div class="buttonAdd">
+                  <button
+                    type="button"
+                    class="btn btn-primary"
+                    data-bs-toggle="modal"
+                    data-bs-target="#addEventModal"
+                  >
+                    <i class="fa-solid fa-square-plus">Añadir</i>
+                  </button>
+                </div>
+              </div>
+              <!-- Modal para añadir un evento -->
+              <div
+                class="modal fade"
+                id="addEventModal"
+                tabindex="-1"
+                aria-labelledby="addEventModalLabel"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="addEventModalLabel">
+                        Añadir Evento
+                      </h5>
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      ></button>
+                    </div>
+                    <div class="modal-body">
+                      <form
+                        [formGroup]="addEvent"
+                        (ngSubmit)="enviament()"
+                        class="mt-5"
+                      >
+                        <u><h2>Añadir Evento:</h2></u>
+                        <fieldset>
+                          <div classb="mb-3">
+                            <label for="nombre" class="form-label"
+                              >Nombre</label
+                            >
+                            <textarea
+                              class="form-control"
+                              id="nombre"
+                              formControlName="nom"
+                              rows="3"
+                            ></textarea>
+
+                            <div
+                              *ngIf="this.addEvent.get('nom')?.errors?.['required'] && this.addEvent.get('nom')?.touched"
+                              class="alert alert-danger"
+                            >
+                              Aquest camp és obligatori.
+                            </div>
+                          </div>
+
+                          <div classb="mb-3">
+                            <label for="descripcio" class="form-label"
+                              >Descripción</label
+                            >
+                            <textarea
+                              class="form-control"
+                              id="descripcion"
+                              formControlName="descripcio"
+                              rows="3"
+                            ></textarea>
+
+                            <div
+                              *ngIf="this.addEvent.get('descripcio')?.errors?.['required'] && this.addEvent.get('descripcio')?.touched"
+                              class="alert alert-danger"
+                            >
+                              Aquest camp és obligatori.
+                            </div>
+                          </div>
+
+                          <div class="mb-3">
+                            <label for="fecha" class="form-label">Fecha</label>
+                            <input
+                              class="form-control"
+                              type="date"
+                              id="fecha"
+                              formControlName="fecha"
+                              rows="3"
+                              required
+                            />
+
+                            <div
+                              *ngIf="this.addEvent.get('fecha')?.errors?.['required'] && this.addEvent.get('fecha')?.touched"
+                              class="alert alert-danger"
+                            >
+                              Aquest camp és obligatori.
+                            </div>
+                          </div>
+
+                          <div class="mb-3">
+                            <label for="hora" class="form-label">Hora</label>
+                            <input
+                              class="form-control"
+                              type="time"
+                              id="hora"
+                              formControlName="hora"
+                              rows="3"
+                              required
+                            />
+
+                            <div
+                              *ngIf="this.addEvent.get('hora')?.errors?.['required'] && this.addEvent.get('hora')?.touched"
+                              class="alert alert-danger"
+                            >
+                              Aquest camp és obligatori.
+                            </div>
+                          </div>
+
+                          <div class="mb-3">
+                            <label for="creado_por" class="form-label"
+                              >Creado por</label
+                            >
+                            <input
+                              class="form-control"
+                              type="text"
+                              id="creado_por"
+                              formControlName="creado_por"
+                              rows="3"
+                              required
+                            />
+
+                            <div
+                              *ngIf="this.addEvent.get('creado_por')?.errors?.['required'] && this.addEvent.get('creado_por')?.touched"
+                              class="alert alert-danger"
+                            >
+                              Aquest camp és obligatori.
+                            </div>
+                          </div>
+
+                          <div class="text-center mt-5">
+                            <button type="submit" class="btn btn-primary">
+                              Seguent
+                            </button>
+                          </div>
+                        </fieldset>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div ng-if="events.events.length < 0">
+                <p>No hay eventos disponibles.</p>
+              </div>
+              <div ng-if="events.events.length > 0">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Id</th>
+                      <th>Nombre</th>
+                      <th>Descripción</th>
+                      <th>Fecha</th>
+                      <th>Hora</th>
+                      <th>Creado por</th>
+                      <th>Acciones</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let evento of events">
+                      <td>{{ evento.id }}</td>
+                      <td>{{ evento.nombre }}</td>
+                      <td>{{ evento.descripcion }}</td>
+                      <td>{{ evento.fecha }}</td>
+                      <td>{{ evento.hora }}</td>
+                      <td>{{ evento.creado_por }}</td>
+
+                      <td class="d-flex">
+                        <!-- Botón para editar evento -->
+                        <button type="button" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#editEventModal" (click)="abrirModalEditar(evento)">Editar</button>
+                        <button type="button" class="btn btn-danger" *ngIf="evento.id" (click)="eliminarEvento(evento.id.toString())">Eliminar</button>
+                      </td>
+                      <td class="d-flex">
+                        <!-- Modal para añadir un evento -->
+                        <div
+                          class="modal fade"
+                          id="editEventModal"
+                          tabindex="-1"
+                          aria-labelledby="editEventModalLabel"
+                          aria-hidden="true"
+                        >
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5
+                                  class="modal-title"
+                                  id="editEventModalLabel"
+                                >
+                                 Editar Evento
+                                </h5>
+                                <button
+                                  type="button"
+                                  class="btn-close"
+                                  data-bs-dismiss="modal"
+                                  aria-label="Close"
+                                ></button>
+                              </div>
+                              <div class="modal-body">
+                                <form
+                                  [formGroup]="editEvent"
+                                  (ngSubmit)="editarEvento()"
+                                  class="mt-5"
+                                >
+                                  <u><h2>Editar Evento:</h2></u>
+                                  <fieldset>
+                                    <div class="mb-3">
+                                      <label for="nombre" class="form-label"
+                                        >Nombre</label
+                                      >
+                                      <textarea
+                                        class="form-control"
+                                        id="nombre"
+                                        formControlName="nom"
+                                        rows="3"
+                                      ></textarea>
+                                      <div
+                                        *ngIf="this.editEvent.get('nom')?.errors?.['required'] && this.editEvent.get('nom')?.touched"
+                                        class="alert alert-danger"
+                                      >
+                                        Aquest camp és obligatori.
+                                      </div>
+                                    </div>
+
+                                    <div class="mb-3">
+                                      <label for="descripcio" class="form-label"
+                                        >Descripción</label
+                                      >
+                                      <textarea
+                                        class="form-control"
+                                        id="descripcion"
+                                        formControlName="descripcio"
+                                        rows="3"
+                                      ></textarea>
+                                      <div
+                                        *ngIf="this.editEvent.get('descripcio')?.errors?.['required'] && this.editEvent.get('descripcio')?.touched"
+                                        class="alert alert-danger"
+                                      >
+                                        Aquest camp és obligatori.
+                                      </div>
+                                    </div>
+
+                                    <div class="mb-3">
+                                      <label for="fecha" class="form-label"
+                                        >Fecha</label
+                                      >
+                                      <input
+                                        class="form-control"
+                                        type="date"
+                                        id="fecha"
+                                        formControlName="fecha"
+                                        rows="3"
+                                        required
+                                      />
+                                      <div
+                                        *ngIf="this.editEvent.get('fecha')?.errors?.['required'] && this.editEvent.get('fecha')?.touched"
+                                        class="alert alert-danger"
+                                      >
+                                        Aquest camp és obligatori.
+                                      </div>
+                                    </div>
+
+                                    <div class="mb-3">
+                                      <label for="hora" class="form-label"
+                                        >Hora</label
+                                      >
+                                      <input
+                                        class="form-control"
+                                        type="time"
+                                        id="hora"
+                                        formControlName="hora"
+                                        rows="3"
+                                        required
+                                      />
+                                      <div
+                                        *ngIf="this.editEvent.get('hora')?.errors?.['required'] && this.editEvent.get('hora')?.touched"
+                                        class="alert alert-danger"
+                                      >
+                                        Aquest camp és obligatori.
+                                      </div>
+                                    </div>
+
+                                    <div class="mb-3">
+                                      <label for="creado_por" class="form-label"
+                                        >Creado por</label
+                                      >
+                                      <input
+                                        class="form-control"
+                                        type="text"
+                                        id="creado_por"
+                                        formControlName="creado_por"
+                                        rows="3"
+                                        required
+                                      />
+                                      <div
+                                        *ngIf="this.editEvent.get('creado_por')?.errors?.['required'] && this.editEvent.get('creado_por')?.touched"
+                                        class="alert alert-danger"
+                                      >
+                                        Aquest camp és obligatori.
+                                      </div>
+                                    </div>
+
+                                    <div class="text-center mt-5">
+                                      <button
+                                        type="submit"
+                                        class="btn btn-primary"
+                                      >
+                                        Seguent
+                                      </button>
+                                    </div>
+                                  </fieldset>
+                                </form>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

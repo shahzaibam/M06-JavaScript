@@ -2,8 +2,16 @@
   background-color: #afaeaf;
 }
 
-.navbar-nav li a {
+* {
   color: black;
-  font-size: 18px;
+  font-size: 16px;
 }
 
+.navbarTop {
+  margin-right: 10em;
+}
+
+.dropdown-center .dropdown-menu {
+  left: 50%; /* Posiciona el inicio del menú desplegable en el 50% del elemento padre */
+  transform: translateX(-50%); /* Mueve el menú desplegable un 50% hacia atrás en su propio ancho, centrándolo */
+}

@@ -1,0 +1,382 @@
+<div *ngIf="!isLoading">
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-header">Gestión de Eventos</div>
+          <div class="card-body">
+            <div class="container">
+              <div class="d-flex justify-content-between m-3">
+                <div class="title">
+                  <h2>Eventos</h2>
+                </div>
+                <div class="buttonAdd">
+                  <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#addEventModalEmp"
+                          style="background-color:#afaeaf">
+                    <i class="fa-solid fa-square-plus"></i>
+                  </button>
+                </div>
+              </div>
+              <!-- Modal para agregar un nuevo evento -->
+              <div class="modal fade" id="addEventModalEmp" tabindex="-1" aria-labelledby="addEventModalEmpLabel"
+                   aria-hidden="true" #addEventModalRef>
+
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="addEventModalEmpLabel">Añadir Evento</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form (submit)="addEvent($event)">
+                        <div class="mb-3">
+                          <label for="eventNameAdd" class="form-label">Nombre del Evento</label>
+                          <input type="text" class="form-control" id="eventNameAdd" name="name" required/>
+                        </div>
+                        <div class="mb-3">
+                          <label for="eventDescriptionAdd" class="form-label">Descripción</label>
+                          <textarea class="form-control" id="eventDescriptionAdd" name="description" rows="3"
+                                    required></textarea>
+                        </div>
+                        <div class="mb-3">
+                          <label for="eventFechaAdd" class="form-label">Fecha</label>
+                          <input class="form-control" type="date" id="eventFechaAdd" name="date" rows="3" required/>
+                        </div>
+                        <div class="mb-3">
+                          <label for="eventHoraAdd" class="form-label">Hora</label>
+                          <input class="form-control" type="time" id="eventHoraAdd" name="time" rows="3" required/>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Guardar Evento</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Tabla de eventos existentes -->
+              <div *ngIf="eventos.length > 0">
+                <table class="table">
+                  <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Fecha</th>
+                    <th>Hora</th>
+                    <th>Creado por</th>
+                    <th>Acciones</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let evento of eventos">
+                    <td>{{ evento.id }}</td>
+                    <td>{{ evento.name }}</td>
+                    <td>{{ evento.description }}</td>
+                    <td>{{ evento.date }}</td>
+                    <td>{{ evento.time }}</td>
+                    <td>{{ evento.user.name }}</td>
+                    <!-- Botón para editar cada evento -->
+                    <td class="d-flex">
+                      <div class="buttonEdit m-3">
+                        <button type="button" class="btn btn-success" (click)="editEvent(evento)"
+                                data-bs-toggle="modal"
+                                data-bs-target="#editEventModal">
+                          <i class="fa-solid fa-pencil"></i>
+                        </button>
+                      </div>
+                      <!--                      <button class="btn btn-success m-1" (click)="editEvent(evento)" data-bs-toggle="modal"-->
+                      <!--                              data-bs-target="#editEventModal"><i class="fa-solid fa-pencil"></i></button>-->
+
+                      <div class="buttonDlt m-3">
+                        <button type="button" class="btn btn-danger" (click)="checkEventDlt(evento)"
+                                data-bs-toggle="modal" data-bs-target="#dltEventModal">
+                          <i class="fa-solid fa-trash"></i>
+                        </button>
+                      </div>
+
+                      <!--                      <button class="btn btn-danger m-1"><i class="fa-solid fa-trash"></i></button>-->
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div *ngIf="eventos.length === 0">
+                <p>No hay eventos disponibles.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+  <!-- EDIT TOURNAMENT MODAL -->
+  <div class="modal fade" id="editEventModal" tabindex="-1" aria-labelledby="editEventModalLabel"
+       aria-hidden="true" #editEventModalRef>
+
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editEventModalLabel">Edit</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form (submit)="updateEvent($event)">
+            <div class="mb-3">
+              <label for="eventNameEdit" class="form-label">Nombre del Evento</label>
+              <input type="text" class="form-control" id="eventNameEdit" [(ngModel)]="selectedEvent.name" name="name"
+                     required/>
+            </div>
+            <div class="mb-3">
+              <label for="eventDescriptionEdit" class="form-label">Descripción</label>
+              <textarea class="form-control" id="eventDescriptionEdit" [(ngModel)]="selectedEvent.description"
+                        name="description" rows="3" required></textarea>
+
+            </div>
+            <div class="mb-3">
+              <label for="fechaEventEdit" class="form-label">Fecha</label>
+              <input class="form-control" type="date" id="fechaEventEdit" [(ngModel)]="selectedEvent.date" name="fecha"
+                     required/>
+            </div>
+            <div class="mb-3">
+              <label for="horaEventEdit" class="form-label">Hora</label>
+              <input class="form-control" type="time" id="horaEventEdit" [(ngModel)]="selectedEvent.time" name="hora"
+                     required/>
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar Evento</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- DELETE EVENT MODAL -->
+  <div class="modal fade" id="dltEventModal" tabindex="-1" aria-labelledby="dltEventModalLabel"
+       aria-hidden="true" #editEventModalRef>
+
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="dltEventModalLabel">Eliminar</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>¿Quieres eliminar este evento?</p>
+          <form (submit)="deleteEvent()">
+            <button type="submit" class="btn btn-danger">Eliminar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- TORNEO -->
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-header">Gestión de Torneos</div>
+          <div class="card-body">
+            <div class="container">
+              <div class="d-flex justify-content-between m-3">
+                <div class="title">
+                  <h2>Torneos</h2>
+                </div>
+                <div class="buttonAdd">
+                  <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#addTournamentModal"
+                          style="background-color:#afaeaf">
+                    <i class="fa-solid fa-square-plus"></i>
+                  </button>
+                </div>
+              </div>
+
+              <div class="modal fade" id="addTournamentModal" tabindex="-1" aria-labelledby="addTournamentModalLabel"
+                   aria-hidden="true" #addTournamentModalRef>
+
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="addTournamentModalLabel">Añadir Evento</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form (submit)="addTournament($event)">
+                        <div class="mb-3">
+                          <label for="eventNameTournament" class="form-label">Nombre del Evento</label>
+                          <input type="text" class="form-control" id="eventNameTournament" name="name" required/>
+                        </div>
+                        <div class="mb-3">
+                          <label for="eventDescriptionTournament" class="form-label">Descripción</label>
+                          <textarea class="form-control" id="eventDescriptionTournament" name="description" rows="3"
+                                    required></textarea>
+                        </div>
+                        <div class="mb-3">
+                          <label for="fechaTournament" class="form-label">Fecha</label>
+                          <input class="form-control" type="date" id="fechaTournament" name="date" rows="3" required/>
+                        </div>
+                        <div class="mb-3">
+                          <label for="horaTournament" class="form-label">Hora</label>
+                          <input class="form-control" type="time" id="horaTournament" name="time" rows="3" required/>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Guardar Evento</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Tabla de eventos existentes -->
+              <div *ngIf="torneos.length > 0">
+                <table class="table">
+                  <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Fecha</th>
+                    <th>Hora</th>
+                    <th>Creado por</th>
+                    <th>Acciones</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let torneo of torneos">
+                    <td>{{ torneo.id }}</td>
+                    <td>{{ torneo.name }}</td>
+                    <td>{{ torneo.description }}</td>
+                    <td>{{ torneo.date }}</td>
+                    <td>{{ torneo.time }}</td>
+                    <td>{{ torneo.user.name }}</td>
+                    <!-- Botón para editar cada evento -->
+                    <td class="d-flex">
+                      <div class="buttonEdit m-3">
+                        <button type="button" class="btn btn-success" (click)="editTournament(torneo)"
+                                data-bs-toggle="modal"
+                                data-bs-target="#editTournamentModal">
+                          <i class="fa-solid fa-pencil"></i>
+                        </button>
+                      </div>
+                      <!--                      <button class="btn btn-success m-1" (click)="editEvent(evento)" data-bs-toggle="modal"-->
+                      <!--                              data-bs-target="#editEventModal"><i class="fa-solid fa-pencil"></i></button>-->
+
+                      <div class="buttonDlt m-3">
+                        <button type="button" class="btn btn-danger" (click)="checkTournamentDlt(torneo)"
+                                data-bs-toggle="modal" data-bs-target="#dltTournamentModal">
+                          <i class="fa-solid fa-trash"></i>
+                        </button>
+                      </div>
+
+                      <!--                      <button class="btn btn-danger m-1"><i class="fa-solid fa-trash"></i></button>-->
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div *ngIf="torneos.length === 0">
+                <p>No hay eventos disponibles.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <!-- EDIT TOURNAMENT MODAL -->
+    <div class="modal fade" id="editTournamentModal" tabindex="-1" aria-labelledby="editTournamentModalLabel"
+         aria-hidden="true" #editEventModalRef>
+
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="editTournamentModalLabel">Edit</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form (submit)="updateTournament($event)">
+              <div class="mb-3">
+                <label for="tournamenttNameEdit" class="form-label">Nombre del Evento</label>
+                <input type="text" class="form-control" id="tournamenttNameEdit" [(ngModel)]="selectedEvent.name" name="name"
+                       required/>
+              </div>
+              <div class="mb-3">
+                <label for="tournamentDescriptionEdit" class="form-label">Descripción</label>
+                <textarea class="form-control" id="tournamentDescriptionEdit" [(ngModel)]="selectedEvent.description"
+                          name="description" rows="3" required></textarea>
+
+              </div>
+              <div class="mb-3">
+                <label for="tournamentFechaEdit" class="form-label">Fecha</label>
+                <input class="form-control" type="date" id="tournamentFechaEdit" [(ngModel)]="selectedEvent.date" name="fecha"
+                       required/>
+              </div>
+              <div class="mb-3">
+                <label for="tournamentHoraEdit" class="form-label">Hora</label>
+                <input class="form-control" type="time" id="tournamentHoraEdit" [(ngModel)]="selectedEvent.time" name="hora"
+                       required/>
+              </div>
+              <button type="submit" class="btn btn-primary">Guardar Evento</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- DELETE TOURNAMENT MODAL -->
+    <div class="modal fade" id="dltTournamentModal" tabindex="-1" aria-labelledby="dltTournamentModalLabel"
+         aria-hidden="true" #editEventModalRef>
+
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="dltTournamentModalLabel">Eliminar</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p>¿Quieres eliminar este evento?</p>
+            <form (submit)="deleteTournament()">
+              <button type="submit" class="btn btn-danger">Eliminar</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+
+</div>
+
+
+<div class="container py-4" *ngIf="isLoading">
+  <div class="d-flex justify-content-center align-items-center" style="height: 60vh;">
+    <div class="spinner-border" role="status" style="color: #AFAEAF;">
+      <span class="visually-hidden">Cargando...</span>
+    </div>
+  </div>
+</div>

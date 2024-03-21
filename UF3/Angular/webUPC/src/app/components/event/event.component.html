@@ -1,1 +1,48 @@
-<p>event works!</p>
+<div *ngIf="!isLoading">
+  <div class="container py-4">
+
+    <div class="row justify-content-center">
+      <div class="col-md-10">
+        <div class="card border-0 shadow">
+          <div class="card-header text-white" style="background-color: #afaeaf;">Gestión de Eventos</div>
+
+          <div class="card-body">
+
+            <div class="text-center mb-4">
+              <h2 class="mb-0">Eventos Destacados</h2>
+              <p>Descubre los próximos eventos</p>
+            </div>
+
+            <div *ngIf="events && events.length == 0" class="alert alert-info">No hay eventos disponibles en este
+              momento.
+            </div>
+            <div *ngIf="events && events.length > 0" class="row row-cols-1 row-cols-md-3 g-4">
+              <div class="col" *ngFor="let evento of events">
+                <div class="card h-100 border-0">
+                  <div class="card-body">
+                    <h5 class="card-title" style="color: #afaeaf">{{ evento.name }}</h5>
+                    <p class="card-text">{{ evento.description }}</p>
+                    <p class="card-text">
+                      <small class="text-muted">Fecha: {{ evento.date }}</small> |
+                      <small class="text-muted">Hora: {{ evento.time }}</small>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<div class="container py-4" *ngIf="isLoading">
+  <div class="d-flex justify-content-center align-items-center" style="height: 60vh;">
+    <div class="spinner-border" role="status" style="color:#afaeaf">
+      <span class="visually-hidden">Cargando...</span>
+    </div>
+  </div>
+</div>
